@@ -1,0 +1,2031 @@
+
+:root{
+ --paper:#FAF7F2;
+ --band:#F1EADE;
+ --ink:#0F1D28;
+ --ink-soft:#4A5763;
+ --gold:#C9A227;
+ --gold-text:#786425;
+ --gold-accent:#9a7d2e;
+ --gold-lt:#DABC57;
+ --line:#DED3C2;
+ --line-soft:#EDE5D8;
+ --white:#fff;
+ --r:24px;
+ --r-sm:14px;
+ --pad:clamp(84px,9vw,150px);
+ --shadow:0 1px 2px rgba(15,29,40,.03),0 16px 40px -22px rgba(15,29,40,.18);
+ --shadow-lg:0 2px 6px rgba(15,29,40,.04),0 40px 80px -40px rgba(15,29,40,.26);
+}
+
+:root{
+ --paper:#FAF7F2;
+ --band:#F1EADE;
+ --ink:#0F1D28;
+ --ink-soft:#4A5763;
+ --gold:#C9A227;
+ --gold-text:#786425;
+ --gold-accent:#9a7d2e;
+ --gold-lt:#DABC57;
+ --line:#DED3C2;
+ --line-soft:#EDE5D8;
+ --white:#fff;
+ --r:24px;
+ --r-sm:14px;
+ --pad:clamp(84px,9vw,150px);
+ --shadow:0 1px 2px rgba(15,29,40,.03),0 16px 40px -22px rgba(15,29,40,.18);
+ --shadow-lg:0 2px 6px rgba(15,29,40,.04),0 40px 80px -40px rgba(15,29,40,.26);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+ background:var(--white);color:var(--ink);
+ font-family:'Inter Tight',system-ui,sans-serif;
+ font-size:17px;line-height:1.82;font-weight:300;
+ -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+h1,h2,h3,h4,.disp{
+ font-family:'Bodoni Moda',Georgia,serif;font-weight:500;
+ font-optical-sizing:none;font-variation-settings:'opsz' 6;
+ line-height:1.1;letter-spacing:-.015em;
+}
+img,video{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+.eyebrow{font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;font-weight:600;color:var(--gold-text);margin-bottom:20px;display:block}
+.btn{
+ display:inline-flex;align-items:center;justify-content:center;
+ padding:16px 34px;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;
+ border:1px solid var(--ink);border-radius:999px;background:var(--ink);color:var(--white);
+ cursor:pointer;font-family:inherit;transition:.32s cubic-bezier(.22,.61,.36,1);
+}
+.btn:hover{background:transparent;color:var(--ink)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--ink);background:var(--ink);color:var(--white)}
+.btn-sm{padding:12px 26px;font-size:11.5px}
+
+.rv{opacity:0;transform:translateY(20px);transition:opacity .95s cubic-bezier(.22,.61,.36,1),transform .95s cubic-bezier(.22,.61,.36,1)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+/* ---------- header : centred nav ---------- */
+header{
+ position:fixed;top:0;left:0;right:0;z-index:60;
+ background:rgba(255,255,255,.86);backdrop-filter:blur(16px) saturate(1.5);
+ transition:box-shadow .4s;
+}
+header.stuck{box-shadow:0 1px 0 var(--line-soft)}
+.brand{display:flex;align-items:center;gap:12px}
+.brand svg{width:32px;height:32px}.brand img{width:auto;height:42px;display:block}
+.brand b{font-family:'Bodoni Moda',Georgia,serif;font-size:22px;font-weight:500;font-optical-sizing:none;font-variation-settings:'opsz' 6;display:block;line-height:1.05}
+.brand i{font-style:normal;display:block;font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft);margin-top:3px;font-family:'Inter Tight',sans-serif}
+nav{display:flex;gap:30px;justify-content:center;font-size:13.5px}
+nav a{position:relative;padding:5px 0;color:var(--ink-soft);transition:color .3s}
+nav a:hover{color:var(--ink)}
+.hcta{display:flex;align-items:center;gap:18px;justify-content:flex-end}
+.hphone{font-size:14px;font-weight:500;white-space:nowrap}
+
+/* ---------- hero : true split ---------- */
+.hero{padding-top:78px;position:relative;background:var(--paper)}
+.split{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 78px);position:relative}
+.half{position:relative;overflow:hidden;display:flex;align-items:flex-end}
+.half>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.6s cubic-bezier(.22,.61,.36,1)}
+.half:hover>img{transform:scale(1.045)}
+.half::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(15,29,40,.72) 0%,rgba(15,29,40,.16) 46%,rgba(15,29,40,.04) 100%)}
+.half-in{position:relative;z-index:2;padding:clamp(30px,3.4vw,52px);color:var(--white);width:100%;max-width:400px}
+/* keep each half's copy hugging its outer edge so the centre plate never clips it */
+/* the plate is child 1, so the two halves are children 2 and 3 */
+.half:nth-child(3) .half-in{margin-left:auto;text-align:right}
+.half:nth-child(3) .half-in p{margin-left:auto}
+.half-in span{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-lt);display:block;margin-bottom:9px}
+.half-in h2{font-size:clamp(24px,2.5vw,35px);color:var(--white);margin-bottom:10px}
+.half-in p{font-size:14.5px;color:rgba(255,255,255,.8);max-width:34ch;line-height:1.62;margin-bottom:18px}
+.half-in a{
+ display:inline-flex;align-items:center;gap:9px;font-size:11.5px;letter-spacing:.14em;
+ text-transform:uppercase;color:var(--white);border-bottom:1px solid rgba(255,255,255,.42);
+ padding-bottom:4px;transition:border-color .3s
+}
+.half-in a:hover{border-color:var(--gold-lt)}
+/* centre plate */
+.plate{
+ position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:5;
+ background:var(--white);border-radius:var(--r);padding:clamp(34px,3.6vw,52px) clamp(30px,3.4vw,54px);
+ text-align:center;box-shadow:var(--shadow-lg);width:min(88vw,430px);
+}
+.plate svg{width:44px;height:44px;margin:0 auto 18px}
+.tagline{
+ font-family:'Bodoni Moda',Georgia,serif;font-weight:500;font-optical-sizing:none;
+ font-variation-settings:'opsz' 6;font-size:clamp(31px,3.6vw,46px);line-height:1.04;
+ letter-spacing:-.024em;margin-bottom:16px;
+}
+.tagline em{font-style:italic;color:var(--gold-accent)}
+.plate p{font-size:15.5px;color:var(--ink-soft);line-height:1.62;margin-bottom:22px}
+.plate .meta{display:flex;align-items:center;justify-content:center;gap:10px;font-size:12.5px;color:var(--ink-soft);margin-bottom:24px}
+.stars{color:var(--gold-text);letter-spacing:2px;font-size:12px}
+.plate .acts{display:flex;gap:9px;justify-content:center;flex-wrap:wrap}
+
+/* ---------- sections ---------- */
+section.s{padding:var(--pad) 0}
+section.tint{background:var(--paper)}
+section.warm{background:var(--band)}
+.shead{max-width:720px;margin-bottom:clamp(42px,4.6vw,68px)}
+.shead h2{font-size:clamp(32px,3.9vw,56px);margin-bottom:18px}
+.shead p{font-size:clamp(16.5px,1.3vw,18.5px);color:var(--ink-soft);line-height:1.72}
+.shead.ctr{margin-inline:auto;text-align:center}
+
+/* switcher */
+.sw{display:flex;justify-content:center;gap:6px;margin-bottom:clamp(34px,3.6vw,52px);background:var(--paper);padding:6px;border-radius:999px;width:fit-content;margin-inline:auto;border:1px solid var(--line-soft)}
+.sw button{
+ border:0;background:none;cursor:pointer;font-family:inherit;font-size:13px;letter-spacing:.13em;
+ text-transform:uppercase;font-weight:500;color:var(--ink-soft);padding:12px 30px;border-radius:999px;
+ transition:.3s cubic-bezier(.22,.61,.36,1);
+}
+.sw button.on{background:var(--ink);color:var(--white)}
+.pane{display:none}
+.pane.on{display:block;animation:fadein .55s cubic-bezier(.22,.61,.36,1)}
+@keyframes fadein{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.pane.on{animation:none}}
+.pgrid{display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(34px,4.4vw,72px);align-items:center}
+.pgrid .pic{border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+.pgrid .pic img{width:100%;aspect-ratio:4/3.2;object-fit:cover}
+.pgrid h3{font-size:clamp(27px,2.8vw,38px);margin-bottom:14px}
+.pgrid>div>p{color:var(--ink-soft);margin-bottom:26px;max-width:44ch}
+.plist{list-style:none;margin-bottom:26px}
+.plist li{display:flex;justify-content:space-between;gap:18px;padding:13px 0;border-bottom:1px solid var(--line-soft);align-items:baseline}
+.plist b{font-family:'Bodoni Moda',Georgia,serif;font-weight:500;font-optical-sizing:none;font-variation-settings:'opsz' 6;font-size:19px}
+.plist span{font-size:13px;color:var(--ink-soft);text-align:right;max-width:54%;line-height:1.5}
+.pentry{display:flex;align-items:baseline;gap:14px;padding:18px 22px;background:var(--paper);border-radius:var(--r-sm);margin-bottom:24px}
+.pentry b{font-family:'Bodoni Moda',Georgia,serif;font-weight:500;font-optical-sizing:none;font-variation-settings:'opsz' 6;font-size:25px;white-space:nowrap}
+.pentry span{font-size:13px;color:var(--ink-soft);line-height:1.55}
+
+/* concerns two columns */
+.ctwo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,4vw,64px)}
+.ccol h3{font-size:22px;margin-bottom:5px}
+.ccol>p{font-size:13px;color:var(--ink-soft);margin-bottom:22px}
+.crow{
+ display:flex;align-items:baseline;gap:16px;padding:16px 20px;border-radius:var(--r-sm);
+ transition:background .3s,transform .3s;
+}
+.crow:hover{background:var(--paper);transform:translateX(4px)}
+section.tint .crow:hover{background:var(--white)}
+.crow b{font-family:'Bodoni Moda',Georgia,serif;font-weight:500;font-optical-sizing:none;font-variation-settings:'opsz' 6;font-size:18px;white-space:nowrap;min-width:150px}
+.crow span{font-size:13.5px;color:var(--ink-soft);line-height:1.6}
+.safenote{margin-top:34px;font-size:13.5px;color:var(--ink-soft);line-height:1.72;max-width:76ch;padding-top:24px;border-top:1px solid var(--line-soft)}
+
+/* horizontal reel */
+.hscroll{display:flex;gap:16px;overflow-x:auto;padding-bottom:12px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.hscroll::-webkit-scrollbar{height:5px}
+.hscroll::-webkit-scrollbar-thumb{background:var(--line);border-radius:999px}
+.hscroll figure{flex:0 0 clamp(190px,20vw,250px);scroll-snap-align:start;position:relative;border-radius:var(--r-sm);overflow:hidden;background:#20272d;aspect-ratio:9/16;box-shadow:var(--shadow)}
+.hscroll video,.hscroll img{width:100%;height:100%;object-fit:cover}
+.hscroll figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 15px 12px;background:linear-gradient(to top,rgba(15,29,40,.78),rgba(15,29,40,0));color:var(--white);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase}
+
+/* proof */
+.quote{text-align:center;max-width:840px;margin:0 auto}
+.quote .qmark{font-family:'Bodoni Moda',Georgia,serif;font-weight:500;font-optical-sizing:none;font-variation-settings:'opsz' 6;font-size:58px;color:var(--gold-text);line-height:.6;display:block;margin-bottom:18px}
+.quote p{font-family:'Bodoni Moda',Georgia,serif;font-weight:500;font-optical-sizing:none;font-variation-settings:'opsz' 6;font-size:clamp(23px,2.6vw,34px);line-height:1.46;letter-spacing:-.014em;margin-bottom:22px}
+.quote cite{font-style:normal;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,28px);margin-top:clamp(46px,5vw,72px)}
+.tcell{background:var(--white);border-radius:var(--r);padding:clamp(28px,2.8vw,40px);text-align:center;box-shadow:var(--shadow)}
+section.tint .tcell,section.warm .tcell{background:var(--white)}
+.tcell b{display:block;font-family:'Bodoni Moda',Georgia,serif;font-weight:500;font-optical-sizing:none;font-variation-settings:'opsz' 6;font-size:44px;line-height:1;margin-bottom:8px}
+.tcell span{font-size:13.5px;color:var(--ink-soft);line-height:1.6}
+.creds{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin-top:clamp(34px,3.6vw,52px)}
+.creds span{font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft);border:1px solid var(--line);border-radius:999px;padding:8px 17px}
+
+/* steps */
+.stepgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.2vw,32px)}
+.stp{background:var(--white);border-radius:var(--r);padding:clamp(26px,2.6vw,36px);box-shadow:var(--shadow);transition:transform .45s cubic-bezier(.22,.61,.36,1)}
+.stp:hover{transform:translateY(-4px)}
+.stp i{font-style:normal;display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;background:var(--paper);color:var(--gold-text);font-family:'Bodoni Moda',Georgia,serif;font-weight:500;font-optical-sizing:none;font-variation-settings:'opsz' 6;font-size:17px;margin-bottom:18px}
+.stp h4{font-size:19px;margin-bottom:8px}
+.stp p{font-size:14px;color:var(--ink-soft);line-height:1.66}
+
+/* provider */
+.prov{display:grid;grid-template-columns:.76fr 1.24fr;gap:clamp(34px,4.6vw,74px);align-items:center}
+.prov-img{border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-lg)}
+.prov-img img{width:100%;aspect-ratio:1/1.2;object-fit:cover}
+.prov h2{margin-bottom:8px;font-size:clamp(29px,3.2vw,44px)}
+.prov .role{font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-text);margin-bottom:24px}
+.prov p{color:var(--ink-soft);margin-bottom:18px;line-height:1.78}
+.prov ul{list-style:none;margin:26px 0 0;padding-top:24px;border-top:1px solid var(--line-soft);columns:2;column-gap:34px}
+.prov li{font-size:14px;color:var(--ink-soft);padding-left:16px;position:relative;margin-bottom:9px;break-inside:avoid}
+.prov li::before{content:"";position:absolute;left:0;top:11px;width:6px;height:1px;background:var(--gold)}
+
+/* book */
+.book{padding:var(--pad) 0;background:var(--ink);color:var(--paper)}
+.book-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(36px,4.6vw,74px)}
+.book h2{font-size:clamp(32px,3.8vw,54px);color:var(--paper);margin-bottom:18px}
+.book h2 em{font-style:italic;color:var(--gold-lt)}
+.book .lede{color:rgba(250,247,242,.68);font-size:17.5px;max-width:46ch;margin-bottom:30px}
+.bform{background:rgba(250,247,242,.05);border:1px solid rgba(250,247,242,.14);border-radius:var(--r);padding:clamp(26px,2.8vw,38px)}
+.bform h4{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;font-family:'Inter Tight',sans-serif;margin-bottom:20px;color:var(--gold-lt)}
+.bf-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.bform input,.bform select{width:100%;padding:14px 16px;border:1px solid rgba(250,247,242,.2);border-radius:999px;background:rgba(250,247,242,.04);font-family:inherit;font-size:14.5px;color:var(--paper)}
+.bform input::placeholder{color:rgba(250,247,242,.45)}
+.bform select{color:rgba(250,247,242,.75)}
+.bform select option{color:var(--ink)}
+.bform input:focus,.bform select:focus{outline:none;border-color:var(--gold-lt)}
+.bform .btn{width:100%;margin-top:8px;background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.bform .btn:hover{background:transparent;color:var(--gold-lt);border-color:var(--gold-lt)}
+.bf-note{font-size:11.5px;color:rgba(250,247,242,.55);margin-top:14px;line-height:1.62}
+.info h4{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-lt);font-family:'Inter Tight',sans-serif;font-weight:600;margin-bottom:14px}
+.info p{font-size:15px;color:rgba(250,247,242,.8);line-height:1.8;margin-bottom:24px}
+.hrs{font-size:14.5px;color:rgba(250,247,242,.8)}
+.hrs div{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(250,247,242,.1)}
+.hrs div span:first-child{color:rgba(250,247,242,.55)}
+
+footer{background:var(--ink);color:rgba(250,247,242,.62);padding:30px 0;border-top:1px solid rgba(250,247,242,.12);font-size:12.5px}
+.fbar{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.legal{font-size:12px;color:rgba(250,247,242,.68);line-height:1.7;max-width:88ch;margin-top:14px}
+
+@media(max-width:1080px){
+ /* the hero no longer collapses: the two doors stay side by side.
+    See the MOBILE DOORS block at the foot of this stylesheet. */
+ .pgrid,.ctwo,.prov,.book-grid{grid-template-columns:1fr}
+ .pgrid .pic{order:-1}
+ .stepgrid{grid-template-columns:repeat(2,1fr)}
+ .trio{grid-template-columns:1fr}
+ nav{display:none}
+ .hbar{grid-template-columns:1fr auto}
+}
+@media(max-width:680px){
+ body{font-size:16px}
+ .stepgrid{grid-template-columns:1fr}
+ .bf-row{grid-template-columns:1fr}
+ .hphone{display:none}
+ .crow{flex-direction:column;gap:3px;padding:14px 16px}
+ .crow b{min-width:0}
+ .plist li{flex-direction:column;gap:2px;align-items:flex-start}
+ .plist span{text-align:left;max-width:none}
+ .sw{width:100%;flex-direction:column}
+ .sw button{width:100%}
+}
+
+/* ============================================================
+   MOBILE DOORS  ·  client revision 2026-08-17
+   The two doors stay side by side at EVERY width, the way they
+   read on desktop. Nothing above 1080px is changed.
+   ============================================================ */
+
+/* --- tablet, 681 to 1080 : the desktop anatomy, scaled down --- */
+@media(max-width:1080px){
+ .split{grid-template-columns:1fr 1fr;min-height:max(560px,calc(100svh - 78px))}
+ .half{min-height:0}
+ /* The door copy sits directly on a photograph. The panel-wide gradient alone
+    is not enough once a door is only ~190px wide: measured against the
+    BRIGHTEST pixel actually rendered behind it, the gold label ran 1.4:1 to
+    4.4:1 where AA needs 4.5. Each copy block now carries its own scrim. */
+ .half-in{
+  max-width:none;padding:44px 22px 32px;
+  background:linear-gradient(to top,rgba(10,20,28,.92) 0%,rgba(10,20,28,.82) 58%,rgba(10,20,28,0) 100%);
+ }
+ .half-in h2{font-size:clamp(19px,2.9vw,30px)}
+ .half-in p{font-size:13.5px;max-width:28ch}
+ .plate{width:min(74vw,400px);top:46%;padding:34px 30px}
+}
+
+/* A hover zoom must never fire on a tap, and it must never fight the tighter
+   crop the narrow phone doors need. Fine pointers on a real desktop only. */
+.half:hover>img{transform:none}
+@media (hover:hover) and (pointer:fine) and (min-width:1081px){
+ .half:hover>img{transform:scale(1.045)}
+}
+
+/* --- header : the CTA is now a phrase, not a word ---------------------
+   "Book" alone did not say what was being booked, and on a phone it is the
+   only visible call to action in the bar since the number hides below 680.
+   The longer label costs 124px of bar width, and the bar is a 1fr/auto grid,
+   so at 360 it squeezed the brand cell narrower than the logo. The image
+   carries an explicit height, so it did not scale down, it rendered
+   HORIZONTALLY SQUASHED: measured 77x42 against a natural 108x42.
+   The logo is protected first and the button gives way instead. */
+@media(max-width:1080px){
+ .hbar{gap:14px}
+ .brand img{max-width:none;flex:none}
+}
+@media(max-width:680px){
+ .hcta{gap:12px}
+ .hcta .btn{padding:12px 16px;font-size:11px;letter-spacing:.1em;white-space:nowrap}
+}
+@media(max-width:380px){
+ .hcta .btn{padding:11px 13px;font-size:10.5px;letter-spacing:.07em}
+}
+@media(max-width:340px){
+ /* below this the phrase and a full size logo genuinely cannot coexist,
+    so the logo steps down rather than the label being cut */
+ .brand img{height:36px}
+}
+
+/* --- .pentry : the dead space under "Consultation first" --------------
+   Three flex rows in this stylesheet carry a white-space:nowrap label:
+   .hphone, .crow b and .pentry b. The first hides on a phone and the second
+   was given a mobile stack. .pentry was the one member of that class that
+   was missed, so its 25px nowrap label held its full width and squeezed the
+   description into a narrow column that wrapped to six lines, leaving the
+   area beneath the label empty. It now stacks like its two siblings. */
+@media(max-width:680px){
+ .pentry{flex-direction:column;align-items:flex-start;gap:6px;padding:16px 18px}
+ .pentry b{white-space:normal;font-size:22px;line-height:1.15}
+ .pentry span{max-width:none}
+}
+
+/* --- phone : DIRECTION 3 "Threshold" ---------------------------------
+   The doors are the first thing on the screen, edge to edge, split by a
+   gold hairline. The brand plate sits under them on cream, where every
+   line of it is fully legible instead of floating over photography. --- */
+@media(max-width:680px){
+ .hero{padding-bottom:clamp(46px,7vh,72px)}
+ /* the seam is a border on the first door, not a grid gap. A gap needs a
+    background on .split, and subpixel rounding then leaks that colour down
+    the outer edges of the screen. */
+ .split{grid-template-columns:1fr 1fr;gap:0;min-height:0}
+ .half{min-height:max(300px,42svh);align-items:flex-start;background:var(--paper)}
+ .half:nth-child(2){border-right:1px solid var(--gold-lt)}
+ .half::after{background:linear-gradient(to bottom,rgba(15,29,40,.82) 0%,rgba(15,29,40,.26) 48%,rgba(15,29,40,.06) 100%)}
+ /* top anchored copy, so its scrim runs the other way */
+ .half-in{padding:20px 14px 44px;background:linear-gradient(to bottom,rgba(10,20,28,.92) 0%,rgba(10,20,28,.82) 58%,rgba(10,20,28,0) 100%)}
+ .half-in span{font-size:9px;letter-spacing:.2em;margin-bottom:5px}
+ .half-in h2{font-size:17px;line-height:1.18;margin-bottom:8px}
+ .half-in p{display:none}
+ .half-in a{font-size:10px;letter-spacing:.1em;gap:5px;padding-bottom:3px;border-bottom-color:rgba(255,255,255,.55)}
+ .half:nth-child(2){order:1}
+ .half:nth-child(3){order:2}
+ .half:nth-child(3) .half-in{margin-left:0;text-align:left}
+ .plate{
+  grid-column:1 / -1;order:3;position:relative;left:auto;top:auto;transform:none;width:auto;
+  background:var(--paper);box-shadow:none;border-radius:0;
+  padding:clamp(30px,5.4vh,48px) 22px 0;
+ }
+ .plate svg{width:36px;height:36px;margin-bottom:14px}
+ .tagline{font-size:clamp(34px,9.4vw,46px);margin-bottom:13px}
+ .plate p{font-size:15.5px;margin-bottom:16px}
+ .plate .meta{font-size:12px;gap:8px;margin-bottom:20px}
+ .plate .acts{flex-direction:column;gap:9px}
+ .plate .acts .btn{width:100%}
+}
+
+/* --- CONCERNS on phones : picked treatment "Short list" ---------------
+   Four per group, the rest behind one control. The four shown are simply
+   the four already written first, so no editorial call is being made
+   about which concerns matter. Desktop keeps the approved two columns. */
+@media(max-width:680px){
+ /* the row hover moves the row 4px sideways and is ungated, so on a phone it
+    fires on tap and sticks */
+ .crow:hover{background:none;transform:none}
+ section.tint .crow:hover{background:none}
+
+ #concerns .crow{padding:10px 14px;gap:2px}
+ #concerns .crow b{font-size:15.5px;line-height:1.3}
+ #concerns .crow span{font-size:13px;line-height:1.55}
+ #concerns .ccol:not(.all) .crow:nth-of-type(n+5){display:none}
+
+ /* GROUP HEADINGS. Not a contrast fix: they were already 14.9:1. They simply
+    did not outrank the row labels, being the same face, weight and colour.
+    Now heavier, larger, and introduced by a ruled edge with a gold marker. */
+ #concerns .ccol + .ccol{margin-top:16px}
+ #concerns .ccol h3{
+  font-size:25px;font-weight:700;font-variation-settings:'opsz' 6;
+  line-height:1.12;position:relative;
+  padding-top:20px;margin-bottom:5px;
+  border-top:1px solid var(--line);
+ }
+ #concerns .ccol h3::before{
+  content:"";position:absolute;top:-1px;left:0;width:46px;height:2px;
+  background:var(--gold);
+ }
+ #concerns .ccol>p{margin-bottom:16px}
+
+ #concerns .cmore{
+  display:inline-flex;align-items:center;gap:8px;margin:12px 0 0 14px;padding:0 0 3px;
+  background:none;border:0;border-bottom:1px solid var(--line);cursor:pointer;
+  font-family:'Inter Tight',sans-serif;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--gold-text);
+  transition:border-color .25s ease;
+ }
+ #concerns .cmore:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+}
+@media (hover:hover) and (pointer:fine){
+ .crow:hover{background:var(--paper);transform:translateX(4px)}
+ section.tint .crow:hover{background:var(--white)}
+ #concerns .cmore:hover{border-color:var(--gold)}
+}
+
+/* --- booking modal ----------------------------------------------------
+   The surface is the same ink as the #book section so the already verified
+   form colours apply unchanged, including the disclaimer at 5.4:1. */
+.bkmodal{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center}
+.bkmodal[hidden]{display:none}
+.bkscrim{
+ position:absolute;inset:0;background:rgba(8,16,22,.64);
+ opacity:0;transition:opacity .26s cubic-bezier(.22,.61,.36,1);
+}
+.bkmodal.in .bkscrim{opacity:1}
+.bksheet{
+ position:relative;z-index:2;background:var(--ink);color:var(--paper);
+ width:min(92vw,520px);max-height:min(88vh,760px);overflow:auto;
+ border-radius:var(--r);padding:clamp(26px,3vw,40px);
+ /* a hairline, because on direction 2 the sheet sits on an already dark hero
+    and a shadow alone gives it almost no edge */
+ border:1px solid rgba(250,247,242,.12);
+ box-shadow:0 40px 90px -30px rgba(0,0,0,.7);
+ opacity:0;transform:translateY(14px);
+ transition:opacity .26s cubic-bezier(.22,.61,.36,1),transform .26s cubic-bezier(.22,.61,.36,1);
+}
+.bkmodal.in .bksheet{opacity:1;transform:none}
+/* the form is already styled for this surface, so it only loses its own box */
+.bksheet .bform{background:none;border:0;padding:0}
+.bkx{
+ position:absolute;top:13px;right:13px;width:34px;height:34px;border-radius:50%;
+ background:rgba(250,247,242,.1);border:1px solid rgba(250,247,242,.28);
+ color:var(--paper);font-size:19px;line-height:1;cursor:pointer;font-family:inherit;
+ display:flex;align-items:center;justify-content:center;
+ transition:background .25s ease,border-color .25s ease;
+}
+.bkx:focus-visible{outline:2px solid var(--gold-lt);outline-offset:2px}
+@media (hover:hover) and (pointer:fine){
+ .bkx:hover{background:rgba(250,247,242,.2);border-color:var(--gold-lt)}
+}
+body.bk-open{overflow:hidden}
+
+/* phone : a bottom sheet, which is where a thumb already is */
+@media(max-width:680px){
+ .bkmodal{align-items:flex-end}
+ .bksheet{
+  width:100%;max-height:92vh;
+  border-radius:22px 22px 0 0;
+  padding:30px 20px calc(22px + env(safe-area-inset-bottom));
+  transform:translateY(30px);
+ }
+ .bksheet .bf-row{grid-template-columns:1fr}
+}
+
+/* Gentler, not zero: the fade stays, the movement goes. */
+@media(prefers-reduced-motion:reduce){
+ .bksheet,.bkmodal.in .bksheet{transform:none}
+}
+
+/* --- section CTAs -----------------------------------------------------
+   Concerns and First visit both ended on a paragraph with nothing to act on.
+   Centred pair, primary then phone, matching the hero plate. */
+.sec-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
+ margin-top:clamp(34px,4vw,56px)}
+@media(max-width:520px){
+ .sec-cta{flex-direction:column;align-items:stretch}
+ .sec-cta .btn{width:100%}
+}
+
+/* --- photo strip arrows -----------------------------------------------
+   The strip scrolls, but on a desktop without touch the only affordances were a
+   trackpad gesture and a 5px scrollbar. These are hidden for touch pointers,
+   which already have the better gesture, and they disable at each end rather
+   than sitting there doing nothing. */
+.hstrip{position:relative}
+.harrow{
+ position:absolute;top:50%;transform:translateY(-50%);z-index:3;
+ width:46px;height:46px;border-radius:50%;border:1px solid var(--line);
+ background:rgba(255,255,255,.94);backdrop-filter:blur(8px);cursor:pointer;
+ display:none;align-items:center;justify-content:center;padding:0;
+ box-shadow:0 6px 22px -10px rgba(15,29,40,.4);
+ transition:background .25s ease,border-color .25s ease,opacity .25s ease;
+}
+.harrow svg{width:17px;height:17px;stroke:var(--ink);stroke-width:1.7;fill:none}
+.harrow.prev{left:4px}
+.harrow.next{right:4px}
+.harrow[disabled]{opacity:.32;cursor:default}
+.harrow:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+/* The min-width is not decoration. The two gutters cost 116px, and in a narrow window
+   with a mouse attached that left a 223px rail, measured, which is less than one frame.
+   Below this width the strip goes back to being scrolled directly, which is what it did
+   before the arrows existed. */
+@media (hover:hover) and (pointer:fine) and (min-width:761px){
+ .harrow{display:flex}
+ .harrow:not([disabled]):hover{background:var(--white);border-color:var(--ink)}
+ /* The strip gives up a gutter on each side so the arrows sit OUTSIDE the photographs
+    instead of covering the first and last frame. Padding on the wrapper, not a negative
+    offset, because a negative offset leaves the page gutter at narrow widths and the
+    control ends up clipped or off screen. */
+ .hstrip{padding:0 58px}
+}
+
+/* The label is the widest thing in the right column, so between about 1000 and 1080
+   it wrapped to two lines and pushed the bar taller. Never wrap; shorten instead. */
+.hcta .btn{white-space:nowrap}
+/* base first, override second. With the base rule written after the media query it won
+   at equal specificity and hid BOTH labels, leaving an empty button below 1180. */
+.hcta .btn .short{display:none}
+@media(max-width:1180px){
+ .hcta .btn .full{display:none}
+ .hcta .btn .short{display:inline}
+}
+
+/* ================= CONCERNS, reworked =================================== */
+.ctwo{align-items:start}
+.ccol h3{font-size:26px;margin-bottom:4px}
+.ccol>p{font-size:13.5px;color:var(--ink-soft);margin-bottom:18px}
+
+/* a real control, because the copy promises the symptom is the way in */
+.crow{
+ position:relative;display:block;width:100%;text-align:left;
+ font-family:inherit;cursor:pointer;
+ background:var(--white);border:1px solid var(--line-soft);
+ border-radius:var(--r-sm);padding:15px 44px 15px 18px;margin-bottom:8px;
+ transition:border-color .28s ease,box-shadow .28s ease,transform .28s ease;
+}
+section.tint .crow{background:var(--white)}
+/* the label no longer shares a baseline row with the description, so it can be as long
+   as it needs to be */
+.crow b{
+ display:block;white-space:normal;min-width:0;margin-bottom:3px;
+ font-size:17.5px;line-height:1.25;
+}
+.crow span{display:block;font-size:13.5px;color:var(--ink-soft);line-height:1.6}
+/* the gold edge is the affordance: it grows from nothing on hover */
+.crow::before{
+ content:"";position:absolute;left:0;top:12px;bottom:12px;width:2px;
+ background:var(--gold);border-radius:2px;transform:scaleY(0);transform-origin:50% 50%;
+ transition:transform .28s cubic-bezier(.22,.61,.36,1);
+}
+.crow::after{
+ content:"";position:absolute;right:18px;top:50%;width:7px;height:7px;
+ border-right:1.5px solid var(--gold-text);border-bottom:1.5px solid var(--gold-text);
+ transform:translateY(-50%) rotate(-45deg);opacity:.5;
+ transition:opacity .28s ease,right .28s ease;
+}
+.crow:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media (hover:hover) and (pointer:fine){
+ .crow:hover{border-color:var(--line);box-shadow:var(--shadow);transform:none;background:var(--white)}
+ section.tint .crow:hover{background:var(--white)}
+ .crow:hover::before{transform:scaleY(1)}
+ .crow:hover::after{opacity:1;right:15px}
+}
+@media(prefers-reduced-motion:reduce){
+ .crow,.crow::before,.crow::after{transition:none}
+}
+/* the "show more" control reads as a control now */
+#concerns .cmore{margin-left:0}
+
+/* ================= FIRST VISIT, a sequence not a grid =================== */
+.stepgrid{position:relative}
+/* one rule behind the badges, so six cards read as six steps in order */
+@media(min-width:1081px){
+ .stepgrid::before{
+  content:"";position:absolute;left:0;right:0;top:calc(clamp(26px,2.6vw,36px) + 23px);
+  height:1px;background:linear-gradient(to right,transparent,var(--line),var(--line),transparent);
+  z-index:0;
+ }
+}
+.stp{position:relative;z-index:1;border:1px solid var(--line-soft)}
+.stp i{
+ background:var(--white);border:1px solid var(--gold-lt);
+ box-shadow:0 0 0 5px var(--paper);
+ transition:background .3s ease,color .3s ease,border-color .3s ease;
+}
+section.tint .stp i,section.warm .stp i{box-shadow:0 0 0 5px var(--band)}
+@media (hover:hover) and (pointer:fine){
+ .stp:hover{box-shadow:var(--shadow-lg);border-color:var(--line)}
+ .stp:hover i{background:var(--ink);color:var(--gold-lt);border-color:var(--ink)}
+}
+@media(prefers-reduced-motion:reduce){.stp,.stp i{transition:none}}
+
+/* the symptom carried into the booking form */
+.bk-about{
+ display:none;margin:0 0 16px;padding:11px 14px;border-radius:var(--r-sm);
+ background:rgba(250,247,242,.07);border:1px solid rgba(250,247,242,.16);
+ font-size:13px;color:var(--paper);
+}
+.bk-about b{color:var(--gold-lt);font-weight:500}
+
+
+/* ================= review wall ==========================================
+   Replaces the single-quote carousel. Multi-column, not grid: the reviews run
+   from 21 to 62 words and a row based grid would leave a ragged band of empty
+   space beside every short one. */
+.rvhead{text-align:center;max-width:640px;margin:0 auto clamp(30px,3.4vw,46px)}
+.rvhead .eyebrow{margin-bottom:12px}
+.rvhead h2{margin-bottom:0}
+
+
+/* ================= CONCERNS, unboxed ====================================
+   Replaces the card treatment. Fourteen white blocks on a warm ground read as
+   packaging rather than as a list, and the section's job is to be scanned. */
+#concerns .crow{
+ display:grid;grid-template-columns:30px 1fr;gap:0 15px;
+ background:none;border:0;border-radius:0;box-shadow:none;
+ border-bottom:1px solid var(--line-soft);
+ padding:16px 30px 16px 2px;margin:0;width:100%;text-align:left;
+ font-family:inherit;cursor:pointer;position:relative;
+ transition:border-color .28s ease,padding-left .28s cubic-bezier(.22,.61,.36,1);
+}
+/* every row keeps its rule, including the last: it closes the list. An earlier
+   :last-of-type here was dead code, since that pseudo class matches by TAG and the
+   show-more control is the last button element in the column. */
+#concerns .cico{
+ grid-row:1 / 3;grid-column:1;align-self:center;
+ width:30px;height:30px;color:var(--gold-text);
+ display:flex;align-items:center;justify-content:center;
+ transition:color .28s ease,transform .28s cubic-bezier(.22,.61,.36,1);
+}
+#concerns .cico svg{width:100%;height:100%;display:block}
+#concerns .crow b{grid-column:2;grid-row:1;font-size:17px;line-height:1.3;margin-bottom:2px}
+#concerns .crow span{grid-column:2;grid-row:2;font-size:13.5px;line-height:1.6;color:var(--ink-soft)}
+/* the old card carried a left gold bar, which needs a container to sit against */
+#concerns .crow::before{display:none}
+#concerns .crow::after{
+ content:"";position:absolute;right:8px;top:50%;width:7px;height:7px;
+ border-right:1.5px solid var(--gold-text);border-bottom:1.5px solid var(--gold-text);
+ transform:translateY(-50%) rotate(-45deg);opacity:.4;
+ transition:opacity .28s ease,right .28s ease;
+}
+#concerns .crow:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media (hover:hover) and (pointer:fine){
+ #concerns .crow:hover{background:none;box-shadow:none;border-bottom-color:var(--gold-lt);padding-left:8px}
+ #concerns .crow:hover .cico{color:var(--ink)}
+ #concerns .crow:hover::after{opacity:1;right:5px}
+}
+@media(prefers-reduced-motion:reduce){
+ #concerns .crow,#concerns .cico,#concerns .crow::after{transition:none}
+}
+@media(max-width:680px){
+ #concerns .crow{padding:14px 26px 14px 2px;gap:0 13px;grid-template-columns:26px 1fr}
+ #concerns .cico{width:26px;height:26px}
+ #concerns .crow b{font-size:16px}
+}
+
+/* ================= reviews, one at a time ===============================
+   Same card, one review. The photograph sits outside the rotating region on
+   purpose, see the note in build/refine_concerns_and_reviews.py. */
+.rvone{
+ max-width:1000px;margin:0 auto;background:var(--white);
+ border:1px solid var(--line-soft);border-radius:var(--r-md,18px);overflow:hidden;
+ display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1fr);
+}
+.rvbody{padding:clamp(28px,3vw,42px);display:flex;flex-direction:column;justify-content:center}
+/* every slide occupies the same grid cell, so the card is always as tall as the longest
+   review and changing review cannot jump the page under the reader */
+.rvtrack{display:grid}
+.rvslide{
+ grid-area:1 / 1;margin:0;opacity:0;visibility:hidden;
+ transition:opacity .45s cubic-bezier(.22,.61,.36,1);
+}
+.rvslide.on{opacity:1;visibility:visible}
+@media(prefers-reduced-motion:reduce){.rvslide{transition:none}}
+.rvslide .rvstars{display:block;color:var(--gold-text);font-size:13px;letter-spacing:3px;margin-bottom:16px}
+.rvslide blockquote{margin:0 0 18px;font-size:17px;line-height:1.72;color:var(--ink)}
+.rvslide figcaption{font-size:11.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft)}
+.rvslide figcaption b{font-weight:500;color:var(--ink);letter-spacing:.13em}
+
+.rvnav{display:flex;align-items:center;gap:16px;margin-top:26px}
+.rvbtn{
+ width:42px;height:42px;border-radius:50%;border:1px solid var(--line);
+ background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;
+ padding:0;flex:none;transition:background .25s ease,border-color .25s ease}
+.rvbtn svg{width:16px;height:16px;stroke:var(--ink);stroke-width:1.7;fill:none}
+.rvbtn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+@media (hover:hover) and (pointer:fine){.rvbtn:hover{background:var(--paper);border-color:var(--ink)}}
+.rvdots{display:flex;gap:8px;margin-left:2px}
+.rvdot{width:7px;height:7px;border-radius:50%;padding:0;cursor:pointer;
+ border:1px solid var(--gold-text);background:transparent;
+ transition:background .25s ease,transform .25s ease}
+.rvdot.on{background:var(--gold-text);transform:scale(1.25)}
+.rvdot:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.rvcount{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-left:auto}
+
+@media(max-width:860px){
+ .rvone{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+ .rvnav{gap:12px}
+ .rvdots{display:none}
+ .rvslide blockquote{font-size:16px}
+}
+
+/* the disclaimer now lives inside the shorter column, so it needs the spacing a
+   standalone note had and none of the full width measure */
+#concerns .ccol .safenote{
+ margin:26px 0 0;max-width:none;font-size:12.5px;line-height:1.7;color:var(--ink-soft);
+ padding-top:20px;border-top:1px solid var(--line-soft);
+}
+@media(max-width:860px){
+ #concerns .ccol .safenote{margin-top:22px;padding-top:18px}
+}
+
+/* ---- rating panel, replaces the photograph -------------------------- */
+.rvscore{
+ background:var(--ink);color:var(--paper);
+ display:flex;flex-direction:column;align-items:center;justify-content:center;
+ text-align:center;padding:clamp(30px,3vw,44px) 24px;gap:2px;
+}
+.rvs-eyebrow{
+ font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+ color:var(--gold-lt);margin-bottom:14px;
+}
+.rvs-num{
+ font-family:'Bodoni Moda',Georgia,serif;font-weight:500;
+ font-optical-sizing:none;font-variation-settings:'opsz' 6;
+ font-size:clamp(58px,6.4vw,80px);line-height:1;letter-spacing:-.02em;
+ font-variant-numeric:tabular-nums;
+}
+.rvs-out{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.6;margin-top:8px}
+.rvs-stars{display:flex;gap:6px;margin:18px 0 14px;font-size:17px;line-height:1;color:var(--gold-lt)}
+.rvs-stars i{font-style:normal;display:block}
+.rvs-count{
+ font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.6;
+ padding-top:14px;border-top:1px solid rgba(250,247,242,.18);
+}
+
+/* The animated state is opt IN: the panel only starts hidden once the script has
+   confirmed it will run. Without that a visitor with JS disabled, or one whose observer
+   never fires, would be left staring at an empty ink block. */
+.rvscore.anim .rvs-num,
+.rvscore.anim .rvs-stars i{opacity:0}
+.rvscore.anim .rvs-stars i{transform:translateY(6px) scale(.86)}
+.rvscore.anim.go .rvs-num{opacity:1;transition:opacity .4s ease}
+.rvscore.anim.go .rvs-stars i{
+ opacity:1;transform:none;
+ transition:opacity .42s ease,transform .42s cubic-bezier(.22,.61,.36,1);
+ transition-delay:calc(var(--n) * 90ms + 260ms);
+}
+@media(prefers-reduced-motion:reduce){
+ /* gentler, not off: the panel simply arrives finished */
+ .rvscore.anim .rvs-num,.rvscore.anim .rvs-stars i{opacity:1;transform:none}
+ .rvscore.anim.go .rvs-num,.rvscore.anim.go .rvs-stars i{transition:none}
+}
+
+@media(max-width:860px){
+ .rvscore{
+  flex-direction:row;flex-wrap:wrap;justify-content:center;align-items:center;
+  gap:0 22px;padding:26px 24px;
+ }
+ .rvs-eyebrow{width:100%;margin-bottom:10px}
+ .rvs-num{font-size:52px}
+ .rvs-out{display:none}
+ .rvs-stars{margin:0}
+ .rvs-count{width:100%;margin-top:12px;padding-top:12px}
+}
+
+/* the band lost a cell, so it is a pair now and must not stretch to three columns */
+.trio{grid-template-columns:repeat(2,1fr);max-width:820px;margin-left:auto;margin-right:auto}
+@media(max-width:680px){.trio{grid-template-columns:1fr}}
+/* short reviews sat top aligned against a cell sized to the longest one */
+.rvslide{align-self:center}
+
+/* --- mobile: the card fits the review it is showing --------------------
+   Stacking every slide in one grid cell keeps the card a fixed height, which is
+   right on desktop where the rating panel sets the height anyway. On a phone the
+   measure is half as wide, so the longest review runs roughly twice the height of
+   the shortest and four of the six sat in about 240px of empty card. Below this
+   width the inactive slides leave the flow instead. Changing review then resizes
+   the card, which is a shift the visitor asked for by pressing a button, rather
+   than a hole they scroll past on every short review. */
+@media(max-width:860px){
+ .rvtrack{display:block}
+ .rvslide{display:none;align-self:auto}
+ .rvslide.on{display:block}
+}
+
+h1,h2,h3,h4,.disp{font-family:'Bodoni Moda',Georgia,serif;font-weight:500;font-optical-sizing:none;font-variation-settings:'opsz' 6}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.chrome{position:sticky;top:0;z-index:100;background:#12161A;border-bottom:1px solid rgba(243,241,236,.12);padding:0 18px;height:56px;display:flex;align-items:center;gap:16px}
+.chrome .ttl{display:flex;align-items:center;gap:10px;color:#8A9199;font-size:13px;white-space:nowrap}
+.chrome .ttl img{height:22px;width:auto}
+.chrome .ttl b{color:#F3F1EC;font-weight:500}
+.fams{display:flex;gap:4px;overflow-x:auto;margin-left:10px}
+.fams button{background:transparent;border:1px solid rgba(243,241,236,.16);color:#8A9199;font-family:inherit;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:8px 14px;cursor:pointer;white-space:nowrap;transition:.2s}
+.fams button:hover{color:#F3F1EC;border-color:rgba(243,241,236,.4)}
+.fams button.on{background:var(--gold-lt);border-color:var(--gold-lt);color:#12161A;font-weight:600}
+.fam{display:none;background:var(--paper)}
+.fam.on{display:block}
+.wrap{max-width:1320px;margin:0 auto;padding:0 40px}
+/* prose led pages (service detail,legal) run as a CENTERED document column. No rails outside the blog,so a left aligned column in a 1180px wrap just leaves a dead gutter on the right. */ .wrap-doc{max-width:760px;margin:0 auto;padding:0 40px}
+.wrap-doc .prose{max-width:none}
+.wrap-doc .shead{max-width:none}
+.wrap-doc .faq{max-width:none !important}
+header.site{background:rgba(255,255,255,.86);backdrop-filter:blur(16px) saturate(1.5);border-bottom:1px solid var(--line-soft);position:sticky;top:0;z-index:50}
+.hbar{max-width:1320px;margin:0 auto;padding:0 clamp(22px,4vw,44px);height:78px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px}
+.brand img{height:42px;width:auto}
+.nav{display:flex;gap:26px;margin-left:auto}
+.nav a{font-size:14.5px;color:var(--ink-soft);padding-bottom:3px;border-bottom:1px solid transparent;transition:.2s}
+.nav a:hover{color:var(--ink);border-color:var(--gold)}
+.hcta{display:flex;align-items:center;gap:18px}
+.hphone{font-weight:500}
+.hbtn{padding:11px 22px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;background:var(--ink);color:var(--paper);transition:.25s;white-space:nowrap}
+.hbtn:hover{background:var(--gold);color:var(--ink)}
+.crumb{padding:22px 0 0;font-size:12.5px;color:var(--ink-soft)}
+.crumb a{border-bottom:1px solid var(--line)}
+.eyebrow{text-transform:uppercase;color:var(--gold-text);align-items:center;gap:14px}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--line);max-width:110px}
+.phead{padding-top:44px;padding-bottom:var(--pad)}
+.phead h1{font-size:var(--h1);margin-bottom:22px;max-width:19ch}
+.phead p.lede{font-size:18.5px;color:var(--ink-soft);max-width:62ch}
+section{padding:var(--pad) 0}
+section.band{background:var(--band)}
+.shead p{color:var(--ink-soft)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.cell{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:34px 30px;background:var(--paper);transition:.22s}
+.cell:hover{background:var(--white)}
+.cell i{font-style:normal;font-family:'Bodoni Moda',Georgia,serif;font-weight:500;font-optical-sizing:none;font-variation-settings:'opsz' 6;font-size:13px;color:var(--gold-text);display:block;margin-bottom:13px}
+.cell h3{font-size:22px;margin-bottom:9px}
+.cell p{font-size:14.5px;color:var(--ink-soft);line-height:1.7}
+.cell .go{display:inline-block;margin-top:15px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-text);font-weight:600}
+.band .cell{background:var(--band)}
+.band .cell:hover{background:#F6EFE4}
+.prose{max-width:66ch}
+.prose h2{font-size:30px;margin:44px 0 16px}
+.prose h3{font-size:22px;margin:32px 0 12px}
+.prose p{margin-bottom:18px;color:var(--ink-soft)}
+.prose ul{margin:0 0 20px 0;list-style:none}
+.prose li{position:relative;padding-left:20px;margin-bottom:9px;color:var(--ink-soft);font-size:16px}
+.prose ul:not(.blist) > li::before{content:"";position:absolute;left:0;top:12px;width:8px;height:1px;background:var(--gold)}
+/* Classic WordPress image-alignment classes (.alignleft/.alignright/.aligncenter),
+   used in 75 of 83 blog posts' stored content, had no CSS at all in this theme,
+   so an embedded image sat at its native ~400px width with nothing filling the
+   rest of the row (the original dead-space bug). A first pass floated them
+   instead, which fixed that but opened a second, subtler dead-space case: any
+   time a floated image is taller than the paragraph(s) wrapped next to it, the
+   text column runs out before the image does, leaving blank space in the text
+   column until the float clears. That gap scales with how much the image and
+   paragraph length happen to mismatch, so it cannot be tuned away paragraph by
+   paragraph. Full-width blocks instead: no float, no mismatch possible, zero
+   dead space regardless of image height or paragraph length, on every post. */
+/* width:100% (not just max-width) added 2026-08-25: many embedded post images
+   are natively small (400px is common), and max-width alone only caps size,
+   it never stretches a small image up to fill a wider column, so it just sat
+   at its native 400px in the middle of a ~900px+ prose column with the
+   leftover space on both sides reading as dead space again, the third
+   variant of the same underlying complaint. Width:100% makes every content
+   image fill the column regardless of its native size; the tradeoff is a
+   genuinely low-resolution source image will look a little soft at that
+   width, which is preferable to a visible empty gap. */
+/* Capped at 660x440 and centred, 2026-08-25. Filling the full ~878px article
+   column made every body photo dominate the page. Width alone was not enough:
+   these images carry mixed aspect ratios (measured 1.05 to 1.83 across the
+   blog), so at a fixed width their heights still ranged 360px to 631px and
+   the squarer ones towered over the text. The height cap evens that out.
+
+   object-fit:cover means images taller than the cap are cropped rather than
+   squashed, and the crop is biased slightly above centre because in this
+   library the subject (faces, hands, the treatment area) sits above the
+   midline far more often than below it. Only images with a ratio under ~1.5
+   are cropped at all; wider ones already fit inside 440px untouched.
+   Raise the cap toward 878/no-max to make them larger again. */
+.prose img{display:block;width:100%;margin:30px auto;max-width:660px;max-height:440px;height:auto;object-fit:cover;object-position:center 30%;border-radius:var(--r-sm)}
+/* Tagged by single.php when the source file is genuinely narrower than the
+   content column. Filling the column with one of these would just upscale a
+   small file into a soft, oversized block, so it keeps its real size and is
+   centred instead. */
+.prose img.img-nat{width:auto;max-width:100%}
+.caution{border-left:3px solid var(--gold);background:var(--white);padding:24px 28px;margin:30px 0}
+.caution b{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-text);margin-bottom:9px}
+.caution p{font-size:15.5px;color:var(--ink-soft);margin:0}
+.note{background:#FFF8E1;border:1px dashed var(--gold);padding:15px 19px;font-size:12.5px;color:#6b5410;line-height:1.66;margin-top:26px}
+.note b{color:#4a3a08}
+.note code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px}
+/* Selectors carry a `.prose details` twin throughout, added 2026-08-25, so
+   the 13 posts whose FAQ is pasted into the body as bare <details> get the
+   identical accordion treatment as the 30 driven by the ACF field. See the
+   FAQ normalisation note in single.php for why two shapes exist at all. */
+.faq{border-top:1px solid var(--line)}
+.prose details:first-of-type{border-top:1px solid var(--line)}
+.faq details,.prose details{border-bottom:1px solid var(--line)}
+.faq summary,.prose details>summary{padding:22px 0;font-size:19px;font-family:'Bodoni Moda',Georgia,serif;font-weight:500;font-optical-sizing:none;font-variation-settings:'opsz' 6;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;color:var(--ink)}
+.faq summary::-webkit-details-marker,.prose details>summary::-webkit-details-marker{display:none}
+.faq summary::after,.prose details>summary::after{content:"+";color:var(--gold-text);font-family:'Inter Tight',system-ui,sans-serif;font-size:20px}
+.faq details[open] summary::after,.prose details[open]>summary::after{content:"-"}
+/* The inline variant's answer is a plain <p>, not a .a wrapper. */
+.prose details>p{padding:0 0 22px;margin:0;font-size:15.5px;color:var(--ink-soft);line-height:1.75}
+/* max-width moved off .a, 2026-08-25. Capping only the answer meant the
+   question row and its +/- marker spanned the full container while the
+   answer stopped short, so an open item showed empty space beside its own
+   answer. Capping .faq instead fixed that but, inside a full-width .wrap,
+   simply moved all the leftover width into one large empty column on the
+   right. The measure has to be set by a CENTRED container so the spare width
+   is split evenly and reads as margin rather than as a gap -- see the
+   .faq-solo wrapper used by single.php. */
+.faq .a{padding:0 0 22px;font-size:15.5px;color:var(--ink-soft)}
+/* Blog posts have no sidebar image to pair the FAQ against the way service
+   pages do via .faqwrap, so the section centres itself instead. */
+.faq-solo{max-width:860px;margin-left:auto;margin-right:auto}
+/* Control for the "show 5, reveal the rest" FAQ toggle. */
+.faq-more{
+ display:inline-flex;align-items:center;gap:8px;margin-top:22px;
+ background:none;border:1px solid var(--line);border-radius:999px;
+ padding:12px 26px;cursor:pointer;font-family:inherit;
+ font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+ color:var(--ink-soft);transition:border-color .24s ease,color .24s ease;
+}
+.faq-more::after{content:"+";font-size:15px;line-height:1;color:var(--gold-text)}
+.faq-more[aria-expanded="true"]::after{content:"-"}
+@media (hover:hover) and (pointer:fine){
+ .faq-more:hover{border-color:var(--ink);color:var(--ink)}
+}
+.faq-more:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+/* --- legal documents ---------------------------------------------------
+   Terms and Privacy are 20-28KB of unbroken prose. Capping the measure keeps
+   lines readable inside the wider two-column shell, and the numbered <h2>
+   sections need to be findable when scanning, so they get a rule above and
+   a little more air than a normal prose heading. Privacy currently has no
+   headings at all in its stored content, so it simply renders as clean
+   paragraphs; that is a content gap, not something to fake here. */
+/* Service hero with no featured image: one column, not a two-column grid
+   with an empty half. */
+.svc-hero-solo{grid-template-columns:1fr}
+.svc-hero-solo .svc-hero-l{padding-right:0}
+.svc-hero-solo .lede{max-width:62ch}
+
+/* --- homepage concerns teaser ------------------------------------------
+   Six tiles routing into /concerns/, replacing a full copy of that page's
+   14 rows. Flex so the last row stretches and never leaves a dead cell. */
+.cteaser{display:flex;flex-wrap:wrap;gap:clamp(14px,1.6vw,20px)}
+.ctile{
+ flex:1 1 300px;display:block;text-decoration:none;color:inherit;
+ background:var(--white);border:1px solid var(--line-soft);
+ border-radius:var(--r-sm);padding:22px 24px;position:relative;
+ transition:border-color .26s ease,box-shadow .26s ease,transform .26s ease;
+}
+.ctile b{display:block;font-family:'Bodoni Moda',Georgia,serif;font-weight:500;
+ font-optical-sizing:none;font-variation-settings:'opsz' 6;
+ font-size:19px;line-height:1.25;margin-bottom:5px;color:var(--ink)}
+.ctile span{display:block;font-size:13.5px;line-height:1.6;color:var(--ink-soft)}
+.ctile::after{
+ content:"";position:absolute;right:20px;top:50%;width:7px;height:7px;
+ border-right:1.5px solid var(--gold-text);border-bottom:1.5px solid var(--gold-text);
+ transform:translateY(-50%) rotate(-45deg);opacity:.45;transition:opacity .26s ease,right .26s ease;
+}
+@media (hover:hover) and (pointer:fine){
+ .ctile:hover{border-color:var(--line);box-shadow:var(--shadow)}
+ .ctile:hover::after{opacity:1;right:16px}
+}
+.ctile:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.cteaser-more{margin-top:clamp(22px,2.4vw,32px)}
+@media(prefers-reduced-motion:reduce){.ctile,.ctile::after{transition:none}}
+
+/* --- About / The Practice ----------------------------------------------
+   Picked 2026-08-25: direction C (editorial) from preview-about-abc.html,
+   keeping direction A's immersive hero. Three-photo strip as the visual
+   break, two-column body, then the "why choose" points in a ruled grid with
+   no card borders. */
+/* Text beside a photo collage. The originals here are small (314px and
+   275px wide for two of the three), so a full-bleed strip enlarged them past
+   1.5x and they went soft. In this arrangement the two half-width figures
+   land near their native size and only the widest file, sorted into the wide
+   slot by the template, is enlarged at all, and only slightly. */
+.about-intro{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(34px,4.4vw,72px);align-items:start}
+.about-figs{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-content:start}
+.about-figs figure{margin:0;border-radius:var(--r-sm);overflow:hidden;background:var(--band)}
+.about-figs figure.wide{grid-column:1 / -1}
+.about-figs img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:3/2}
+.about-figs figure.wide img{aspect-ratio:16/10}
+
+.about-band-prose{max-width:80ch}
+/* Two-column tail inside the band, so the closing copy does not leave the
+   right half of a 1240px section empty. Shares .about-cols with the intro. */
+.about-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(34px,4.6vw,74px);align-items:start}
+.about-tail-2 h2:first-child,.about-tail-2 h3:first-child{margin-top:0}
+/* Label for the numbered points, lifted out of the body copy where it used
+   to introduce the bullet list. */
+.about-why-label{
+ font-size:22px;margin:clamp(28px,3vw,40px) 0 0;
+ font-family:'Bodoni Moda',Georgia,serif;font-weight:500;
+ font-optical-sizing:none;font-variation-settings:'opsz' 6;
+}
+
+/* Ruled grid, no card chrome. counter() supplies the numbering so it stays
+   correct however many points the content holds. */
+.about-why{counter-reset:aw;display:grid;grid-template-columns:1fr 1fr;margin-top:clamp(30px,3.4vw,48px)}
+.about-why > div{
+ counter-increment:aw;padding:26px 32px 28px 0;
+ border-top:1px solid var(--line);
+}
+.about-why > div:nth-child(2n){padding-left:32px;padding-right:0;border-left:1px solid var(--line)}
+/* Five points in a two-column grid would leave the last cell empty. Rather
+   than invent a sixth point to balance it (the mockup did exactly that, and
+   that copy is deliberately not shipped), the odd one out spans the row. */
+.about-why > div:last-child:nth-child(odd){grid-column:1 / -1;border-left:0;padding-left:0}
+.about-why > div::before{
+ content:counter(aw,decimal-leading-zero);display:block;margin-bottom:10px;
+ font-family:'Bodoni Moda',Georgia,serif;font-weight:500;font-optical-sizing:none;
+ font-variation-settings:'opsz' 6;font-size:22px;color:var(--gold-text);line-height:1;
+}
+.about-why b{display:block;font-size:16.5px;line-height:1.35;margin-bottom:7px;color:var(--ink)}
+.about-why span{display:block;font-size:14.5px;line-height:1.7;color:var(--ink-soft)}
+
+@media(max-width:1000px){
+ .about-intro{grid-template-columns:1fr}
+ .about-why{grid-template-columns:1fr}
+ .about-why > div,.about-why > div:nth-child(2n){padding:24px 0 26px;border-left:0}
+}
+
+/* --- utility pages (sitemap / thank you / GDPR request) ---------------- */
+.util-acts{margin-top:34px}
+/* The sitemap shortcode emits plain nested lists. Left as one column they
+   run to an absurd length on a site this size, so they flow into columns. */
+/* Sitemap, following the client-referenced bigeasywindows.com/sitemap/
+   layout: dark full-bleed header band, then grouped sections underneath.
+   Two columns rather than three keeps the link text and its indented
+   children readable at this width while still avoiding the 7,000px single
+   column the narrow container produced. */
+.sitemap-hero{background:var(--ink);color:var(--paper);padding:clamp(56px,6vw,86px) 0;text-align:center}
+.sitemap-hero h1{color:var(--paper);margin:0 0 10px}
+.sitemap-hero p{color:rgba(250,247,242,.72);font-size:15px;margin:0}
+
+.util-prose ul{columns:2;column-gap:48px;margin-bottom:30px}
+.util-prose ul ul{columns:1;margin:6px 0 12px}
+.util-prose li{break-inside:avoid;-webkit-column-break-inside:avoid}
+/* The shortcode's own "Sitemap" wrapper heading duplicates the banner title. */
+.util-prose > h2:first-child{display:none}
+.util-prose h2{
+ font-size:22px;margin:40px 0 14px;column-span:all;
+ padding-bottom:12px;border-bottom:1px solid var(--line);
+}
+.util-prose h3{font-size:15px;margin:26px 0 10px;column-span:all;color:var(--gold-text);
+ letter-spacing:.1em;text-transform:uppercase}
+@media(max-width:900px){.util-prose ul{columns:1}}
+
+/* The GDPR request form is rendered by the wpgdprPro plugin and ships its own
+   grey tab strip and bright blue submit button, which sit oddly against the
+   rest of the site. Restyled to the theme's own controls rather than left as
+   plugin default; selectors are the plugin's own class names. */
+.util-prose .gdpr-tab{border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;background:var(--paper);display:flex;flex-wrap:wrap}
+/* !important is load-bearing here, not laziness: the plugin's own JS writes
+   background-color directly onto each tab as an inline style (grey for the
+   active one, white for the rest) every time a tab is clicked, and an inline
+   style beats any normal stylesheet rule. */
+.util-prose .gdpr-tablinks{
+ background:none !important;border:0;border-right:1px solid var(--line);
+ padding:14px 20px;font-family:inherit;font-size:12px;letter-spacing:.1em;
+ text-transform:uppercase;color:var(--ink-soft);cursor:pointer;transition:.22s;
+}
+.util-prose .gdpr-tablinks:last-child{border-right:0}
+.util-prose .gdpr-tablinks.active{background:var(--ink) !important;color:var(--paper)}
+@media(hover:hover) and (pointer:fine){
+ .util-prose .gdpr-tablinks:not(.active):hover{background:var(--white) !important;color:var(--ink)}
+}
+.util-prose .gdprinp{
+ width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:var(--r-sm);
+ font-family:inherit;font-size:15px;background:var(--white);color:var(--ink);
+}
+.util-prose .gdprinp:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
+.util-prose input[type="submit"],.util-prose .button-13,.util-prose .submitrequestbtn{
+ display:inline-flex;align-items:center;justify-content:center;
+ padding:14px 30px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+ font-weight:500;font-family:inherit;width:auto;line-height:1.2;
+ border:1px solid var(--ink);border-radius:999px;
+ background:var(--ink);color:var(--white);cursor:pointer;transition:.28s;
+}
+@media(hover:hover) and (pointer:fine){
+ .util-prose input[type="submit"]:hover,.util-prose .button-13:hover,.util-prose .submitrequestbtn:hover{background:transparent;color:var(--ink)}
+}
+
+.legal-prose{max-width:74ch}
+.legal-prose h2{
+ font-size:20px;margin:44px 0 14px;padding-top:22px;
+ border-top:1px solid var(--line-soft);letter-spacing:.01em;
+}
+.legal-prose h2:first-child{margin-top:0;padding-top:0;border-top:0}
+.legal-prose p{font-size:15.5px;line-height:1.8;margin-bottom:16px}
+.legal-prose a{color:var(--gold-text);border-bottom:1px solid var(--line)}
+.legal-prose li{font-size:15.5px;line-height:1.8}
+@media(max-width:1000px){.legal-prose{max-width:none}}
+.cta{background:var(--ink);color:var(--paper);padding:var(--pad) 0}
+.cta h2{color:var(--paper);font-size:clamp(28px,3vw,42px);margin-bottom:16px}
+.cta p{color:rgba(250,247,242,.68);max-width:52ch;margin-bottom:30px}
+.cta .eyebrow{color:var(--gold-lt)}
+.cta .eyebrow::after{background:rgba(250,247,242,.25)}
+.btn-line{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn-line:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.legalbar{background:var(--band);padding:20px 0;font-size:12.5px;color:var(--ink-soft)}
+footer.site{background:var(--ink);color:rgba(250,247,242,.55);padding:56px 0 28px;font-size:14px}
+footer.site h4{font-family:'Inter Tight',system-ui,sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-lt);font-weight:600;margin-bottom:14px}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+.fgrid>div{min-width:0}
+.fgrid a{display:block;margin-bottom:7px}
+.fbot{margin-top:44px;padding-top:20px;border-top:1px solid rgba(250,247,242,.14);font-size:12px;display:flex;flex-wrap:wrap;gap:10px 26px}
+footer.site img{height:44px;width:auto;margin-bottom:14px}
+.gfilter{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:36px}
+.gfilter span{border:1px solid var(--line);padding:9px 18px;font-size:12.5px;color:var(--ink-soft);background:var(--paper)}
+.gfilter span.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.ggrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.ggrid>div{min-width:0}
+.gslot{border:1px solid var(--line);background:repeating-linear-gradient(45deg,#F4EEE4,#F4EEE4 10px,#EFE7DA 10px,#EFE7DA 20px);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;text-align:center;padding:22px}
+.gslot span{font-size:12.5px;color:#7a6a4f;letter-spacing:.06em;max-width:22ch}
+.gcap{font-size:13px;color:var(--ink-soft);margin-top:9px}
+.gcap b{color:var(--ink);font-weight:500;display:block;font-size:14.5px}
+.cgrid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:start}
+.cgrid>div{min-width:0}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:7px}
+.field input,.field select,.field textarea{width:100%;padding:13px 15px;border:1px solid var(--line);background:var(--white);font-family:inherit;font-size:15.5px;color:var(--ink)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold)}
+/* Renamed from .blog 2026-08-25: WordPress's own body_class() adds a literal
+   "blog" class to <body> on the posts index (is_home()), so this rule was
+   silently turning the whole page into a 2-column grid the moment home.php
+   started rendering with a real body_class() call. A wrapper class this
+   generic was always going to collide with a WP core convention eventually. */
+.postgrid{display:grid;grid-template-columns:1fr 292px;gap:70px;align-items:start}
+.postgrid>div,.postgrid>aside{min-width:0}
+.rail{position:sticky;top:78px;border-left:1px solid var(--line);padding-left:26px}
+.rail h4{font-family:'Inter Tight',system-ui,sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-text);font-weight:600;margin-bottom:14px}
+/* :not(.btn) added 2026-08-25. These rules were written for the rail's plain
+   text links, but the rail also holds a .btn-line button. `.rail a:hover`
+   (specificity 0,2,1) outranks `.btn-line:hover` (0,1,1), so on hover the
+   button took its dark background from .btn-line but its text colour from
+   here -- var(--ink) text on a var(--ink) background, i.e. a solid dark pill
+   with the label invisible. Excluding buttons lets the .btn/.btn-line
+   component own its own colours, which is what it was designed to do. */
+.rail a:not(.btn){display:block;font-size:14.5px;color:var(--ink-soft);margin-bottom:9px;line-height:1.55}
+.rail a:not(.btn):hover{color:var(--ink)}
+.rail .grp{margin-bottom:32px}
+.meta{font-size:13px;color:var(--ink-soft);margin-bottom:34px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+@media(max-width:1000px){/* --pad is a clamp now,so it already floors at 84px on a phone. The old flat override made inner pages tighter than the homepage. Removed. */ .wrap,.hbar{padding-left:24px;padding-right:24px}
+.grid3,.grid2,.ggrid{grid-template-columns:1fr 1fr}
+.cgrid,.postgrid{grid-template-columns:1fr;gap:44px}
+.rail{position:static;border-left:0;border-top:1px solid var(--line);padding-left:0;padding-top:28px}
+.fgrid{grid-template-columns:1fr 1fr}
+.nav{display:none}}
+@media(max-width:620px){.wrap,.hbar{padding-left:18px;padding-right:18px}
+.grid3,.grid2,.ggrid{grid-template-columns:1fr}
+.fgrid{grid-template-columns:1fr}
+.hphone{display:none}}
+/* every content image gets a bounded box. Dr.-Luong.jpg is 1284x2778,and dropping a 2.2:1 vertical in unconstrained rendered it about 550px tall. */ .fam .prose img,.fam .cgrid img,.fam .split-img img{max-height:520px;object-fit:cover}
+/* fixed box,and the image must beat the generic max-height cap or the box background shows through underneath it */ .portrait{height:520px;overflow:hidden;background:var(--line);border-radius:var(--r)}
+.portrait img{width:100%;height:100%;max-height:none;object-fit:cover;display:block}
+@media(max-width:1000px){.portrait{height:400px}}
+@media(max-width:620px){.portrait{height:300px}}
+.pbanner{width:100%;height:420px;object-fit:cover;display:block}
+.pbanner-wrap{margin-bottom:0;position:relative}
+/* section hub header: photo fades into the page background near the heading, dark tint fades with it, text sits on plain background not overlaid on the photo */
+.hub-hero{position:relative;min-height:500px;overflow:hidden;margin-bottom:0;background:var(--white)}
+.hub-hero-img{position:absolute;top:0;right:0;bottom:0;width:62%;-webkit-mask-image:linear-gradient(to right,transparent 0%,black 32%);mask-image:linear-gradient(to right,transparent 0%,black 32%)}
+.hub-hero-img img{width:100%;height:100%;object-fit:cover;filter:saturate(.78) contrast(1.03);display:block}
+.hub-hero-img::after{content:"";position:absolute;inset:0;background:rgba(15,29,40,.4)}
+.hub-hero-in{position:relative;min-height:500px;display:flex;flex-direction:column;justify-content:center}
+@media(max-width:1000px){
+  .hub-hero{min-height:0}
+  .hub-hero-img{position:relative;width:100%;height:280px;-webkit-mask-image:none;mask-image:none}
+  .hub-hero-in{min-height:0;padding:32px 0}
+}
+.figcap{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-top:10px}
+/* service detail : content left,imagery right,so the measure stays readable and the right side is no longer dead. Images only,not a link rail. */ .doc{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:70px;align-items:start}
+.doc>div{min-width:0}
+.doc .prose{max-width:66ch}
+.docside{position:sticky;top:96px;display:grid;gap:20px}
+.docside img{border-radius:var(--r)}
+.docside img{width:100%;object-fit:cover;display:block}
+.docside .tall{height:420px}
+.docside .short{height:210px}
+.docside .cap{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-top:-12px}
+.docside .box{border:1px solid var(--line);background:var(--white);padding:22px 24px}
+.docside .box h4{font-family:'Inter Tight',system-ui,sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-text);font-weight:600;margin-bottom:10px}
+.docside .box p{font-size:14px;color:var(--ink-soft);line-height:1.7;margin-bottom:14px}
+.imgrow{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.imgrow>figure{min-width:0}
+/* Rounding + overflow:hidden used to sit on <figure> itself, which also
+   contains the figcaption below the photo. The caption's text starts flush
+   left with the figure's own edge (no padding), landing directly in the
+   rounded bottom-left corner's clip zone, so its first letter was sliced off
+   on every single caption. Round the image alone, matching the .cm-pair .fr
+   pattern elsewhere on this page, so the caption is never inside a clipped
+   box in the first place. */
+.imgrow img{width:100%;height:250px;object-fit:cover;display:block;border-radius:var(--r)}
+.imgrow figcaption{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-top:9px}
+.split-img{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:center}
+.split-img>div{min-width:0}
+.split-img img{width:100%;height:440px;max-height:none;object-fit:cover;border-radius:var(--r)}
+@media(max-width:1000px){.split-img img{height:300px}
+.doc{grid-template-columns:1fr;gap:44px}
+.docside{position:static}
+.imgrow{grid-template-columns:1fr 1fr}
+.split-img{grid-template-columns:1fr}
+.pbanner{height:300px}}
+@media(max-width:620px){.imgrow{grid-template-columns:1fr}
+.pbanner{height:230px}}
+.svc-hero{display:grid;grid-template-columns:1fr 1fr;gap:60px;border-bottom:1px solid var(--line)}
+.svc-hero>div{min-width:0}
+.svc-hero-l{padding:64px 0;display:flex;flex-direction:column;justify-content:center}
+.svc-hero-r{position:relative;min-height:420px;margin:40px 0;background:var(--line);border-radius:var(--r);overflow:hidden}
+.svc-hero-r img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.svc-hero h1{font-size:var(--h1);margin-bottom:20px}
+.svc-hero .lede{font-size:18px;color:var(--ink-soft);margin-bottom:30px;max-width:46ch}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.facts>div{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 24px}
+.facts dt{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-text);font-weight:600;margin-bottom:9px}
+.facts dd{font-family:'Bodoni Moda',Georgia,serif;font-weight:500;font-optical-sizing:none;font-variation-settings:'opsz' 6;font-size:21px;line-height:1.25}
+.facts small{display:block;font-family:'Inter Tight',system-ui,sans-serif;font-size:12.5px;color:var(--ink-soft);margin-top:5px;line-height:1.5}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.duo>div{min-width:0}
+.duo img{width:100%;height:420px;object-fit:cover;border-radius:var(--r)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.steps>div{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:30px 28px}
+.steps i{font-style:normal;font-family:'Bodoni Moda',Georgia,serif;font-weight:500;font-optical-sizing:none;font-variation-settings:'opsz' 6;font-size:26px;color:var(--gold-text);display:block;margin-bottom:12px;line-height:1}
+.steps h4{font-family:'Bodoni Moda',Georgia,serif;font-size:20px;margin-bottom:8px}
+.steps p{font-size:14.5px;color:var(--ink-soft);line-height:1.7}
+.faq2{display:grid;grid-template-columns:1fr 1fr;gap:0 56px}
+.faq2>div{min-width:0}
+@media(max-width:1000px){.svc-hero{grid-template-columns:1fr}
+.svc-hero-l{padding:48px 0}
+.svc-hero-r{min-height:280px;margin:24px 0}
+.facts{grid-template-columns:1fr 1fr}
+.duo{grid-template-columns:1fr;gap:34px}
+.duo img{height:300px}
+.steps{grid-template-columns:1fr}
+.faq2{grid-template-columns:1fr;gap:0}}
+@media(max-width:620px){.facts{grid-template-columns:1fr}}
+.imgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.imgrid.cols-2{grid-template-columns:repeat(2,1fr)}
+.imgrid.cols-4{grid-template-columns:repeat(4,1fr)}
+.imcard{background:var(--paper);display:flex;flex-direction:column}
+.imshot{position:relative;aspect-ratio:4/3.1;overflow:hidden;background:var(--ink);border-radius:var(--r)}
+.imshot img{width:100%;height:100%;object-fit:cover;filter:saturate(.62) contrast(1.04);transition:.5s ease}
+.imcard:hover .imshot img{transform:scale(1.045)}
+.imshot::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(15,29,40,.82) 0%,rgba(15,29,40,.28) 42%,rgba(15,29,40,0) 72%)}
+.imshot .cap{position:absolute;left:0;right:0;bottom:0;padding:20px 22px;z-index:2}
+.imshot .cap h3{color:#FAF7F2;font-size:25px;margin:0}
+.imbody{padding:20px 22px 24px;flex:1;display:flex;flex-direction:column}
+.imbody .imod{font-style:normal;display:block;font-family:'Inter Tight',system-ui,sans-serif;font-size:10.5px;letter-spacing:.19em;text-transform:uppercase;color:var(--gold-text);font-weight:600;margin-bottom:10px}
+.imbody p{font-size:14.5px;color:var(--ink-soft);line-height:1.7;flex:1}
+.imbody .go{display:inline-flex;align-items:center;gap:9px;margin-top:18px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-text);font-weight:600;padding-top:16px;border-top:1px solid var(--line)}
+.imcard:hover .imbody .go{color:var(--ink)}
+.imbody .go span{transition:.22s}
+.imcard:hover .imbody .go span{transform:translateX(5px)}
+/* build marker only,never ships: aria-hidden so it stays out of the card's accessible name */ .imph{position:absolute;top:12px;left:12px;z-index:4}
+.imph b{display:block;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#12161A;font-weight:600;background:var(--gold-lt);padding:6px 10px;line-height:1.5}
+/* ============================================================ SERVICE DETAIL CONCERNS · region map (picked 2026-08-04) Unframed by request: no card,no border,no fill,no padding. ============================================================ */ .map{display:grid;grid-template-columns:360px 1fr;gap:76px;align-items:center}
+.mapfig{position:relative}
+.mapfig svg{width:100%;height:auto;display:block;overflow:visible}
+.face-line{fill:none;stroke:var(--ink);stroke-width:1.5;stroke-linecap:round;opacity:.8}
+.face-soft{fill:none;stroke:var(--ink-soft);stroke-width:1.1;stroke-linecap:round;opacity:.42}
+.pin circle.hit{fill:var(--gold);opacity:.2;transition:.25s}
+.pin circle.dot{fill:var(--paper);stroke:var(--gold-accent);stroke-width:1.6;transition:.25s}
+.pin text{font-family:'Inter Tight',system-ui,sans-serif;font-size:11px;font-weight:600;fill:var(--gold-text)}
+.pin.lit circle.hit{opacity:.46;r:26px}
+.pin.lit circle.dot{fill:var(--ink);stroke:var(--gold)}
+.pin.lit text{fill:var(--gold-lt)}
+.mapcap{font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-soft);text-align:center;margin-top:20px;white-space:nowrap}
+.mlist{border-top:1px solid var(--line)}
+.mrow{display:grid;grid-template-columns:38px 1fr;gap:22px;padding:23px 0;border-bottom:1px solid var(--line);transition:.2s;align-items:start}
+.mrow:hover{background:var(--white)}
+.mnum{font-family:'Bodoni Moda',Georgia,serif;font-weight:500;font-optical-sizing:none;font-variation-settings:'opsz' 6;font-size:15px;color:var(--gold-text);width:32px;height:32px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.2s}
+.mrow:hover .mnum{background:var(--ink);border-color:var(--ink);color:var(--gold-lt)}
+.mrow h3{font-size:23px;margin-bottom:6px}
+.mrow p{font-size:14.5px;color:var(--ink-soft);line-height:1.68}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold-accent);outline-offset:3px}
+@media(max-width:1000px){.imgrid,.imgrid.cols-4{grid-template-columns:repeat(2,1fr)}
+.map{grid-template-columns:1fr;gap:38px}}
+@media(max-width:620px){.imgrid,.imgrid.cols-2,.imgrid.cols-4{grid-template-columns:1fr}}
+/* ---------- client media,received 2026-08-04 ---------- */ .cm-note{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px}
+.cm-pair{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.cm-pair>figure{min-width:0;margin:0}
+.cm-pair .fr{aspect-ratio:3/4;overflow:hidden;background:var(--band);border-radius:var(--r)}
+.cm-pair .fr img{width:100%;height:100%;max-height:none;object-fit:cover;filter:saturate(.62) contrast(1.04)}
+/* Centred under its own image, 2026-08-25. Left aligned, these two labels
+   sat hard against the left edge of a wide figure and read as detached from
+   the photograph above them. */
+.cm-pair figcaption{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-top:9px;text-align:center}
+.cm-wide{overflow:hidden;background:var(--band);border-radius:var(--r)}
+.cm-wide img{width:100%;height:auto;max-height:none;object-fit:cover;display:block}
+.cm-tall{aspect-ratio:3/4;overflow:hidden;background:var(--band);border-radius:var(--r)}
+.cm-tall img{width:100%;height:100%;max-height:none;object-fit:cover}
+.cm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.cm-grid>figure{min-width:0;margin:0}
+.cm-grid figcaption{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-top:9px}
+/* vertical reel: the clips are portrait,so the frame is too. Scrolls in its own box. */ .reel{display:flex;gap:16px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x mandatory}
+.reel>figure{flex:0 0 232px;margin:0;scroll-snap-align:start}
+.reel .vf{width:232px;aspect-ratio:406/720;overflow:hidden;background:#0F1D28;border:1px solid var(--line);border-radius:var(--r-sm)}
+.reel video{width:100%;height:100%;object-fit:cover;display:block}
+.reel figcaption{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-top:9px}
+@media(max-width:1000px){.cm-grid{grid-template-columns:repeat(2,1fr)}
+.cm-pair{grid-template-columns:1fr}}
+@media(max-width:1000px){}
+/* ---- spacing correction,see build/cta_and_spacing.py ------------------ */ :root{--pad:clamp(64px,6.5vw,104px)}
+/* Where the background does not change,two stacked sections were facing each other with a full pad on each side. Halve the join; keep the full gap wherever the background changes,because that break is doing real work. */ /* Every section join,not only the same-background ones. A change of background is a strong enough break on its own; it does not also need 187px of empty page to announce itself,which is what two full pads facing each other produced. */ section + section{padding-top:calc(var(--pad) * .38)}
+.phead{padding-bottom:clamp(30px,3.4vw,50px)}
+.cta{padding:clamp(52px,5.4vw,78px) 0;position:relative}
+/* a hairline of the brand gold across the top,so the band reads as a deliberate destination rather than as the page running out */ .cta::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);opacity:.55}
+.cta-in{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(30px,4.5vw,64px);align-items:center}
+.cta-copy h2{margin-bottom:12px}
+.cta-copy p{margin-bottom:0}
+/* The two actions are a stacked pair,so they share a width. The phone was a bare underlined line of Bodoni next to a 271px pill,which read as one control and one afterthought rather than as two ways to reach the practice. */ .cta-act{display:flex;flex-direction:column;align-items:stretch;gap:12px;padding-left:clamp(0px,3vw,40px);border-left:1px solid rgba(250,247,242,.16)}
+.cta-act .btn{margin:0;width:100%;text-align:center}
+.cta-tel{display:flex;align-items:center;justify-content:center;width:100%;min-height:56px;padding:0 22px;border-radius:999px;border:1px solid rgba(250,247,242,.35);font-family:'Bodoni Moda',Georgia,serif;font-weight:500;font-optical-sizing:none;font-variation-settings:'opsz' 6;font-size:22px;line-height:1;color:var(--paper);text-decoration:none;transition:border-color .25s ease,color .25s ease,background .25s ease}
+@media (hover:hover) and (pointer:fine){.cta-tel:hover{color:var(--gold-lt);border-color:var(--gold-lt);background:rgba(250,247,242,.06)}}
+.cta-proof{display:flex;align-items:center;gap:9px;font-size:12px;color:rgba(250,247,242,.62)}
+.cta-stars{color:var(--gold-lt);letter-spacing:2px;font-size:12px}
+@media(max-width:860px){.cta-in{grid-template-columns:1fr;gap:28px}
+.cta-act{padding-left:0;border-left:0;padding-top:24px;border-top:1px solid rgba(250,247,242,.16);align-self:stretch}
+.cta-act .btn{width:100%;text-align:center}}
+.faqwrap{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:clamp(28px,4.5vw,64px);align-items:start}
+.faqfig{margin:0}
+.faqfig img{width:100%;height:100%;min-height:320px;max-height:460px;object-fit:cover;display:block;border-radius:var(--r-sm)}
+.faqfig figcaption{font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft);margin-top:10px}
+@media(max-width:860px){.faqwrap{grid-template-columns:1fr}
+.faqfig img{min-height:0;aspect-ratio:16/10}}
+.postfig{margin:34px 0}
+.postfig img{width:100%;display:block;border-radius:var(--r-sm)}
+.postfig figcaption{font-size:12.5px;color:var(--ink-soft);margin-top:10px;font-style:italic}
+.flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(22px,2.6vw,38px) clamp(26px,3vw,46px)}
+.flow > div{position:relative;padding-top:20px;border-top:1px solid var(--line)}
+.flow i{font-style:normal;display:block;margin-bottom:10px;font-family:'Bodoni Moda',Georgia,serif;font-weight:500;font-optical-sizing:none;font-variation-settings:'opsz' 6;font-size:30px;line-height:1;color:var(--gold-text)}
+.flow h4{font-size:20px;margin-bottom:8px}
+.flow p{font-size:14.5px;color:var(--ink-soft);line-height:1.72}
+.flow > div::after{content:"";position:absolute;left:0;top:-1px;width:34px;height:1px;background:var(--gold)}
+@media(max-width:980px){.flow{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.flow{grid-template-columns:1fr}}
+/* the two-up version,for the practice details */ .flow.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:620px){.flow.two{grid-template-columns:1fr}}
+/* a real instruction to a patient,not one of our scaffolding notes */ .formnote{margin-top:20px;padding-left:14px;border-left:2px solid var(--gold);font-size:13px;line-height:1.7;color:var(--ink-soft);max-width:58ch}
+.formnote b{color:var(--ink);font-weight:500}
+.formnote a{color:var(--ink);text-decoration:underline;text-underline-offset:2px}
+.bl-lead{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(26px,3.6vw,52px);align-items:center;margin-bottom:clamp(34px,4vw,58px)}
+.bl-lead figure{margin:0}
+.bl-lead img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;border-radius:var(--r-sm)}
+.bl-lead .tag{display:inline-block;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-text);margin-bottom:12px}
+.bl-lead h3{font-size:clamp(24px,2.6vw,34px);line-height:1.24;margin-bottom:12px}
+.bl-lead p{color:var(--ink-soft);font-size:15px;line-height:1.72;margin-bottom:18px}
+.bl-chips{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:clamp(26px,3vw,40px);padding-bottom:clamp(24px,3vw,36px);border-bottom:1px solid var(--line)}
+.bl-chip{font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;padding:9px 16px;border:1px solid var(--line);border-radius:999px;color:var(--ink-soft);text-decoration:none;transition:border-color .22s ease,color .22s ease}
+.bl-chip.on{border-color:var(--gold);color:var(--ink)}
+@media (hover:hover) and (pointer:fine){.bl-chip:hover{border-color:var(--ink);color:var(--ink)}}
+.bl-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,2.8vw,40px) clamp(22px,2.6vw,36px)}
+.bl-card{display:block;text-decoration:none;color:inherit;padding-top:18px;border-top:1px solid var(--line);position:relative;transition:border-color .25s ease}
+.bl-card::after{content:"";position:absolute;left:0;top:-1px;width:0;height:1px;background:var(--gold);transition:width .32s cubic-bezier(.22,.61,.36,1)}
+.bl-card h4{font-size:19px;line-height:1.32;margin-bottom:9px}
+.bl-card .go{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-text)}
+@media (hover:hover) and (pointer:fine){.bl-card:hover::after{width:100%}}
+@media(prefers-reduced-motion:reduce){.bl-card::after{transition:none}}
+@media(max-width:980px){.bl-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.bl-lead{grid-template-columns:1fr}}
+@media(max-width:620px){.bl-grid{grid-template-columns:1fr}}
+.bl-more{display:flex;justify-content:center;margin-top:clamp(34px,4vw,56px)}
+.cond-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 clamp(24px,3vw,44px)}
+.cond{display:grid;grid-template-columns:30px 1fr;gap:0 15px;align-items:start;padding:18px 26px 18px 2px;border-bottom:1px solid var(--line-soft);text-decoration:none;color:inherit;position:relative;transition:border-color .28s ease,padding-left .28s cubic-bezier(.22,.61,.36,1)}
+.cond .cico{grid-row:1 / 3;grid-column:1;align-self:center;width:30px;height:30px;color:var(--gold-text);display:flex;align-items:center;justify-content:center;transition:color .28s ease}
+.cond .cico svg{width:100%;height:100%;display:block}
+.cond b{grid-column:2;grid-row:1;font-weight:500;font-family:'Bodoni Moda',Georgia,serif;font-optical-sizing:none;font-variation-settings:'opsz' 6;font-size:18px;line-height:1.3}
+.cond span{grid-column:2;grid-row:2;font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft);margin-top:3px}
+.cond::after{content:"";position:absolute;right:6px;top:50%;width:7px;height:7px;border-right:1.5px solid var(--gold-text);border-bottom:1.5px solid var(--gold-text);transform:translateY(-50%) rotate(-45deg);opacity:.4;transition:opacity .28s ease,right .28s ease}
+@media (hover:hover) and (pointer:fine){.cond:hover{border-bottom-color:var(--gold-lt);padding-left:8px}
+.cond:hover .cico{color:var(--ink)}
+.cond:hover::after{opacity:1;right:3px}}
+@media(prefers-reduced-motion:reduce){.cond,.cond .cico,.cond::after{transition:none}}
+@media(max-width:980px){.cond-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.cond-grid{grid-template-columns:1fr}}
+.off-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(22px,2.6vw,34px)}
+.offer{background:var(--white);border:1px solid var(--line-soft);border-radius:2px;padding:clamp(28px,3vw,42px);display:flex;flex-direction:column}
+.offer .tag{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-text);margin-bottom:14px}
+.offer h3{font-size:24px;margin-bottom:14px}
+.offer .price{display:flex;align-items:baseline;gap:12px;margin-bottom:16px}
+.offer .price b{font-family:'Bodoni Moda',Georgia,serif;font-weight:500;font-optical-sizing:none;font-variation-settings:'opsz' 6;font-size:46px;line-height:1}
+.offer .price span{font-size:13px;color:var(--ink-soft)}
+.offer > p{font-size:14.5px;line-height:1.72;color:var(--ink-soft);margin-bottom:18px}
+.offer ul{list-style:none;padding:0;margin:0 0 24px}
+.offer li{position:relative;padding-left:22px;font-size:14px;line-height:1.7;margin-bottom:7px}
+/* a tick,not a chevron: the two legs have to be different lengths and it rotates the other way. Equal 7x7 borders at -45deg draws a downward arrowhead. */ .offer li::before{content:"";position:absolute;left:3px;top:6px;width:5px;height:9px;border-right:1.5px solid var(--gold-text);border-bottom:1.5px solid var(--gold-text);transform:rotate(45deg)}
+.offer .btn{margin-top:auto;align-self:flex-start}
+.fineprint{margin-top:clamp(28px,3vw,44px);padding-top:22px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.75;color:var(--ink-soft);max-width:78ch}
+@media(max-width:760px){.off-grid{grid-template-columns:1fr}}
+.arc-list{border-top:1px solid var(--line)}
+.arc-row{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--line-soft);text-decoration:none;color:inherit;transition:padding-left .28s cubic-bezier(.22,.61,.36,1)}
+.arc-row i{font-style:normal;font-family:'Bodoni Moda',Georgia,serif;font-weight:500;font-optical-sizing:none;font-variation-settings:'opsz' 6;font-size:15px;color:var(--gold-text);min-width:26px}
+.arc-row h4{font-size:20px;line-height:1.34}
+.arc-row .go{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-text);opacity:.55;transition:opacity .25s ease}
+@media (hover:hover) and (pointer:fine){.arc-row:hover{padding-left:9px}
+.arc-row:hover .go{opacity:1}}
+@media(prefers-reduced-motion:reduce){.arc-row{transition:none}}
+@media(max-width:620px){.arc-row{grid-template-columns:auto 1fr}
+.arc-row .go{display:none}}
+.arc-sibs{display:flex;flex-wrap:wrap;gap:9px;margin-top:clamp(30px,3.4vw,48px)}
+/* ---- office hours,renamed off the homepage's .hrs -------------------- */ .ohrs{border-top:1px solid var(--line);font-size:14.5px;color:var(--ink)}
+.ohrs div{display:flex;justify-content:space-between;gap:18px;padding:11px 0;border-bottom:1px solid var(--line)}
+.ohrs div span:first-child{color:var(--ink-soft)}
+.mapfigure{margin:0;position:relative;border-radius:var(--r);overflow:hidden}
+.mapfigure img{width:100%;height:440px;object-fit:cover;display:block;border:1px solid var(--line)}
+@media(max-width:760px){.mapfigure img{height:280px}}
+.bl-card{padding-top:0;border-top:0}
+.bl-card::after{display:none}
+.card-media{margin:0 0 14px;overflow:hidden;background:var(--band);border-radius:var(--r-sm)}
+.card-media img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.22,.61,.36,1)}
+@media (hover:hover) and (pointer:fine){.bl-card:hover .card-media img{transform:scale(1.04)}}
+@media(prefers-reduced-motion:reduce){.card-media img{transition:none}}
+.card-date{display:flex;align-items:center;gap:7px;margin-top:8px;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.dico{width:13px;height:13px;flex:none}
+.arc-row{grid-template-columns:auto 96px 1fr auto;gap:20px;align-items:center}
+.arc-thumb{width:96px;height:68px;object-fit:cover;display:block;background:var(--band);border-radius:var(--r-sm)}
+.arc-meta{display:flex;align-items:center;gap:7px;margin-top:6px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+@media(max-width:760px){.arc-row{grid-template-columns:auto 72px 1fr}
+.arc-thumb{width:72px;height:54px}}
+@media(max-width:520px){.arc-row{grid-template-columns:1fr}
+.arc-row i,.arc-thumb{display:none}}
+.pager{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:clamp(38px,4.4vw,64px);padding-top:clamp(28px,3vw,42px);border-top:1px solid var(--line)}
+.pager a,.pager span{min-width:42px;height:42px;padding:0 12px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:14px;text-decoration:none;color:var(--ink-soft);border:1px solid transparent;transition:border-color .22s ease,color .22s ease}
+.pager a.on,.pager span.on{border-color:var(--gold);color:var(--ink);font-family:'Bodoni Moda',Georgia,serif;font-weight:500;font-optical-sizing:none;font-variation-settings:'opsz' 6;font-size:17px}
+.pager .dots{border:0;min-width:18px;padding:0;color:var(--ink-soft)}
+.pager .next{padding:0 20px;border-color:var(--line);letter-spacing:.12em;text-transform:uppercase;font-size:11.5px;color:var(--ink);margin-left:6px}
+@media (hover:hover) and (pointer:fine){.pager a:hover{border-color:var(--ink);color:var(--ink)}}
+@media(max-width:520px){.pager a,.pager span{min-width:36px;height:36px;font-size:13px}
+.pager .next{padding:0 14px}}
+.po-urgent{background:var(--ink);color:var(--paper);border-radius:2px;padding:clamp(24px,2.8vw,36px);margin-bottom:clamp(30px,3.4vw,48px);display:grid;grid-template-columns:auto 1fr;gap:clamp(18px,2.4vw,32px);align-items:start}
+.po-urgent .po-ico{width:34px;height:34px;color:var(--gold-lt);flex:none}
+.po-urgent .po-ico svg{width:100%;height:100%;display:block}
+.po-urgent h3{color:var(--paper);font-size:22px;margin-bottom:10px}
+.po-urgent ul{list-style:none;padding:0;margin:0 0 18px;columns:2;column-gap:32px}
+.po-urgent li{position:relative;padding-left:18px;font-size:14px;line-height:1.7;color:rgba(250,247,242,.82);break-inside:avoid}
+.po-urgent li::before{content:"";position:absolute;left:2px;top:9px;width:5px;height:5px;border-radius:50%;background:var(--gold-lt)}
+.po-call{display:inline-flex;align-items:center;gap:10px;font-family:'Bodoni Moda',Georgia,serif;font-weight:500;font-optical-sizing:none;font-variation-settings:'opsz' 6;font-size:24px;color:var(--paper);text-decoration:none;border-bottom:1px solid rgba(250,247,242,.4);padding-bottom:2px}
+@media (hover:hover) and (pointer:fine){.po-call:hover{color:var(--gold-lt);border-color:var(--gold-lt)}}
+@media(max-width:680px){.po-urgent{grid-template-columns:1fr}
+.po-urgent ul{columns:1}}
+.po-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(26px,3vw,48px)}
+.po-item{display:grid;grid-template-columns:auto 1fr auto;gap:0 16px;align-items:start;padding:20px 26px 20px 2px;border-bottom:1px solid var(--line-soft);text-decoration:none;color:inherit;position:relative;transition:border-color .28s ease,padding-left .28s cubic-bezier(.22,.61,.36,1)}
+.po-item i{grid-row:1 / 4;font-style:normal;font-family:'Bodoni Moda',Georgia,serif;font-weight:500;font-optical-sizing:none;font-variation-settings:'opsz' 6;font-size:15px;color:var(--gold-text);min-width:22px;padding-top:3px}
+.po-item b{grid-column:2;font-size:18px;line-height:1.3;font-weight:500}
+.po-item span{grid-column:2;font-size:13.5px;line-height:1.65;color:var(--ink-soft);margin-top:4px}
+.po-item .po-langs{grid-column:2;margin-top:9px;display:flex;gap:7px}
+.po-lang{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--line);border-radius:999px;padding:3px 9px;color:var(--ink-soft)}
+.po-item::after{content:"";position:absolute;right:6px;top:34px;width:7px;height:7px;border-right:1.5px solid var(--gold-text);border-bottom:1.5px solid var(--gold-text);transform:rotate(-45deg);opacity:.4;transition:opacity .28s ease,right .28s ease}
+@media (hover:hover) and (pointer:fine){.po-item:hover{border-bottom-color:var(--gold-lt);padding-left:8px}
+.po-item:hover::after{opacity:1;right:3px}}
+@media(prefers-reduced-motion:reduce){.po-item,.po-item::after{transition:none}}
+@media(max-width:760px){.po-grid{grid-template-columns:1fr}}
+.po-sheet{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,260px);gap:clamp(30px,4vw,64px);align-items:start}
+.po-body h3{font-size:24px;margin:clamp(28px,3vw,42px) 0 14px;padding-top:18px;border-top:1px solid var(--line)}
+.po-body h3:first-child{margin-top:0;padding-top:0;border-top:0}
+.po-body ol{list-style:none;padding:0;margin:0;counter-reset:po}
+.po-body li{position:relative;padding-left:34px;margin-bottom:12px;font-size:15px;line-height:1.75;counter-increment:po}
+.po-body li::before{content:counter(po,decimal-leading-zero);position:absolute;left:0;top:1px;font-family:'Bodoni Moda',Georgia,serif;font-weight:500;font-optical-sizing:none;font-variation-settings:'opsz' 6;font-size:13px;color:var(--gold-text)}
+.po-aside{position:sticky;top:100px;border:1px solid var(--line-soft);border-radius:2px;padding:24px;background:var(--band)}
+.po-aside h4{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-text);margin-bottom:12px}
+.po-aside p{font-size:13.5px;line-height:1.7;color:var(--ink-soft);margin-bottom:16px}
+.po-aside .btn{width:100%;text-align:center;margin-bottom:9px}
+.po-switch{display:flex;gap:6px;margin-bottom:18px}
+.po-switch a{flex:1;text-align:center;padding:8px 10px;border:1px solid var(--line);border-radius:2px;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none}
+.po-switch a.on{border-color:var(--gold);color:var(--ink)}
+@media(max-width:860px){.po-sheet{grid-template-columns:1fr}
+.po-aside{position:static}}
+/* site-level rules last, so the multi-page additions (routing, the mobile menu, the
+   header the menu button has to share) win over the single-page sheet at equal
+   specificity instead of losing to it by source order */
+
+nav a.here{color:var(--ink);font-weight:500}
+nav a.here::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--gold)}
+/* Removed 2026-08-25: `main{padding-top:78px}` assumed header.site was taken
+   out of flow (fixed/absolute), needing manual compensation so content
+   didn't tuck underneath it. It is actually position:sticky, which stays in
+   normal flow and already pushes <main> down by its own height on its own.
+   The rule was adding a second, redundant 78px on top of that on every
+   single inner page (crumb/hero measured starting at 156.8px instead of
+   78.8px), which is the "unnecessary space above the banner" bug. The
+   compensating override this sat next to, #p-home .hero{padding-top:0}, was
+   already dead: body_class() never outputs an id="p-home", and the
+   homepage's own hero isn't inside <main> at all, so it never matched
+   anything, on any page, ever. */
+
+/* --- mobile navigation -------------------------------------------------
+   The homepage hides its nav below 1080, which a single page can afford because
+   the CTA is the only destination. A multi page site cannot: below that width
+   there was no way to reach any other page at all. Same breakpoint, real menu. */
+.navtoggle{display:none;background:none;border:1px solid var(--line);border-radius:999px;
+ width:42px;height:42px;cursor:pointer;font-family:inherit;align-items:center;
+ justify-content:center;flex-direction:column;gap:4px;padding:0}
+.navtoggle span{display:block;width:17px;height:1.5px;background:var(--ink);transition:transform .25s,opacity .25s}
+.navtoggle[aria-expanded="true"] span:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
+.navtoggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.navtoggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
+.navtoggle:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){.navtoggle span{transition:none}}
+@media(max-width:1080px){
+ .navtoggle{display:flex}
+ /* two in flow children now, brand and the control group, so the bar is a clean
+    left/right split and nothing can be auto placed into a middle column */
+ .hbar{grid-template-columns:1fr auto}
+ .hcta{gap:12px}
+ /* solid, not translucent. At .98 over the hero the door copy ghosted through between
+    the rows, which is text sitting on text. */
+ header nav{display:none;position:absolute;top:78px;left:0;right:0;
+  background:var(--white);
+  border-bottom:1px solid var(--line);flex-direction:column;gap:0;
+  padding:6px 0 12px;box-shadow:0 20px 40px -28px rgba(15,29,40,.4)}
+ header nav.open{display:flex}
+ header nav a{padding:13px clamp(22px,4vw,44px);font-size:15px;
+  border-bottom:1px solid var(--line-soft)}
+ header nav a:last-child{border-bottom:0}
+ header nav a.here::after{display:none}
+ header nav a.here{color:var(--gold-text)}
+}
+/* The homepage header fits at 390 because it carries only a logo and one CTA. Adding
+   the 42px menu button pushed the CTA 6px past the right edge, so the bar gives back
+   the width the toggle took. Measured, not guessed: 106 logo + 42 toggle + 2 gaps +
+   179 CTA came to 355 inside 346 of usable width. */
+@media(max-width:680px){
+ .hbar{gap:10px}
+ .navtoggle{width:38px;height:38px}
+ .hcta .btn{padding:10px 12px;font-size:10.5px;letter-spacing:.06em}
+ .hbtn{padding:10px 14px;font-size:9.5px;letter-spacing:.06em}
+}
+
+/* The base button component is dropped from the families sheet on purpose (see
+   BASE_BUTTON above), so an inner page button inherits the homepage's, which is ink on
+   cream. On the ink CTA band that renders an ink button on an ink ground: the label shows
+   and every trace of the button disappears. Invert it explicitly. */
+.cta .btn{
+ background:var(--paper);color:var(--ink);border:1px solid var(--paper);
+ transition:background .25s ease,border-color .25s ease,color .25s ease;
+}
+@media (hover:hover) and (pointer:fine){
+ .cta .btn:hover{background:var(--gold-lt);border-color:var(--gold-lt);color:var(--ink)}
+}
+.cta .btn:focus-visible{outline:2px solid var(--gold-lt);outline-offset:3px}
+
+/* the map's selected state, for pointer, keyboard and tap alike */
+.pin{cursor:pointer}
+.pin .dot{transition:fill .25s ease,r .25s ease}
+.pin text{transition:fill .25s ease}
+.pin.lit .dot{fill:var(--gold)}
+.pin.lit text{fill:var(--ink)}
+.pin:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.mrow{cursor:pointer;transition:background .25s ease,padding-left .25s ease}
+.mrow.lit{background:rgba(201,162,39,.09);padding-left:10px}
+.mrow:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){
+ .pin .dot,.pin text,.mrow{transition:none}
+}
+
+/* ---- site footer ------------------------------------------------------
+   The single page preview shipped a one line footer that also printed the
+   internal build label. A multi page site needs the page list, a second route
+   to the practice, and the profiles the client already publishes. */
+.sitefoot{background:var(--ink);color:var(--paper);padding:clamp(52px,5.5vw,78px) 0 30px;margin-top:0}
+.sitefoot .wrap{max-width:1320px}
+.fgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:clamp(26px,3.4vw,52px)}
+.fbrand img{height:44px;width:auto;margin-bottom:16px;display:block}
+.fbrand p{font-size:13.5px;line-height:1.75;color:rgba(250,247,242,.62);max-width:34ch;margin-bottom:20px}
+.sitefoot h4{
+ font-family:'Inter Tight',system-ui,sans-serif;font-size:10.5px;letter-spacing:.2em;
+ text-transform:uppercase;color:var(--gold-lt);margin-bottom:14px;font-weight:600;
+}
+.sitefoot a{color:rgba(250,247,242,.78);text-decoration:none;font-size:14px;line-height:1.5}
+.fgrid > div > a{display:block;margin-bottom:10px;transition:color .22s ease}
+@media (hover:hover) and (pointer:fine){
+ .sitefoot a:hover{color:var(--paper)}
+ .fsocial a:hover{border-color:var(--gold-lt);color:var(--gold-lt)}
+}
+.faddr{font-size:14px;line-height:1.7;color:rgba(250,247,242,.78);margin-bottom:12px}
+.fphone{
+ display:block;font-family:'Bodoni Moda',Georgia,serif;font-weight:500;
+ font-optical-sizing:none;font-variation-settings:'opsz' 6;
+ font-size:22px;color:var(--paper) !important;margin-bottom:12px;
+}
+.fhours{display:block;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-lt) !important}
+.fsocial{display:flex;gap:10px}
+.fsocial a{
+ width:36px;height:36px;border-radius:50%;border:1px solid rgba(250,247,242,.24);
+ display:flex;align-items:center;justify-content:center;color:rgba(250,247,242,.8);
+ transition:border-color .22s ease,color .22s ease;
+}
+.fsocial svg{width:17px;height:17px;fill:currentColor}
+.fbot{
+ display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+ margin-top:clamp(34px,4vw,52px);padding-top:22px;
+ border-top:1px solid rgba(250,247,242,.16);
+ font-size:12.5px;color:rgba(250,247,242,.55);
+}
+.flegal-links{display:flex;gap:18px}
+.flegal-links a{font-size:12.5px;color:rgba(250,247,242,.55)}
+.flegal{
+ margin-top:18px;font-size:11.5px;line-height:1.75;
+ color:rgba(250,247,242,.42);max-width:100ch;
+}
+@media(max-width:980px){.fgrid{grid-template-columns:1fr 1fr}.fbrand{grid-column:1 / -1}}
+@media(max-width:560px){.fgrid{grid-template-columns:1fr}.fbot{flex-direction:column;gap:10px}}
+
+/* ================= NAV DROPDOWNS, Dental / Aesthetics ====================
+   CSS-only via :hover and :focus-within (not a JS toggle): the trigger and
+   every panel link are all descendants of .navdrop, so tabbing through the
+   panel keeps :focus-within true the whole way, no aria-expanded bookkeeping
+   needed. :hover is gated to real pointers so it never sticks open on tap. */
+.navdrop{position:relative;display:flex;align-items:center}
+.navdrop-panel{
+ /* top:100% with NO margin/gap: the panel touches the trigger's bottom edge,
+    so the cursor moving from "Dental" down into the list never crosses dead
+    space that belongs to neither element and breaks :hover. The old 14px
+    margin-top did exactly that, which is why the menu closed before a click
+    could land. Breathing room now comes from padding-top on the panel itself,
+    a paint-time offset that stays inside the hoverable/clickable box. */
+ position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(-4px);
+ background:var(--white);border:1px solid var(--line-soft);border-radius:var(--r-sm);
+ box-shadow:var(--shadow);padding:18px 8px 8px;min-width:236px;
+ display:grid;gap:1px;
+ opacity:0;visibility:hidden;pointer-events:none;
+ transition:opacity .2s ease,transform .2s ease;
+ z-index:60;
+}
+.navdrop-panel a{
+ display:block;padding:9px 12px;border-radius:7px;
+ font-size:13.5px;color:var(--ink-soft);white-space:nowrap;
+ border-bottom:0;
+}
+.navdrop-panel a:hover,.navdrop-panel a:focus-visible{background:var(--paper);color:var(--ink)}
+@media(hover:hover) and (pointer:fine){
+ .navdrop:hover .navdrop-panel{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+}
+.navdrop:focus-within .navdrop-panel{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+@media(prefers-reduced-motion:reduce){.navdrop-panel{transition:none}}
+
+/* Mobile menu wiring, 2026-08-25. .navtoggle and header nav.open already existed
+   in this stylesheet (see the mobile navigation block above) but the HTML button
+   was never added to header-direction-a.php, so the whole site had no way to
+   open nav below 1080px. Markup + this JS-driven toggle complete it.
+
+   Inside the slide-down panel the Dental/Aesthetics dropdowns switch from a
+   hover-revealed floating panel to an always-open indented sublist: touch has
+   no hover state, and a tap-to-expand accordion would be a second control to
+   build and test for no real gain over just showing all 9/8 items inline. */
+@media(max-width:1080px){
+ /* header nav is position:absolute against header.site's own sticky containing
+    block, so it stays pinned near the top of the viewport rather than
+    scrolling away with the page. With the two dropdowns now expanding inline,
+    22 stacked links comfortably exceed a phone's viewport height, and with no
+    cap here the overflow was simply unreachable, no scrollbar, nothing below
+    Aesthetics ever visible. Cap it to the viewport and let IT scroll instead. */
+ header nav.open{max-height:calc(100vh - 78px);overflow-y:auto;-webkit-overflow-scrolling:touch}
+ .navdrop{flex-direction:column;align-items:stretch}
+ .navdrop-panel{
+  position:static;transform:none;margin-top:0;min-width:0;
+  opacity:1;visibility:visible;pointer-events:auto;
+  box-shadow:none;border:0;border-radius:0;background:var(--paper);
+  padding:2px 0 8px;gap:0;
+ }
+ .navdrop-panel a{
+  padding:10px clamp(34px,6vw,54px);font-size:14px;
+  border-bottom:1px solid var(--line-soft);border-radius:0;
+ }
+ .navdrop-panel a:last-child{border-bottom:0}
+}
+
+
+/* ---------------------------------------------------------------------------
+   Restored service pages (template-service-full-direction-a.php)
+   Added 2026-08-25.
+
+   These pages render the client's own stored copy in full, so unlike the
+   hand-built service pages the markup is whatever the editor saved. The rules
+   below give that content the same section rhythm the aesthetics pages already
+   use, rather than letting it pour into one long column: sub-blocks sit side by
+   side, short bullet lists become a two-column ruled grid, and images and map
+   embeds get a real figure treatment instead of appearing at whatever pixel
+   size happened to be typed into the width attribute years ago.
+--------------------------------------------------------------------------- */
+
+.svcprose{max-width:74ch}
+.svcprose>*:last-child{margin-bottom:0}
+.svcafter{margin-top:34px;max-width:none}
+/* The closing block reads as ordinary prose and must flow that way. Setting it
+   side by side to fill the width put two unrelated sentences in columns, with a
+   ragged three-line paragraph next to a one-line one. Each paragraph runs the
+   full container instead, so the copy wraps naturally. */
+.svcafter>p{max-width:none;margin:0 0 10px}
+.svcafter>p:last-child{margin-bottom:0}
+.svcafter>ul,.svcafter>ol{max-width:74ch}
+.svcafter .svcembed{max-width:none;aspect-ratio:21/8}
+
+/* Sub-blocks. Two per row on desktop; a block carrying a list, image or embed
+   takes the full width. Flex rather than grid so a lone block on the final row
+   grows to fill it instead of leaving a dead half-row, which is the failure
+   mode a fixed grid-template-columns produced on the dental hub cards. */
+.sbgrid{display:flex;flex-wrap:wrap;gap:clamp(30px,3.4vw,52px)}
+.sblock{flex:1 1 clamp(300px,38%,440px);min-width:0}
+.sblock.wide{flex:1 1 100%}
+.sblock h3{
+ font-size:clamp(20px,1.9vw,25px);margin-bottom:12px;
+ padding-bottom:12px;border-bottom:1px solid var(--line);
+}
+.sblock .svcprose{max-width:68ch}
+.sblock p{font-size:15.5px;line-height:1.78;color:var(--ink-soft)}
+.sblock p:last-child{margin-bottom:0}
+
+/* Short bullet lists become a bordered panel rather than more loose dashed
+   rows. On a long service page these lists ARE the answer to the question the
+   heading asks ("why choose us", "what does it cost"), and set as plain text
+   they read as more of the same body copy and get skimmed past. A ruled panel
+   with its own ground separates them from the prose around it, and reuses the
+   bordered-grid idiom the facts bar and step cards already use. */
+.blist{
+ list-style:none;margin:24px 0;padding:0;
+ display:grid;grid-template-columns:1fr 1fr;gap:0;
+ border:1px solid var(--line);border-radius:var(--r-sm);overflow:hidden;
+ background:var(--paper);
+}
+section.band .blist,.band .blist{background:var(--white)}
+.blist li{
+ position:relative;padding:15px 20px 15px 44px;
+ border-bottom:1px solid var(--line);border-right:1px solid var(--line);
+ font-size:15px;line-height:1.55;color:var(--ink);
+}
+.blist li:nth-child(2n){border-right:0}
+/* An odd final item would otherwise leave a ruled but empty cell beside it. */
+.blist li:last-child:nth-child(odd){grid-column:1 / -1;border-right:0}
+.blist li:last-child,.blist li:nth-last-child(2):nth-child(odd){border-bottom:0}
+.blist li::before{
+ content:"";position:absolute;left:19px;top:20px;
+ width:6px;height:10px;
+ border:0;border-right:1.6px solid var(--gold-text);border-bottom:1.6px solid var(--gold-text);
+ /* .prose li::before fills its box with --gold; without this reset the tick
+    renders as a solid gold diamond. Legs are deliberately unequal and the
+    rotation is +45deg -- equal legs at -45deg draw an arrowhead, not a tick. */
+ background:none;
+ transform:rotate(45deg);
+}
+
+/* Figures. max-width is set inline from the file's own pixel width so a small
+   image is never stretched past it: the microneedling photo is a 400px file
+   that was being asked to fill a 660px column, which is why it looked soft. */
+.svcfig{margin:30px 0;max-width:100%}
+.svcfig img{
+ display:block;width:100%;height:auto;
+ border-radius:var(--r);
+}
+.svcfig .figcap{margin-top:10px}
+
+/* Map and video embeds saved inline by the editor. */
+.svcembed{
+ position:relative;margin:30px 0;border-radius:var(--r);overflow:hidden;
+ background:var(--band);aspect-ratio:16/7;
+}
+.svcembed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* Numbered steps, the same component the hand-built aesthetics pages use.
+   Three across suits three items; four or more sit better two across. */
+.svcflow p{margin-bottom:10px}
+.svcflow p:last-child{margin-bottom:0}
+.svcflow:has(>div:nth-child(4)){grid-template-columns:repeat(2,minmax(0,1fr))}
+
+/* Retired. The heading-in-its-own-column split filled the container but left a
+   tall void under the heading and did not read as the same design as the
+   hand-built pages, which keep heading and copy in ONE column. Kept only so an
+   older cached page does not lose its layout entirely. */
+.svcsplit{display:block}
+
+/* The duo the hand-built aesthetics pages use: label, heading, copy and the
+   suitability note all in the left column, photograph and caption on the
+   right. Top aligned, because a long copy column beside a short image reads as
+   broken when the two are centred against each other. */
+.svcduo{align-items:start}
+.svcduo .eyebrow{margin-bottom:10px}
+.svcduo h2{font-size:clamp(27px,2.8vw,38px);margin-bottom:18px}
+.svcduo .svcprose{max-width:none}
+.svcduo .svcprose p{font-size:15.5px;line-height:1.78;color:var(--ink-soft)}
+.svcduo .caution{margin:26px 0 0}
+.svcduo-r{position:sticky;top:104px}
+.svcduo .svcfig-side{margin:0}
+/* Match the height the hand-built pages use for a paired photograph (.duo img
+   is 420px). 520px made the PRF photograph noticeably taller than the same
+   slot on every other service page. */
+.svcduo .svcfig-side img{height:420px;object-fit:cover}
+.svcduo-r .figcap{margin-top:10px}
+
+/* A section photograph with no copy to sit beside runs full width as a strip,
+   rather than towering next to a two-line heading. */
+.svcfig-band{margin:0 0 clamp(30px,3.4vw,46px);max-width:none;width:100%}
+.svcfig-band img{width:100%;height:clamp(240px,26vw,360px);object-fit:cover;border-radius:var(--r)}
+
+/* A section with no photograph to pair against: heading full width, copy in a
+   measured column beneath, the same rhythm the steps and FAQ sections use. */
+.svcwide{max-width:82ch}
+
+/* A sub-heading inside the copy column. */
+.sbh{font-size:clamp(19px,1.8vw,23px);margin:34px 0 10px;padding-bottom:11px;border-bottom:1px solid var(--line)}
+.sbh.first{margin-top:0}
+.svcsplit .svcprose>*:first-child{margin-top:0}
+/* The copy column sets the measure, so the cap comes off the prose itself and
+   the leftover width sits in the heading column instead of beside the text. */
+.svcsplit .svcprose{max-width:none}
+.svcduo .svcprose .sbh{margin-top:26px}
+
+/* FAQ, two columns: heading left, accordion right. */
+.faqsplit{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,4.5vw,64px);align-items:start}
+.faqsplit .shead{margin-bottom:0}
+.faqsplit .faq{margin-top:-8px}
+
+/* Section index. A sticky side rail cannot sit alongside full-width bands, so
+   a long page gets a horizontal chip row under the hero instead. */
+.chiprow{
+ display:flex;flex-wrap:wrap;align-items:center;gap:9px;
+ padding:24px 0 0;
+}
+.chiprow>span{
+ font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+ color:var(--gold-text);font-weight:600;margin-right:5px;
+}
+.chiprow a{
+ font-size:13px;line-height:1;padding:9px 15px;
+ border:1px solid var(--line);border-radius:999px;
+ color:var(--ink-soft);background:var(--white);
+ transition:border-color .2s,color .2s,background .2s;
+}
+@media (hover:hover) and (pointer:fine){
+ .chiprow a:hover{border-color:var(--gold-lt);color:var(--ink);background:var(--paper)}
+}
+.chiprow a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+@media (max-width:900px){
+ .svcsplit,.faqsplit{grid-template-columns:1fr;gap:26px}
+ .svcflow{grid-template-columns:1fr}
+ .svcflow:has(>div:nth-child(4)){grid-template-columns:1fr}
+ .blist{grid-template-columns:1fr}
+ .blist li{border-right:0}
+ .blist li:last-child{border-bottom:0}
+ .sbgrid{gap:34px}
+ .sblock{flex:1 1 100%}
+ .svcembed{aspect-ratio:4/3}
+}
+
+/* Facts bar on restored service pages. The hand-built pages always have four
+   facts; a restored page only shows the ones actually entered for it, so the
+   grid has to match the count or the row ends on an empty bordered cell. */
+.facts.cols-1{grid-template-columns:1fr}
+.facts.cols-2{grid-template-columns:repeat(2,1fr)}
+.facts.cols-3{grid-template-columns:repeat(3,1fr)}
+.svccaution{max-width:none;background:var(--white)}
+section.band .svccaution{background:var(--white)}
+@media(max-width:1000px){.facts.cols-3{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.facts.cols-2,.facts.cols-3{grid-template-columns:1fr}}
+
+/* Homepage concerns teaser, 2026-08-25.
+   The heading block is capped at 720px inside a full-width wrap, which left the
+   right of that row empty. The "See all concerns" link moves up into that space
+   instead of sitting alone under the tiles. */
+.chead{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px}
+.chead .shead{margin-bottom:0;flex:1 1 460px}
+.chead-all{flex:0 0 auto;white-space:nowrap}
+.cteaser{margin-top:clamp(30px,3.4vw,44px)}
+
+/* Icons on the teaser tiles, matching the rows on /concerns/. Without them the
+   tiles were a plain text grid while the page they link to was not. */
+.ctile{display:grid;grid-template-columns:auto 1fr;column-gap:14px;align-items:start}
+.ctile .cico{grid-row:1 / span 2;grid-column:1;width:26px;height:26px;color:var(--gold-text);margin-top:2px}
+.ctile .cico svg{width:100%;height:100%;display:block}
+.ctile b{grid-column:2}
+.ctile span{grid-column:2}
+@media(max-width:700px){
+ .chead{align-items:flex-start}
+ .chead-all{width:100%}
+}
+
+/* Restored service pages: pin the hero photograph to the same 420px slot the
+   hand-built pages render (Exion measures 590x420 for both its hero and its
+   paired image). The default .svc-hero-r stretches to the height of the
+   headline column, so a three-line title produced a 476px image. */
+.svc-hero-fix .svc-hero-r{min-height:0;height:420px;align-self:center}
+@media(max-width:1000px){.svc-hero-fix .svc-hero-r{height:280px}}
+
+/* Phone numbers inside body copy. They were rendering at plain body colour and
+   weight with no underline, so a reader had no signal the number was tappable.
+   Given these pages exist to generate calls, that is a conversion problem, not
+   only a styling one.
+
+   Scoped to any tel: link in content, NOT just the .telink class the restored
+   template adds, so hand-built pages get the identical treatment without each
+   template being edited. Buttons and the dark CTA phone are excluded: they
+   already read as controls and an underline would fight their shape. */
+.telink,
+main a[href^="tel:"]:not(.btn):not(.btn-line):not(.cta-tel):not(.hphone):not(.brand){
+ color:var(--ink);font-weight:700;
+ text-decoration:underline;text-decoration-color:var(--gold);
+ text-underline-offset:2px;text-decoration-thickness:2px;
+ white-space:nowrap;
+}
+@media (hover:hover) and (pointer:fine){
+ .telink:hover,
+ main a[href^="tel:"]:not(.btn):not(.btn-line):not(.cta-tel):not(.hphone):hover{
+  color:var(--gold-text);text-decoration-color:var(--gold-lt);
+ }
+}
+.telink:focus-visible,
+main a[href^="tel:"]:not(.btn):not(.btn-line):not(.cta-tel):focus-visible{
+ outline:2px solid var(--gold);outline-offset:2px;
+}
+
+/* Restored pages, classic layout. The prose column is sized by .postgrid when
+   a rail is present; the inline max-width:none it used to carry meant a page
+   with too few sections for a rail ran its text the full 1240px. */
+.svcclassic{max-width:none}
+.svcclassic-solo{max-width:78ch;margin-inline:auto}
+
+/* Typography on restored service pages.
+   These reuse .legal-prose for its ruled section separators, but that class was
+   written for the Privacy Policy and Terms: 20px headings and 15.5px body, which
+   is right for a legal document and wrong for a service page. Measured against
+   the rest of the site the restored pages were running section headings at 20px
+   where every other page shows 30 to 38px, and body at 15.5px against 17px. That
+   is the reason these pages read as a different typeface scale.
+   .legal-prose itself is untouched, so Privacy and Terms keep their own scale. */
+.svcclassic h2{font-size:clamp(26px,2.5vw,31px);letter-spacing:0}
+.svcclassic h3{font-size:22px;margin:32px 0 12px}
+.svcclassic h4{font-size:18px;margin:26px 0 10px}
+.svcclassic p,.svcclassic li{font-size:17px;line-height:1.78}
+.svcclassic .blist li{font-size:15.5px;line-height:1.55}
+
+/* The exion layout's copy columns, matched to the same body size. */
+.svcduo .svcprose p,.sblock p,.svcprose p{font-size:17px;line-height:1.78}
+.svcflow p{font-size:15px;line-height:1.7}
+
+/* One page-title scale for the whole site.
+   Measured across page types the H1 was running at three different sizes: 56px
+   on service pages, 34px on hub pages (which had no rule at all and fell back
+   to the base heading size) and 60px on contact and the legal pages. Put next
+   to each other, an Aesthetics hub title read as a subheading beside a service
+   title. One token now drives all of them. */
+:root{--h1:clamp(34px,4vw,56px)}
+.hub-hero h1,.phead h1,.svc-hero h1{font-size:var(--h1)}
+.hub-hero h1{margin-bottom:18px}
+
+/* Ordered lists.
+   .prose li::before painted a gold dash on EVERY list item, ordered ones
+   included, while the ol kept its own decimal marker. Dentures therefore
+   rendered "1. - Consultation": two markers on one row, which is what made its
+   process list look like a different design from the bulleted list on
+   laser-dentistry. Dashes are now scoped to unordered lists, and ordered lists
+   get real numerals in the same gold Bodoni the step cards already use.
+   .blist is excluded by selector so its tick marks are untouched. */
+.prose ol,.legal-prose ol{list-style:none;counter-reset:eds-ol;padding-left:30px}
+.prose ol > li,.legal-prose ol > li{counter-increment:eds-ol;position:relative;padding-left:0}
+.prose ol > li::before,.legal-prose ol > li::before{
+ content:counter(eds-ol) ".";
+ position:absolute;left:-30px;top:0;
+ width:24px;height:auto;background:none;
+ font-family:'Bodoni Moda',Georgia,serif;font-weight:500;
+ font-optical-sizing:none;font-variation-settings:'opsz' 6;
+ font-size:15px;line-height:inherit;color:var(--gold-text);
+ text-align:left;
+}
+/* Keep the dash on unordered lists only. */
+.prose ol > li::marker,.legal-prose ol > li::marker{content:""}
+
+/* ---------------------------------------------------------------------------
+   One type scale for restored-page body content, 2026-08-25.
+
+   Measured across five pages, the content area was rendering text at four sizes
+   and three shades, and "bold" was coming out at three different weights:
+     17px ink-soft w300  paragraphs and some list items   (134)
+     16px ink      w300  other list items                  (55)  <- .prose li
+     15px ink      w300  panel items                        (8)
+     17px ...      w400 / w700  strong                     (77)  <- inherited
+   A list therefore sat at a different size AND a darker shade than the
+   paragraph above it, and emphasis was sometimes not bold at all. This settles
+   flowing copy on one size and one shade, and emphasis on one weight. */
+.svcclassic p,.svcclassic li,
+.svcprose p,.svcprose li,
+.sblock p,.sblock li{
+ font-size:17px;line-height:1.78;color:var(--ink-soft);font-weight:300;
+}
+/* Emphasis: one weight, one shade, never a different size. */
+.svcclassic strong,.svcclassic b,
+.svcprose strong,.svcprose b,
+.sblock strong,.sblock b{
+ font-size:inherit;font-weight:600;color:var(--ink);
+}
+.svcclassic em,.svcprose em{font-size:inherit;color:inherit}
+/* Editor markup wraps copy in spans carrying font-weight:400 inline; those must
+   not read as a third weight beside real emphasis. */
+.svcclassic span,.svcprose span,.sblock span{
+ font-size:inherit;font-weight:inherit;color:inherit;
+}
+/* Links keep the gold, but never a different size or weight. */
+.svcclassic a:not(.btn):not(.telink),.svcprose a:not(.btn):not(.telink){
+ font-size:inherit;font-weight:inherit;
+}
+/* The tick panel stays deliberately darker -- it is meant to stand out from the
+   prose -- but it matches the body size. */
+.svcclassic .blist li,.svcprose .blist li,.blist li{
+ font-size:17px;line-height:1.6;color:var(--ink);font-weight:400;
+}
+.blist li strong,.blist li b{font-weight:600}
+/* Links in content: one weight, inherited from the copy around them, so a link
+   inside a sentence is not heavier than the sentence. */
+.svcclassic a:not(.btn):not(.telink),.svcprose a:not(.btn):not(.telink),
+.sblock a:not(.btn):not(.telink){font-weight:inherit}
+/* The exion layout renders into .svcprose, which never inherited the gold link
+   colour .legal-prose gives the classic layout, so links on PRF read as plain
+   grey body text. Same colour in both layouts. */
+.svcprose a:not(.btn):not(.telink),.sblock a:not(.btn):not(.telink){
+ color:var(--gold-text);border-bottom:1px solid var(--line);
+}
+
+/* Banner subheading (the hero lede), one definition for every page type.
+   Measured, it was running at three settings: hub pages 17px in the dark ink
+   (no rule existed, so they fell through to the base size), service pages 18px
+   in ink-soft, and the .phead pages 18.5px. Size AND shade both differed, so a
+   hub banner read as a heavier, tighter block than the service banner beside
+   it. .book .lede is deliberately excluded: it sits on the dark panel and needs
+   its light colour to stay legible. */
+:root{--lede:18px}
+.hub-hero .lede,.svc-hero .lede,.phead p.lede,.phead .lede{
+ font-size:var(--lede);
+ line-height:1.72;
+ color:var(--ink-soft);
+ font-weight:300;
+}
+.hub-hero .lede{margin-bottom:30px;max-width:52ch}
