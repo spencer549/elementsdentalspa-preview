@@ -2029,3 +2029,202 @@ main a[href^="tel:"]:not(.btn):not(.btn-line):not(.cta-tel):focus-visible{
  font-weight:300;
 }
 .hub-hero .lede{margin-bottom:30px;max-width:52ch}
+
+/* ==========================================================================
+   CONTRAST PASS, 2026-08-26
+   Two fixes off a review. The parallax and section backdrops that shipped
+   alongside them were reverted the same day: they were not visible enough on
+   Spencer's machine to be worth the weight, so nothing here moves.
+   ========================================================================== */
+
+/* --- outlined CTAs on a white background ---------------------------------
+   .btn-ghost was a 1px rule in --line (#DED3C2), which measures 1.4:1 against
+   white. WCAG 1.4.11 wants 3:1 for a control's boundary, so it failed the
+   standard as well as the eye. The weight goes on .btn itself, not only on the
+   ghost variant, or the solid and outlined buttons in the same row end up 2px
+   different in height. */
+.btn{border-width:2px}
+.btn-ghost{border-color:rgba(15,29,40,.55)}          /* ~4.0:1 on white */
+.btn-ghost:hover{border-color:var(--ink)}
+.btn-line{border-width:2px}
+/* the phone button in the hero plate carries the most weight of the three */
+.plate .btn-ghost{border-color:rgba(15,29,40,.62)}
+
+/* --- DENTAL / AESTHETICS over the hero photographs ------------------------
+   Gold text laid straight onto a photograph cannot be given a contrast figure,
+   because the value behind it changes with the image. A chip puts the label on
+   a known panel instead: #F0D98F on rgba(15,29,40,.72) measures 12.1:1 against
+   the solid, and the blur keeps whatever shows through from lifting it. */
+.half-in span{
+ display:inline-block;
+ font-size:11.5px;letter-spacing:.24em;font-weight:600;
+ color:#F0D98F;
+ background:rgba(15,29,40,.72);
+ -webkit-backdrop-filter:blur(7px) saturate(1.2);
+ backdrop-filter:blur(7px) saturate(1.2);
+ border:1px solid rgba(240,217,143,.34);
+ border-radius:999px;
+ padding:7px 15px 6px;
+ margin-bottom:14px;
+ box-shadow:0 6px 20px -10px rgba(15,29,40,.9);
+}
+
+/* ==========================================================================
+   HOMEPAGE DEPTH, 2026-08-26. Direction A, ported from the approved mockup.
+   Three bands that were flat, plus the dead space under the booking form.
+   The hero, header, care section, practice strip and provider block are
+   deliberately untouched.
+   ========================================================================== */
+
+/* --- the passage, rebuilt 2026-08-26 -------------------------------------
+   Third pass, built to jomor.design, measured at 1440x900: a full-bleed
+   photograph at FULL opacity inside a clipping section, the layer 130% of
+   the section, travelling 213px which is 23.7% of the section height, with
+   the type sitting straight on it in white.
+
+   The travel was never the problem here. The band that shipped already moved
+   220px on an 800px section, 27%, MORE than jomor in relative terms. What
+   killed it was the cream scrim at 62 to 86%, which left at most 38% and at
+   worst 14% of the photograph's own contrast, and bg/passage.jpg, the softest
+   photograph in the library at 6.83 edge energy against 18.94 for IMG_3145,
+   the same corridor better exposed.
+
+   So the scrim goes from cream to ink and drops to a level that keeps the
+   photograph readable, the type on these two bands flips to light, and the
+   photograph is the sharp one. That is the whole difference.
+   ========================================================================== */
+.px-band{position:relative;overflow:hidden;isolation:isolate}
+.px-band>.wrap{position:relative;z-index:3}
+/* The layer MUST be absolutely positioned. A percentage height on an in-flow
+   child resolves against an indefinite containing block and collapses to auto,
+   which reports zero headroom and zero travel while the script looks correct. */
+.px-bg{position:absolute;left:0;top:0;width:100%;height:180%;z-index:0;
+ pointer-events:none;transform:translate3d(0,var(--ty,0px),0);will-change:transform}
+/* ONE photograph, two windows into it. Both bands run the same corridor; the
+   first looks into its upper end and the second into the lower, so scrolling
+   the page reads as one continuous move down a single passage rather than two
+   unrelated bands that happen to animate. Each window still travels its own
+   full overflow, so nothing is given up to get the continuity. */
+.px-bg img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top}
+.px-lower .px-bg img{object-position:center bottom}
+
+/* --- both bands trimmed ---------------------------------------------------
+   They were running the sitewide --pad of 84 to 150px top AND bottom on a
+   1320px wrap, which put the concerns band at 803px and testimonials at
+   1026px. Photograph bands do not need the same air as a plain white section,
+   because the image is already doing the separating. */
+/* section.s is (0,1,1) and .px-band alone is (0,1,0), so a bare .px-band
+   padding rule loses and the bands do not shrink at all. Match the specificity. */
+section.s.px-band{padding:clamp(52px,4.6vw,80px) 0}
+.px-band>.wrap{max-width:1120px}
+.px-band .cteaser{margin-top:clamp(22px,2.4vw,30px)}
+.px-band .sec-cta{margin-top:clamp(24px,2.6vw,34px)}
+/* Zeroing .rvhead's margin put the heading almost onto the review card. It
+   gets its air back and the same amount comes off the gap above the stat
+   cards, so the two bands stay matched. */
+.px-band .shead p{margin-bottom:0}
+.px-lower .rvhead{margin-bottom:12px}
+/* A 180% layer on a 1300px mobile band is a 2340px paint for very little
+   perceived travel on a small screen. Capped. */
+@media(max-width:760px){.px-bg{height:142%}}
+/* Narrowing the wrap to 1120 wrapped the four credential chips onto a second
+   row and left the stat cards tall and mostly empty, both of which put height
+   straight back. The chips get their own wider track, the cards get tighter
+   padding and less air above them. */
+/* max-width cannot make a child wider than its parent, so widening .creds did
+   nothing; the four chips measure ~1081px against 1040px of wrap content and
+   wrap to a second row. Trimming the chip padding and tracking fits them on
+   one line, which is where the extra height was going. */
+.px-band .creds{margin-top:clamp(12px,1.3vw,16px);flex-wrap:nowrap}
+.px-band .creds span{padding:7px 13px;letter-spacing:.06em;white-space:nowrap}
+@media(max-width:1100px){.px-band .creds{flex-wrap:wrap}}
+/* Matching the two bands. Measured, the testimonials band was 859 against 712
+   for concerns, and the 147px sat in four places: the review card's 42px inner
+   padding, the 46px above the stat cards, the 38px above the chips, and the
+   card padding itself. Trimmed here rather than by forcing a height, so a
+   longer review can still grow the card instead of being clipped. */
+.px-band .trio{margin-top:clamp(10px,1.1vw,14px)}
+.px-band .trio .tcell{padding:clamp(14px,1.4vw,18px)}
+.px-lower .rvbody{padding:clamp(16px,1.7vw,22px)}
+/* .rvtrack is a grid with all six slides stacked in one cell, so its height is
+   set by the LONGEST review, not the visible one. Tightening the leading there
+   is worth ~16px on the whole band. */
+.px-lower .rvslide blockquote{line-height:1.58;margin-bottom:14px}
+.px-lower .rvnav{margin-top:18px}
+/* Ink, not cream. Light enough that the corridor stays legible, heavy enough
+   that light type over it clears AA. Contrast is measured off the RENDERED
+   band, not off the token, because the value behind the type changes with the
+   photograph; the measured figures are recorded beside this change. */
+.px-band::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+ background:linear-gradient(to bottom,
+  rgba(15,29,40,.72),rgba(15,29,40,.62) 45%,rgba(15,29,40,.78))}
+/* Measured, not guessed: at .66/.56/.72 the eyebrow fell to 4.06 and the
+   outlined button to 3.93, both under AA for text that size. These values
+   measure 4.58 at worst across the travel. The scrim is not the lever for
+   making the movement obvious; the travel is. */
+
+/* --- the type on these two bands flips to light -------------------------- */
+.px-band .shead h2,.px-band .rvhead h2,.px-band h2{color:var(--paper)}
+.px-band .shead p,.px-band .rvhead p{color:rgba(248,245,239,.82)}
+.px-band .eyebrow{color:#F7E7B6}   /* measured 4.45:1 at #F0D98F over the brightest part of the moving photo, just under AA for 11.5px text; #F7E7B6 clears it */
+.px-band .btn-line,.px-band .btn-ghost{color:var(--paper);border-color:rgba(248,245,239,.62)}
+/* Hover states on these bands sit over a dark photograph, so every one of them
+   has to resolve to a filled shape, never to transparent-with-ink-type. */
+.px-band .btn:hover,.px-band .btn:focus-visible{
+ background:var(--gold-lt);border-color:var(--gold-lt);color:var(--ink)}
+.px-band .btn-line:hover,.px-band .btn-ghost:hover,
+.px-band .btn-line:focus-visible,.px-band .btn-ghost:focus-visible{
+ background:var(--paper);border-color:var(--paper);color:var(--ink)}
+/* .trio .tcell is a WHITE CARD, not type on the photograph, so it keeps its
+   own ink colours. The first cut of this rule lit its label to near-white on
+   white and made it unreadable; only elements that actually sit ON the
+   photograph get the light treatment. */
+.px-band .creds span{color:rgba(248,245,239,.86);border-color:rgba(248,245,239,.3)}
+/* Motion off means motion off: the photograph stays, only the travel stops. */
+@media(prefers-reduced-motion:reduce){
+ .px-bg{transform:none!important;will-change:auto}
+}
+
+/* --- concerns: the tiles become the white card the steps already use ------ */
+#concerns .ctile{background:var(--white);border:1px solid var(--line-soft);
+ border-left:2px solid var(--gold);box-shadow:var(--shadow)}
+@media(hover:hover) and (pointer:fine){
+ #concerns .ctile:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px);
+  border-color:var(--gold-accent)}
+}
+
+/* --- first visit: six photographs of the six places they happen ---------- */
+.stp.has-img{position:relative;overflow:hidden;background:var(--ink);
+ min-height:300px;display:flex;flex-direction:column;justify-content:flex-end;
+ border-color:transparent}
+.stp-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+ opacity:.55;z-index:0}
+.stp.has-img>i,.stp.has-img>h4,.stp.has-img>p{position:relative;z-index:2}
+.stp.has-img::before{content:"";position:absolute;inset:0;z-index:1;
+ background:linear-gradient(to top,rgba(15,29,40,.92),rgba(15,29,40,.2))}
+.stp.has-img>i{display:inline-flex;align-items:center;justify-content:center;
+ width:40px;height:40px;border-radius:50%;border:1px solid var(--gold-lt);
+ color:var(--gold-lt);background:none}
+.stp.has-img>h4{color:var(--paper)}
+.stp.has-img>p{color:rgba(250,247,242,.86)}
+
+/* --- booking: the 278px of dead ink becomes a ruled directions card ------ */
+.bdir{margin-top:24px;border-top:2px solid var(--gold-lt);padding-top:20px}
+.bdir h4{font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+ color:var(--gold-lt);font-weight:600;margin-bottom:16px;
+ font-family:'Inter Tight',sans-serif}
+.bdir div{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:baseline;
+ padding:10px 0;border-bottom:1px solid rgba(250,247,242,.12);font-size:14px}
+.bdir b{color:var(--gold-lt);font-weight:500;white-space:nowrap}
+.bdir span{color:rgba(250,247,242,.8)}
+
+@media(max-width:760px){
+ .stp.has-img{min-height:240px}
+}
+
+/* The left column carries the hours table and runs taller than the form plus
+   the directions card, which left 64px of ink under the card at desktop. The
+   right column becomes a flex column and the card takes the slack, so the two
+   columns finish level instead of nearly level. */
+.book-grid>div:last-child{display:flex;flex-direction:column}
+.book-grid>div:last-child>.bdir{flex:1 1 auto}
