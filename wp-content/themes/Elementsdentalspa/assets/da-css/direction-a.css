@@ -2318,3 +2318,9 @@ section.s.px-band{padding:clamp(52px,4.6vw,80px) 0}
   .glb-prev{left:8px}.glb-next{right:8px}
   .glb-x,.glb-nav{width:40px;height:40px}
 }
+
+/* Gallery cap. Added 2026-09-01: the All view was an endless scroll at 60
+   tiles, so only the first 12 render and the rest come in on request. */
+.gphotos .gitem.over{display:none}
+.gmore-wrap{display:flex;justify-content:center;margin-top:34px}
+.gmore[hidden]{display:none}

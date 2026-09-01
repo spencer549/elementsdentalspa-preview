@@ -540,6 +540,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <figure class="gitem" data-cat="dental"><button type="button" class="gopen" aria-label="View larger: Two dental professionals wearing pink masks and blue gloves performing a procedure on a patient in a treatment room."><img src="https://www.elementsdentalspa.com/wp-content/uploads/2024/10/dental-gallery-img-3.jpg" alt="Two dental professionals wearing pink masks and blue gloves performing a procedure on a patient in a treatment room." loading="lazy" decoding="async"></button><figcaption><b>Dental</b></figcaption></figure>
         <figure class="gitem" data-cat="aesthetics-spa"><button type="button" class="gopen" aria-label="View larger: aesthetic menu - elements dental spa"><img src="https://www.elementsdentalspa.com/wp-content/uploads/2024/10/Aesthetics-Spa-gallery-img-1.jpeg" alt="aesthetic menu - elements dental spa" loading="lazy" decoding="async"></button><figcaption><b>Aesthetics / Spa</b></figcaption></figure>
       </div>
+      <div class="gmore-wrap"><button type="button" class="btn btn-line gmore" id="gmore" aria-controls="ggrid">See more photographs</button></div>
       <p class="gnone" id="gnone" hidden>Nothing in that category yet.</p>
     </div>
   </section>
@@ -597,31 +598,59 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script>
 (function(){
+  var STEP=12;
   var bar=document.getElementById('gfilter'),grid=document.getElementById('ggrid'),
-      none=document.getElementById('gnone'),lb=document.getElementById('glb'),
+      none=document.getElementById('gnone'),more=document.getElementById('gmore'),
+      lb=document.getElementById('glb'),
       lbImg=document.getElementById('glb-img'),lbCap=document.getElementById('glb-cap');
   if(!bar||!grid)return;
   var items=[].slice.call(grid.querySelectorAll('.gitem'));
+  var cap=STEP;
 
-  /* ---- filtering ---- */
+  /* everything matching the current category, whether rendered or not */
+  function inFilter(){return items.filter(function(i){return !i.hidden;});}
+
+  function paint(){
+    var set=inFilter();
+    set.forEach(function(it,n){it.classList.toggle('over',n>=cap);});
+    if(none)none.hidden=set.length>0;
+    if(more){
+      var left=set.length-cap;
+      more.hidden=left<=0;
+      more.textContent=left>0
+        ? 'See more photographs ('+left+' more)'
+        : 'See more photographs';
+    }
+  }
+
   bar.addEventListener('click',function(e){
     var b=e.target.closest('button[data-f]');if(!b)return;
     [].forEach.call(bar.querySelectorAll('button'),function(x){x.classList.remove('on');});
     b.classList.add('on');
-    var f=b.getAttribute('data-f'),shown=0;
+    var f=b.getAttribute('data-f');
     items.forEach(function(it){
-      var on=(f==='all'||it.getAttribute('data-cat')===f);
-      it.hidden=!on; if(on)shown++;
+      it.hidden=!(f==='all'||it.getAttribute('data-cat')===f);
     });
-    if(none)none.hidden=shown>0;
+    cap=STEP;              /* a new category starts from the top again */
+    paint();
   });
 
-  /* ---- lightbox ---- */
+  if(more)more.addEventListener('click',function(){
+    var before=inFilter().filter(function(i){return !i.classList.contains('over');}).length;
+    cap+=STEP;paint();
+    /* move focus to the first newly revealed tile so keyboard users land there */
+    var set=inFilter().filter(function(i){return !i.classList.contains('over');});
+    var next=set[before];
+    if(next){var b=next.querySelector('.gopen');if(b){b.setAttribute('tabindex','-1');b.focus();}}
+  });
+
+  paint();
+
+  /* ---- lightbox. Navigates the whole filtered category, cap or no cap. ---- */
   if(!lb)return;
   var idx=-1,opener=null;
-  function shown(){return items.filter(function(i){return !i.hidden;});}
   function show(i){
-    var list=shown();
+    var list=inFilter();
     if(!list.length)return;
     idx=(i+list.length)%list.length;
     var fig=list[idx],img=fig.querySelector('img');
@@ -631,7 +660,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
   function open(fig){
     opener=fig.querySelector('.gopen');
-    show(shown().indexOf(fig));
+    show(inFilter().indexOf(fig));
     lb.hidden=false;lb.setAttribute('aria-hidden','false');
     document.documentElement.style.overflow='hidden';
     document.getElementById('glb-x').focus();
