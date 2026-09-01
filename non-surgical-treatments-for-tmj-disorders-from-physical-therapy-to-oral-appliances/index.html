@@ -158,7 +158,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 <link rel='stylesheet' id='wp-pagenavi-css' href='/elementsdentalspa-preview/wp-content/plugins/wp-pagenavi/css/wp-pagenavi.css?ver=3.0.0' media='all' />
 <link rel='stylesheet' id='twenty-twenty-one-style-css' href='/elementsdentalspa-preview/wp-content/themes/Elementsdentalspa/style.css?ver=1.6' media='all' />
 <link rel='stylesheet' id='twenty-twenty-one-print-style-css' href='/elementsdentalspa-preview/wp-content/themes/Elementsdentalspa/assets/css/print.css?ver=1.6' media='print' />
-<link rel='stylesheet' id='eds-direction-a-css' href='/elementsdentalspa-preview/wp-content/themes/Elementsdentalspa/assets/da-css/direction-a.css?ver=2026-08-26v' media='all' />
+<link rel='stylesheet' id='eds-direction-a-css' href='/elementsdentalspa-preview/wp-content/themes/Elementsdentalspa/assets/da-css/direction-a.css?ver=2026-09-01a' media='all' />
 <link rel="alternate" title="JSON" type="application/json" href="/elementsdentalspa-preview/wp-json/wp/v2/posts/3069" /><meta name="generator" content="WordPress 7.1" />
 <link rel='shortlink' href='/elementsdentalspa-preview/?p=3069' />
 
@@ -865,6 +865,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 (function(){
  var LIMIT = 5;
  document.querySelectorAll('.faq').forEach(function(faq){
+  /* A block can opt out. The homepage set is six questions, so hiding one
+     behind a control costs a click and buys nothing. */
+  if(faq.hasAttribute('data-faq-all')) return;
   var items = faq.querySelectorAll(':scope > details');
   if(items.length <= LIMIT) return;
 
@@ -892,7 +895,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
    if(open){ faq.scrollIntoView({block:'nearest'}); }
   });
 
-  faq.parentNode.insertBefore(btn, faq.nextSibling);
+  /* Inside .faq, not after it. As a sibling the button becomes the next
+     GRID item wherever .faq sits in a grid, which put it under the
+     homepage rail instead of under the questions it controls. */
+  faq.appendChild(btn);
  });
 })();
 </script>

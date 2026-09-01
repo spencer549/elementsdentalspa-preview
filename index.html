@@ -474,7 +474,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 <link rel='stylesheet' id='wp-pagenavi-css' href='/elementsdentalspa-preview/wp-content/plugins/wp-pagenavi/css/wp-pagenavi.css?ver=3.0.0' media='all' />
 <link rel='stylesheet' id='twenty-twenty-one-style-css' href='/elementsdentalspa-preview/wp-content/themes/Elementsdentalspa/style.css?ver=1.6' media='all' />
 <link rel='stylesheet' id='twenty-twenty-one-print-style-css' href='/elementsdentalspa-preview/wp-content/themes/Elementsdentalspa/assets/css/print.css?ver=1.6' media='print' />
-<link rel='stylesheet' id='eds-direction-a-css' href='/elementsdentalspa-preview/wp-content/themes/Elementsdentalspa/assets/da-css/direction-a.css?ver=2026-08-26v' media='all' />
+<link rel='stylesheet' id='eds-direction-a-css' href='/elementsdentalspa-preview/wp-content/themes/Elementsdentalspa/assets/da-css/direction-a.css?ver=2026-09-01a' media='all' />
 <link rel="alternate" title="JSON" type="application/json" href="/elementsdentalspa-preview/wp-json/wp/v2/pages/7" /><meta name="generator" content="WordPress 7.1" />
 <link rel='shortlink' href='/elementsdentalspa-preview/' />
 
@@ -1071,6 +1071,59 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
  </div>
 </section>
 
+<!-- FAQ. Direction B, "Answer and act", picked 2026-09-01.
+
+     Every answer here is copied verbatim from a page already published on this
+     site (the Baton Rouge dentist page, emergency dentistry, and the facial
+     aesthetics article's own FAQ), so the section introduces no new clinical or
+     commercial claim. The only edit is that the sedation answer opened with a
+     filler word on its source page and opens "Yes." here.
+
+     Deliberately NO FAQPage schema. All six of these questions already carry
+     FAQPage markup on the pages that own them, and repeating the same Q&A
+     entities on the homepage would compete with those pages rather than add
+     anything. -->
+<section class="s" id="faq">
+ <div class="wrap hfaq-grid">
+  <div class="hfaq-rail rv">
+   <span class="eyebrow">Before you book</span>
+   <h2>Questions people ask first</h2>
+   <p class="hfaq-lede">Insurance, first visits, emergencies, nerves. The things that decide whether someone picks up the phone.</p>
+   <div class="hfaq-card">
+    <p>If your question is not here, the front desk would rather answer it now than have you put off the appointment.</p>
+    <a class="btn" href="#book">Book a consultation</a>
+    <a class="hfaq-tel" href="tel:+12259252118">(225) 925-2118</a>
+   </div>
+  </div>
+  <div class="faq rv" data-faq-all>
+    <details>
+     <summary>Do you accept dental insurance?</summary>
+     <div class="a">Yes. We accept most major dental insurance plans and offer flexible payment options for patients without insurance. Our team can verify your benefits before your visit so you know what to expect.</div>
+    </details>
+    <details>
+     <summary>What should I expect at my first visit?</summary>
+     <div class="a">Your first visit typically includes a review of your dental and health history, a comprehensive exam, and time to talk through your smile goals with our team. If you are coming in for a dental emergency, let us know when you call so we can prepare for your visit.</div>
+    </details>
+    <details>
+     <summary>What if I have a dental emergency?</summary>
+     <div class="a">Call our office right away. We reserve time for emergency patients and will get you in the same day whenever possible. For a life-threatening emergency, go directly to your nearest emergency room.</div>
+    </details>
+    <details>
+     <summary>What if I have a dental emergency after hours?</summary>
+     <div class="a">Call our main number and follow the prompts for emergency instructions. For life-threatening emergencies, go directly to your nearest emergency room.</div>
+    </details>
+    <details>
+     <summary>I am nervous about dental work. Can you help?</summary>
+     <div class="a">Yes. We offer sedation dentistry options to help you feel calm and comfortable during your treatment.</div>
+    </details>
+    <details>
+     <summary>Can a dentist legally give Botox and fillers in Louisiana?</summary>
+     <div class="a">Yes. Louisiana law specifically allows licensed dentists to administer Botox and dermal fillers once they have completed the required training in assessment, technique, safety, and complication management. The treatment has to be performed by the dentist, not by a hygienist or assistant.</div>
+    </details>
+  </div>
+ </div>
+</section>
+
 <!-- BOOK -->
 <div class="book" id="book">
  <div class="wrap">
@@ -1489,6 +1542,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 (function(){
  var LIMIT = 5;
  document.querySelectorAll('.faq').forEach(function(faq){
+  /* A block can opt out. The homepage set is six questions, so hiding one
+     behind a control costs a click and buys nothing. */
+  if(faq.hasAttribute('data-faq-all')) return;
   var items = faq.querySelectorAll(':scope > details');
   if(items.length <= LIMIT) return;
 
@@ -1516,7 +1572,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
    if(open){ faq.scrollIntoView({block:'nearest'}); }
   });
 
-  faq.parentNode.insertBefore(btn, faq.nextSibling);
+  /* Inside .faq, not after it. As a sibling the button becomes the next
+     GRID item wherever .faq sits in a grid, which put it under the
+     homepage rail instead of under the questions it controls. */
+  faq.appendChild(btn);
  });
 })();
 </script>

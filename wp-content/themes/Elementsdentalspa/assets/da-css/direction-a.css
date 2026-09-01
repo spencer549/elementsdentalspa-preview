@@ -2324,3 +2324,29 @@ section.s.px-band{padding:clamp(52px,4.6vw,80px) 0}
 .gphotos .gitem.over{display:none}
 .gmore-wrap{display:flex;justify-content:center;margin-top:34px}
 .gmore[hidden]{display:none}
+
+
+/* --- Homepage FAQ, direction B "Answer and act" (2026-09-01) -------------
+   A sticky rail carrying the ask, the site's existing .faq accordion beside
+   it. The questions this answers are conversion objections, so the section
+   holds the booking CTA rather than sending the reader off to find one. */
+.hfaq-grid{display:grid;grid-template-columns:minmax(280px,380px) 1fr;gap:clamp(40px,6vw,96px);align-items:start}
+.hfaq-rail{position:sticky;top:96px}
+.hfaq-lede{font-size:17px;line-height:1.75;color:var(--ink-soft);max-width:44ch;margin:18px 0 0}
+.hfaq-card{margin-top:30px;background:var(--white);border:1px solid var(--line);
+ border-radius:var(--r);padding:28px;box-shadow:var(--shadow)}
+.hfaq-card p{margin:0 0 18px;font-size:15px;line-height:1.7;color:var(--ink-soft)}
+.hfaq-card .btn{width:100%;justify-content:center}
+.hfaq-tel{display:block;margin-top:14px;text-align:center;font-size:15px;
+ font-weight:500;color:var(--ink);text-decoration:none}
+@media (hover:hover) and (pointer:fine){
+ .hfaq-tel:hover{color:var(--gold-text)}
+}
+.hfaq-tel:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+/* The rail cannot stick against a shorter accordion, and on a narrow screen the
+   two columns stack, so the rail returns to normal flow. */
+@media (max-width:900px){
+ .hfaq-grid{grid-template-columns:1fr;gap:44px}
+ .hfaq-rail{position:static}
+ .hfaq-lede{max-width:none}
+}
