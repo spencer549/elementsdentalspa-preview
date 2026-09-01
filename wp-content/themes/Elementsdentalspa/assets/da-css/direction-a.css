@@ -1251,8 +1251,6 @@ footer.site img{height:44px;width:auto;margin-bottom:14px}
 .imcard:hover .imbody .go{color:var(--ink)}
 .imbody .go span{transition:.22s}
 .imcard:hover .imbody .go span{transform:translateX(5px)}
-/* build marker only,never ships: aria-hidden so it stays out of the card's accessible name */ .imph{position:absolute;top:12px;left:12px;z-index:4}
-.imph b{display:block;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#12161A;font-weight:600;background:var(--gold-lt);padding:6px 10px;line-height:1.5}
 /* ============================================================ SERVICE DETAIL CONCERNS · region map (picked 2026-08-04) Unframed by request: no card,no border,no fill,no padding. ============================================================ */ .map{display:grid;grid-template-columns:360px 1fr;gap:76px;align-items:center}
 .mapfig{position:relative}
 .mapfig svg{width:100%;height:auto;display:block;overflow:visible}
@@ -2228,3 +2226,95 @@ section.s.px-band{padding:clamp(52px,4.6vw,80px) 0}
    columns finish level instead of nearly level. */
 .book-grid>div:last-child{display:flex;flex-direction:column}
 .book-grid>div:last-child>.bdir{flex:1 1 auto}
+
+/* Gallery grid, real photographs. Added 2026-09-01.
+   Matches the existing .imgrow figure treatment: same radius, same caption
+   type, same 4:3 crop, so the gallery reads as part of the same template.
+   Every tile is identical in size regardless of the source aspect ratio. */
+.gphotos{align-items:start}
+.gphotos>figure{margin:0;min-width:0}
+.gphotos img{
+  width:100%;
+  aspect-ratio:4/3;
+  height:auto;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+  border-radius:var(--r);
+  background:#EFE7DA;
+}
+.gphotos figcaption{
+  font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--ink-soft);margin-top:9px;
+}
+.gphotos figcaption b{font-weight:500;color:var(--ink-soft)}
+
+/* Filter chips. These were <span> before, so the span rule above carried the
+   whole look. As <button> they need the UA styles reset explicitly or the
+   browser's own font, radius and padding show through. */
+.gfilter button{
+  -webkit-appearance:none;appearance:none;
+  margin:0;
+  font-family:inherit;font-size:12.5px;font-weight:400;line-height:1.2;
+  border:1px solid var(--line);border-radius:0;
+  padding:9px 18px;
+  color:var(--ink-soft);
+  background:var(--paper);
+  cursor:pointer;
+  transition:border-color .18s ease,background-color .18s ease,color .18s ease;
+}
+.gfilter button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.gfilter button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+@media(hover:hover) and (pointer:fine){
+  .gfilter button:not(.on):hover{border-color:var(--ink);color:var(--ink)}
+}
+@media(prefers-reduced-motion:reduce){.gfilter button{transition-duration:.01ms}}
+.gnone{color:var(--ink-soft);font-size:14px}
+
+/* Gallery lightbox. Added 2026-09-01. Uses the template's own ink and paper
+   tokens so it reads as part of the same design. */
+.gphotos .gopen{
+  -webkit-appearance:none;appearance:none;
+  display:block;width:100%;padding:0;margin:0;border:0;background:none;
+  cursor:zoom-in;border-radius:var(--r);overflow:hidden;
+}
+.gphotos .gopen:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+@media(hover:hover) and (pointer:fine){
+  .gphotos .gopen img{transition:transform .35s ease}
+  .gphotos .gopen:hover img{transform:scale(1.03)}
+}
+@media(prefers-reduced-motion:reduce){
+  .gphotos .gopen img{transition-duration:.01ms}
+  .gphotos .gopen:hover img{transform:none}
+}
+.glb{
+  position:fixed;inset:0;z-index:9999;
+  background:rgba(15,29,40,.94);
+  display:flex;align-items:center;justify-content:center;
+  padding:48px 72px;
+}
+.glb[hidden]{display:none}
+.glb-fig{margin:0;max-width:100%;max-height:100%;display:flex;flex-direction:column;align-items:center;gap:14px}
+.glb-fig img{max-width:100%;max-height:78vh;width:auto;height:auto;object-fit:contain;display:block;border-radius:var(--r)}
+.glb-fig figcaption{
+  font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--paper);opacity:.8;text-align:center;
+}
+.glb-x,.glb-nav{
+  -webkit-appearance:none;appearance:none;
+  position:absolute;border:1px solid rgba(250,247,242,.35);background:transparent;
+  color:var(--paper);cursor:pointer;font-family:inherit;line-height:1;
+  border-radius:50%;width:44px;height:44px;font-size:26px;
+}
+.glb-x{top:20px;right:20px;font-size:30px}
+.glb-prev{left:18px;top:50%;transform:translateY(-50%)}
+.glb-next{right:18px;top:50%;transform:translateY(-50%)}
+.glb-x:focus-visible,.glb-nav:focus-visible{outline:2px solid var(--paper);outline-offset:2px}
+@media(hover:hover) and (pointer:fine){
+  .glb-x:hover,.glb-nav:hover{background:rgba(250,247,242,.14);border-color:var(--paper)}
+}
+@media(max-width:700px){
+  .glb{padding:64px 14px}
+  .glb-prev{left:8px}.glb-next{right:8px}
+  .glb-x,.glb-nav{width:40px;height:40px}
+}
