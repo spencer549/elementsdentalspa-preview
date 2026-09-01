@@ -416,6 +416,10 @@ window.location='';	}
 <link rel="icon" href="/elementsdentalspa-preview/wp-content/uploads/2022/07/logo.png" sizes="192x192" />
 <link rel="apple-touch-icon" href="/elementsdentalspa-preview/wp-content/uploads/2022/07/logo.png" />
 <meta name="msapplication-TileImage" content="/elementsdentalspa-preview/wp-content/uploads/2022/07/logo.png" />
+<!-- .rv starts at opacity:0 and waits for the reveal observer. With no
+     JavaScript that observer never runs, so every revealed block stays
+     invisible. Show them all instead. Costs nothing when JS is on. -->
+<noscript><style>.rv{opacity:1 !important;transform:none !important}</style></noscript>
 </head>
 <body class="wp-singular page-template page-template-template-service-full-direction-a page-template-template-service-full-direction-a-php page page-id-900 page-child parent-pageid-468 wp-embed-responsive wp-theme-Elementsdentalspa da is-light-theme no-js singular">
 <!-- Google Tag Manager (noscript) -->
@@ -753,6 +757,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   /* A block can opt out. The homepage set is six questions, so hiding one
      behind a control costs a click and buys nothing. */
   if(faq.hasAttribute('data-faq-all')) return;
+  /* Never build a second control for the same block if this ever initialises
+     twice. The button lives inside .faq now, so the check has to be scoped. */
+  if(faq.querySelector(':scope > .faq-more')) return;
   var items = faq.querySelectorAll(':scope > details');
   if(items.length <= LIMIT) return;
 
