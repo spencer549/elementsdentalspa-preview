@@ -2350,3 +2350,13 @@ section.s.px-band{padding:clamp(52px,4.6vw,80px) 0}
  .hfaq-rail{position:static}
  .hfaq-lede{max-width:none}
 }
+
+/* Patient resources, 2026-09-02. Reuses .po-grid / .po-item from the post-op
+   hub so no new layout is introduced. The one addition is the pending state:
+   a document whose PDF the client has not sent yet is not a link, so it must
+   not draw the chevron that promises one, and it must not move on hover. */
+.po-item.is-pending{cursor:default}
+.po-item.is-pending::after{display:none}
+@media (hover:hover) and (pointer:fine){
+ .po-item.is-pending:hover{border-bottom-color:var(--line-soft);padding-left:2px}
+}

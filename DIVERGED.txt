@@ -1,0 +1,16 @@
+The static preview has been edited DIRECTLY and no longer matches staging.
+
+Applied here on 2026-09-02, not yet on staging:
+  * membership price $349 -> $329 (home, about/dr-cecilia-luong, specials)
+  * the internal build comment removed from specials
+  * Element 79 Skincare link in the footer of every page
+  * Element 79 section on the spa services hub
+  * Kybella removed from the facial aesthetics article
+
+build-preview-mirror.py ABORTS while this file exists, because a rebuild pulls
+from staging and would silently revert every line above.
+
+Delete this file only once the same changes are on staging:
+    python build/set_membership_price.py --apply
+    (the theme changes are already in the staging theme, they just need the
+     site running for the mirror to pick them up)
