@@ -853,7 +853,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="hcta">
    <button type="button" class="navtoggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu"><span></span><span></span><span></span></button>
    <span class="hphone"><a href="tel:+12259252118">(225) 925-2118</a></span>
-   <a class="btn btn-sm" href="/elementsdentalspa-preview/contact/#book"><span class="full">Book An Appointment</span><span class="short">Book</span></a>
+   <a class="btn btn-sm" href="https://schedule.jarvisanalytics.com/frame?eoid=14160&#038;elid=14000000000249" target="_blank" rel="noopener" data-bkopen><span class="full">Book An Appointment</span><span class="short">Book</span></a>
   </div>
  </div>
 </header>
@@ -1161,26 +1161,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
    </div>
    <div class="rv">
-    <form class="bform" onsubmit="return false">
-     <h4>Request an appointment</h4>
-     <div class="bf-row">
-      <input type="text" placeholder="Full name" aria-label="Full name">
-      <input type="tel" placeholder="Phone" aria-label="Phone">
-     </div>
-     <div class="bf-row">
-      <input type="email" placeholder="Email" aria-label="Email">
-      <select aria-label="What can we help with">
-       <option>What can we help with?</option>
-       <option>Elements Dental Membership</option>
-       <option>Cleaning or check-up</option>
-       <option>Cosmetic consultation</option>
-       <option>Dental emergency</option>
-       <option>Aesthetics consultation</option>
-      </select>
-     </div>
-     <button class="btn" type="submit">Request appointment</button>
-     <p class="bf-note">We will call to confirm a time that works. In pain today? Ask about the New Patient Emergency Exam, $89, or call (225) 925-2118. Submitting this form does not create a patient relationship.</p>
-    </form>
+    <!-- 2026-09-14: the inert request form became a link into the live scheduler. With JS it
+         opens the booking popup; without JS the href opens the scheduler in a new tab. -->
+    <div class="bform">
+     <h4>Book online</h4>
+     <p class="bf-lede">Choose a day and time that suits you. New and existing patients can both book online.</p>
+     <a class="btn" href="https://schedule.jarvisanalytics.com/frame?eoid=14160&amp;elid=14000000000249" target="_blank" rel="noopener" data-bkopen>Choose a time</a>
+     <p class="bf-note">In pain today? Ask about the New Patient Emergency Exam, $89, or call <a href="tel:+12259252118">(225) 925-2118</a>.</p>
+    </div>
    
    <div class="bdir"><h4>Getting here</h4><div><b>Parking</b><span>Free surface lot at the door</span></div><div><b>Cross street</b><span>Off Goodwood Blvd near Sherwood Forest</span></div><div><b>Accessibility</b><span>Ground floor, step free entry</span></div></div>
   </div>
@@ -1467,43 +1455,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- BOOKING MODAL : sitewide on every Direction A page, opened by any a[href="#book"].
      Moved out of template-home-direction-a.php 2026-08-25 so inner-page CTAs (44 files
      already used href="#book") stop being dead links and open the same popup as home. -->
+<!-- 2026-09-14: the inert request form became the practice's live Jarvis Analytics scheduler
+     (requested by Cecilia on Basecamp, message 10298765441). The iframe gets its src on first
+     open, so the third-party scheduler only loads for visitors who ask for it. -->
 <div class="bkmodal" id="bkmodal" hidden>
  <div class="bkscrim" data-bkclose></div>
- <div class="bksheet" role="dialog" aria-modal="true" aria-labelledby="bktitle">
+ <div class="bksheet bk-sched" role="dialog" aria-modal="true" aria-labelledby="bktitle">
   <button class="bkx" type="button" aria-label="Close" data-bkclose>&times;</button>
-  <form class="bform" onsubmit="return false">
-   <h4 id="bktitle">Request an appointment</h4>
+  <div class="bform">
+   <h4 id="bktitle">Book an appointment</h4>
    <p class="bk-about" aria-live="polite"></p>
-   <div class="bf-row">
-    <input type="text" placeholder="Full name" aria-label="Full name">
-    <input type="tel" placeholder="Phone" aria-label="Phone">
+   <div class="bk-frame-wrap">
+    <p class="bk-loading">Loading the scheduler&hellip;</p>
+    <iframe class="bk-frame" title="Online appointment scheduling for Elements Dental Spa and Aesthetics" data-src="https://schedule.jarvisanalytics.com/frame?eoid=14160&amp;elid=14000000000249"></iframe>
    </div>
-   <div class="bf-row">
-    <input type="email" placeholder="Email" aria-label="Email">
-    <select aria-label="What can we help with">
-     <option>What can we help with?</option>
-     <option>Elements Dental Membership</option>
-     <option>Cleaning or check-up</option>
-     <option>Cosmetic consultation</option>
-     <option>Dental emergency</option>
-     <option>Aesthetics consultation</option>
-    </select>
-   </div>
-   <button class="btn" type="submit">Request appointment</button>
-   <p class="bf-note">We will call to confirm a time that works. In pain today? Ask about the New Patient Emergency Exam, $89, or call (225) 925-2118. Submitting this form does not create a patient relationship.</p>
-  </form>
+   <p class="bf-note">In pain today? Ask about the New Patient Emergency Exam, $89, or call <a href="tel:+12259252118">(225) 925-2118</a>. Scheduler not loading? <a href="https://schedule.jarvisanalytics.com/frame?eoid=14160&amp;elid=14000000000249" target="_blank" rel="noopener">Open it in a new tab</a>.</p>
+  </div>
  </div>
 </div>
 <script>
-/* The booking CTA opens the form where the visitor already is. The href stays
+/* The booking CTA opens the scheduler where the visitor already is. The href stays
    a real anchor, so with JS off it still reaches the #book section (home only;
-   inner pages fall back to the Contact page, see header-direction-a.php). */
+   inner pages fall back to the Contact page, see header-direction-a.php).
+   a[data-bkopen] links carry the scheduler URL itself as their no-JS fallback. */
 (function(){
  var modal = document.getElementById('bkmodal');
  if(!modal) return;
  var sheet = modal.querySelector('.bksheet');
  var lastFocus = null, closing = null;
- var FOCUSABLE = 'a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])';
+ var FOCUSABLE = 'a[href],button:not([disabled]),iframe,input,select,textarea,[tabindex]:not([tabindex="-1"])';
+ var frame = sheet.querySelector('iframe[data-src]');
+ if(frame){
+  frame.addEventListener('load', function(){
+   if(frame.getAttribute('src')) frame.parentNode.classList.add('ready');
+  });
+ }
 
  function focusables(){
   return [].slice.call(sheet.querySelectorAll(FOCUSABLE))
@@ -1516,7 +1502,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   modal.hidden = false;
   document.body.classList.add('bk-open');
   requestAnimationFrame(function(){ modal.classList.add('in'); });
-  var first = sheet.querySelector('input,select,textarea');
+  if(frame && !frame.getAttribute('src')) frame.setAttribute('src', frame.getAttribute('data-src'));
+  /* Focus the close button, not the iframe: key presses inside a cross-origin frame never
+     reach this document, so Escape only works while focus is still out here. The close
+     button sits before the iframe, so Shift+Tab from the scheduler lands back on it. */
+  var first = sheet.querySelector('.bkx,iframe,input,select,textarea');
   if(first) first.focus({preventScroll:true});
  }
 
@@ -1528,7 +1518,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   if(lastFocus && lastFocus.focus) lastFocus.focus({preventScroll:true});
  }
 
- document.querySelectorAll('a[href="#book"]').forEach(function(a){
+ document.querySelectorAll('a[href="#book"],a[data-bkopen]').forEach(function(a){
   a.addEventListener('click', function(e){ e.preventDefault(); open(a); });
  });
  modal.querySelectorAll('[data-bkclose]').forEach(function(el){
