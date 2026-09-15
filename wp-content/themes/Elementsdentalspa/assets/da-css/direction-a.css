@@ -898,6 +898,9 @@ section.band{background:var(--band)}
    small file into a soft, oversized block, so it keeps its real size and is
    centred instead. */
 .prose img.img-nat{width:auto;max-width:100%}
+/* 2026-09-15: the old editor stored inline margins on some post images (style="margin-left: 25px").
+   On a full column width image that pushed the page 7px sideways at 390px. Centre them instead. */
+.prose img[style*="margin"]{margin-left:auto!important;margin-right:auto!important}
 .caution{border-left:3px solid var(--gold);background:var(--white);padding:24px 28px;margin:30px 0}
 .caution b{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-text);margin-bottom:9px}
 .caution p{font-size:15.5px;color:var(--ink-soft);margin:0}
