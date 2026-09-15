@@ -1684,6 +1684,85 @@ nav a.here::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height
  .navdrop-panel a:last-child{border-bottom:0}
 }
 
+/* ================= NAV FLYOUTS, second level, 2026-09-15 =================
+   Dental > Cosmetic dentistry > Porcelain veneers. Same CSS-only rule as the
+   first level: the flyout is a descendant of .navsub, so hover and keyboard
+   focus both stay inside it. The flyout touches its row (left:100%, no gap)
+   for the same dead-space reason as .navdrop-panel above.
+
+   Timing is deliberate, and measured. On hover, opening waits 150ms and
+   closing waits 250ms, so a pointer cutting diagonally from "Cosmetic
+   dentistry" towards "Invisalign" can graze the rows below without swapping
+   the flyout out from under it. At 80ms / 200ms a scripted graze opened the
+   row below, whose flyout then sat on top and took the pointer. Keyboard
+   focus opens with no delay, or a fast Tab skips links that are still
+   hidden. pointer-events is NOT toggled here: it inherits from the open
+   panel, and the delayed visibility keeps a closing flyout re-enterable. */
+.navsub{position:relative}
+.navsub > a{display:flex;align-items:center;justify-content:space-between;gap:18px}
+.navsub-caret{
+ flex:none;width:6px;height:6px;margin-right:3px;
+ border-top:1.5px solid currentColor;border-right:1.5px solid currentColor;
+ transform:rotate(45deg);opacity:.5;
+}
+.navsub-panel{
+ position:absolute;top:-9px;left:100%;
+ background:var(--white);border:1px solid var(--line-soft);border-radius:var(--r-sm);
+ box-shadow:var(--shadow);padding:8px;min-width:220px;
+ display:grid;gap:1px;z-index:61;
+ opacity:0;visibility:hidden;transform:translateX(-4px);
+ transition:opacity .18s ease .25s,transform .18s ease .25s,visibility 0s linear .43s;
+}
+@media(hover:hover) and (pointer:fine){
+ /* No-JS fallback: plain :hover on the delays above. A scripted 60ms graze still
+    beat those delays under test, so with JS on, footer-direction-a.php ("Flyout
+    aim") adds .navaim to the nav and owns the timing through .is-open instead:
+    it holds the open flyout while the pointer is heading into it. */
+ #site-nav:not(.navaim) .navsub:hover > a,.navsub.is-open > a{background:var(--paper);color:var(--ink)}
+ #site-nav:not(.navaim) .navsub:hover > a .navsub-caret,.navsub.is-open > a .navsub-caret{opacity:1;color:var(--gold-text)}
+ #site-nav:not(.navaim) .navsub:hover > .navsub-panel{
+  opacity:1;visibility:visible;transform:none;
+  transition:opacity .18s ease .15s,transform .18s ease .15s,visibility 0s linear .15s;
+ }
+ .navaim .navsub-panel{transition:opacity .12s ease,transform .12s ease,visibility 0s linear .12s}
+ .navaim .navsub.is-open > .navsub-panel{
+  opacity:1;visibility:visible;transform:none;
+  transition:opacity .16s ease,transform .16s ease,visibility 0s;
+ }
+}
+/* after the hover rule so keyboard focus wins with no delay */
+.navsub:focus-within > a{background:var(--paper);color:var(--ink)}
+.navsub:focus-within > .navsub-panel{
+ opacity:1;visibility:visible;transform:none;
+ transition:opacity .18s ease,transform .18s ease,visibility 0s;
+}
+/* Shift+Tab: footer-direction-a.php opens the previous row's flyout on the keydown so
+   the browser can land on its last link; outside the hover query so keyboards get it. */
+.navsub.kb-open > .navsub-panel{opacity:1;visibility:visible;transform:none;transition:none}
+/* .nav a{transition:.2s} (the inner-page header) animates EVERY property, visibility
+   included, so the links of a flyout that had just closed stayed visible and hoverable
+   for 200ms after their panel hid: they stole the pointer from the flyout being entered
+   and made a fast Tab skip whole panels. Found by review, not by the first test pass,
+   which only ran the graze on a flyout that had not just closed. Colour only here. */
+.navdrop-panel a{transition:background-color .2s ease,color .2s ease}
+/* reduced motion: keep the fade, drop the slide */
+@media(prefers-reduced-motion:reduce){.navsub-panel{transform:none}}
+
+/* Phone and tablet: the slide-down menu already shows every first-level item
+   inline (see "Mobile menu wiring" above), so the children follow the same
+   rule, listed under their parent one indent deeper. */
+@media(max-width:1080px){
+ .navsub > a{justify-content:flex-start}
+ .navsub-caret{display:none}
+ .navsub:focus-within > a{background:transparent}
+ .navsub-panel{
+  position:static;min-width:0;padding:0 0 4px;gap:0;
+  opacity:1;visibility:visible;transform:none;transition:none;
+  box-shadow:none;border:0;border-radius:0;background:transparent;
+ }
+ .navsub-panel a{padding:8px clamp(54px,10vw,80px);font-size:13.5px;color:var(--ink-soft);border-bottom:0}
+}
+
 
 /* ---------------------------------------------------------------------------
    Restored service pages (template-service-full-direction-a.php)
