@@ -2484,53 +2484,77 @@ section.s.px-band{padding:clamp(52px,4.6vw,80px) 0}
    slide-down menu, so both links stay visible on a phone. */
 
 /* Two or three buttons on one line that wrap together instead of colliding. Replaces
-   a margin-left:10px inline style that could not wrap. */
-.ctwo{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+   a margin-left:10px inline style that could not wrap.
+
+   NOT .ctwo. This shipped as .ctwo on 2026-09-16 and .ctwo was already the two-column
+   content grid at line 166, used by nine templates. Same specificity and later in the
+   file, so the flex rule won everywhere and stacked the Concerns columns and the
+   emergency-dentistry pair, on pages nothing in that change was meant to touch. */
+.cbtns{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
 
 /* --- the Contact page form ------------------------------------------------------
    The form is Gravity Forms id 2, the practice's own, the same one the live site
    runs. Gravity ships its own stylesheet, so everything here is scoped to
    #contact-form and nothing else on the site inherits it. */
 #contact-form{scroll-margin-top:96px}
-#contact-form .cform-h{font-size:clamp(26px,3vw,34px);line-height:1.15;margin-bottom:10px}
-#contact-form .cform-lede{font-size:15.5px;color:var(--ink-soft);max-width:46ch;margin-bottom:26px}
+#contact-form .cform-h,
+#cf-modal-form .cform-h{font-size:clamp(26px,3vw,34px);line-height:1.15;margin-bottom:10px}
+#contact-form .cform-lede,
+#cf-modal-form .cform-lede{font-size:15.5px;color:var(--ink-soft);max-width:46ch;margin-bottom:26px}
 
 /* Field 15 "Blank Field" is a spam decoy the previous build hid with .hidden-f, a
    class that lives only in the old Bootstrap stylesheet. Direction A does not load
    that file, so without this the decoy renders as a visible empty text input. */
-#contact-form .hidden-f{display:none}
+#contact-form .hidden-f,
+#cf-modal-form .hidden-f{display:none}
 
 /* Every visible field is set to hidden_label in Gravity, which leaves the placeholder
    doing the labelling: it disappears the moment someone types, and a screen magnifier
    user loses it too. The labels come back, in the same uppercase treatment the rest of
    Direction A uses for .field label. */
 #contact-form .gform_wrapper .gfield_label,
-#contact-form .gform_wrapper .hidden_label .gfield_label{
+#cf-modal-form .gform_wrapper .gfield_label,
+#contact-form .gform_wrapper .hidden_label .gfield_label,
+#cf-modal-form .gform_wrapper .hidden_label .gfield_label{
  position:static;clip:auto;clip-path:none;width:auto;height:auto;overflow:visible;
  display:block;font-family:'Inter Tight',system-ui,sans-serif;
  font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
  color:var(--ink-soft);margin-bottom:7px;font-weight:500;
 }
-#contact-form .gform_wrapper .gfield_required{color:var(--ink-soft);letter-spacing:0}
+#contact-form .gform_wrapper .gfield_required,
+#cf-modal-form .gform_wrapper .gfield_required{color:var(--ink-soft);letter-spacing:0}
 
 #contact-form .gform_wrapper input[type=text],
+#cf-modal-form .gform_wrapper input[type=text],
 #contact-form .gform_wrapper input[type=email],
+#cf-modal-form .gform_wrapper input[type=email],
 #contact-form .gform_wrapper input[type=tel],
+#cf-modal-form .gform_wrapper input[type=tel],
 #contact-form .gform_wrapper input[type=number],
+#cf-modal-form .gform_wrapper input[type=number],
 #contact-form .gform_wrapper select,
-#contact-form .gform_wrapper textarea{
+#cf-modal-form .gform_wrapper select,
+#contact-form .gform_wrapper textarea,
+#cf-modal-form .gform_wrapper textarea{
  width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:0;
  background:var(--white);font-family:inherit;font-size:15.5px;color:var(--ink);
  box-shadow:none;height:auto;
 }
-#contact-form .gform_wrapper textarea{min-height:132px;resize:vertical}
+#contact-form .gform_wrapper textarea,
+#cf-modal-form .gform_wrapper textarea{min-height:132px;resize:vertical}
 #contact-form .gform_wrapper input:focus,
+#cf-modal-form .gform_wrapper input:focus,
 #contact-form .gform_wrapper select:focus,
-#contact-form .gform_wrapper textarea:focus{outline:none;border-color:var(--gold);box-shadow:none}
-#contact-form .gform_wrapper ::placeholder{color:var(--ink-soft);opacity:1}
+#cf-modal-form .gform_wrapper select:focus,
+#contact-form .gform_wrapper textarea:focus,
+#cf-modal-form .gform_wrapper textarea:focus{outline:none;border-color:var(--gold);box-shadow:none}
+#contact-form .gform_wrapper ::placeholder,
+#cf-modal-form .gform_wrapper ::placeholder{color:var(--ink-soft);opacity:1}
 
-#contact-form .gform_wrapper .gform_footer{margin:22px 0 0;padding:0}
-#contact-form .gform_wrapper .gform_footer input[type=submit]{
+#contact-form .gform_wrapper .gform_footer,
+#cf-modal-form .gform_wrapper .gform_footer{margin:22px 0 0;padding:0}
+#contact-form .gform_wrapper .gform_footer input[type=submit],
+#cf-modal-form .gform_wrapper .gform_footer input[type=submit]{
  display:inline-flex;align-items:center;justify-content:center;width:auto;
  padding:16px 34px;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;
  font-weight:500;font-family:inherit;cursor:pointer;
@@ -2538,8 +2562,10 @@ section.s.px-band{padding:clamp(52px,4.6vw,80px) 0}
  transition:background .32s cubic-bezier(.22,.61,.36,1),color .32s cubic-bezier(.22,.61,.36,1);
  background-image:none;height:auto;
 }
-#contact-form .gform_wrapper .gform_footer input[type=submit]:hover{background:transparent;color:var(--ink)}
-#contact-form .gform_wrapper .gform_footer input[type=submit]:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+#contact-form .gform_wrapper .gform_footer input[type=submit]:hover,
+#cf-modal-form .gform_wrapper .gform_footer input[type=submit]:hover{background:transparent;color:var(--ink)}
+#contact-form .gform_wrapper .gform_footer input[type=submit]:focus-visible,
+#cf-modal-form .gform_wrapper .gform_footer input[type=submit]:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 
 /* Gravity's default validation red is #C02B0A, which measures 5.25:1 on this page's
    white ground. That passes, but the message sits at 13px beside a 1.82 line-height
@@ -2547,14 +2573,18 @@ section.s.px-band{padding:clamp(52px,4.6vw,80px) 0}
    .formnote uses, rather than Gravity's tinted box. The 2px border keeps the original
    red, where it is decoration and only has to be visible. */
 #contact-form .gform_wrapper .gfield_validation_message,
-#contact-form .gform_wrapper .validation_message{
+#cf-modal-form .gform_wrapper .gfield_validation_message,
+#contact-form .gform_wrapper .validation_message,
+#cf-modal-form .gform_wrapper .validation_message{
  background:transparent;border:0;border-left:2px solid #C02B0A;
  padding:6px 0 6px 12px;font-size:13px;color:#8C1F07;
 }
-#contact-form .gform_wrapper .gform_validation_errors{
+#contact-form .gform_wrapper .gform_validation_errors,
+#cf-modal-form .gform_wrapper .gform_validation_errors{
  background:var(--white);border:1px solid var(--line);box-shadow:none;border-radius:0;
 }
-#contact-form .gform_wrapper .gform_required_legend{font-size:12.5px;color:var(--ink-soft)}
+#contact-form .gform_wrapper .gform_required_legend,
+#cf-modal-form .gform_wrapper .gform_required_legend{font-size:12.5px;color:var(--ink-soft)}
 
 /* The reCAPTCHA widget is a fixed 304px iframe. At the narrow end of the column it
    overflows the field, so it scales down rather than pushing a horizontal scrollbar
@@ -2571,7 +2601,9 @@ section.s.px-band{padding:clamp(52px,4.6vw,80px) 0}
    A 1-id + 2-class selector here loses to it however late it sits, which is exactly
    what happened on the first attempt, so this one carries 1 id + 4 classes. */
 #contact-form .gform_wrapper .gfield--type-captcha.hidden_label .gfield_label,
-#contact-form .gform_wrapper .gfield--type-captcha .gfield_label{
+#cf-modal-form .gform_wrapper .gfield--type-captcha.hidden_label .gfield_label,
+#contact-form .gform_wrapper .gfield--type-captcha .gfield_label,
+#cf-modal-form .gform_wrapper .gfield--type-captcha .gfield_label{
  position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;
  clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0;
 }
@@ -2582,4 +2614,147 @@ section.s.px-band{padding:clamp(52px,4.6vw,80px) 0}
    its own heading, with the heading, lede and note all present. The page looks finished.
    An inline style outranks a stylesheet, so this is the one place !important is the right
    tool. It also makes the live form independent of that script ever loading. */
-#contact-form .gform_wrapper{display:block !important}
+#contact-form .gform_wrapper,
+#cf-modal-form .gform_wrapper{display:block !important}
+
+/* ======= REVIEW FIXES ON THE GRAVITY FORM, 2026-09-16 ==========================
+   Five defects an independent review measured on the rendered form. Each one is
+   Gravity's own stylesheet winning where the block above only half-overrode it, so
+   each fix names the property that was losing rather than raising specificity. */
+
+/* 1. basic.min.css sets .hidden_label .gfield_label{margin:-1px}, and the restore above
+      only set margin-bottom, so every label sat 1px up and 1px left of its field. */
+#contact-form .gform_wrapper .gfield_label,
+#cf-modal-form .gform_wrapper .gfield_label{margin-top:0;margin-left:0;margin-right:0}
+
+/* 2. theme.min.css sets .gfield_required{font-size:13.008px} and .gfield_required_text
+      {font-style:italic}, neither of which the colour override touched, so "(Required)"
+      rendered larger and italic beside an 11.5px tracked-caps label. */
+#contact-form .gform_wrapper .gfield_required,
+#cf-modal-form .gform_wrapper .gfield_required,
+#contact-form .gform_wrapper .gfield_required_text,
+#cf-modal-form .gform_wrapper .gfield_required_text{
+ font-size:inherit;font-style:normal;letter-spacing:inherit;text-transform:none;
+}
+
+/* 3. Every field is BOTH labelled and placeheld with the same string, so restoring the
+      labels printed each field name twice. The placeholder is the redundant one now, so
+      it stops painting. The real fix is clearing the placeholders in the Gravity form,
+      which needs wp-admin; until then this keeps the field from reading double. */
+#contact-form .gform_wrapper ::placeholder,
+#cf-modal-form .gform_wrapper ::placeholder{color:transparent}
+
+/* 4. outline:none with only a border-colour change left five required fields with no
+      keyboard affordance that clears 3:1. --gold is 2.42:1 on white. A real ring, in ink,
+      which is 15.8:1 on white and visible against both the field and the page. */
+#contact-form .gform_wrapper input:focus-visible,
+#cf-modal-form .gform_wrapper input:focus-visible,
+#contact-form .gform_wrapper select:focus-visible,
+#cf-modal-form .gform_wrapper select:focus-visible,
+#contact-form .gform_wrapper textarea:focus-visible,
+#cf-modal-form .gform_wrapper textarea:focus-visible{
+ outline:2px solid var(--ink);outline-offset:2px;border-color:var(--ink);
+}
+#contact-form .gform_wrapper .gform_footer input[type=submit]:focus-visible,
+#cf-modal-form .gform_wrapper .gform_footer input[type=submit]:focus-visible{
+ outline:2px solid var(--ink);outline-offset:3px;
+}
+
+/* 5. The error summary had its red border replaced with a 1.48:1 tan hairline, which
+      removed the strongest signal that a submission failed. Red border back, on the
+      Direction A ground rather than Gravity's pink. */
+#contact-form .gform_wrapper .gform_validation_errors,
+#cf-modal-form .gform_wrapper .gform_validation_errors{
+ border:2px solid #C02B0A;
+}
+
+/* ======= EDGE TABS AND THE SPECIALS PANEL, 2026-09-16 ==========================
+   Replicating the live site's pull tab: a.home-banner-btn is fixed at right:-62px,
+   top:50%, rotated 270deg, on #dabc57. Direction A already carries that exact gold as
+   --gold-lt. Two differences from the original, both deliberate: the original declares
+   transform twice, so its translateY(-50%) is dropped and the tab hangs below centre,
+   and it uses a rotation that puts the text bottom-to-top. Both are kept visually but
+   written so the centring actually applies. */
+/* writing-mode, not a rotate. The live rule pins the tab with right:-62px and
+   rotate(270deg), which means its box is still horizontal and it only LOOKS vertical:
+   the offset has to be hand-tuned to the label's length, and it declares transform
+   twice so its own translateY(-50%) is dropped and the tab hangs below centre. A
+   vertical writing mode gives a box that is genuinely tall and narrow, so top:50% plus
+   one translate centres it and the label can change length without retuning anything.
+   rotate(180deg) puts the text bottom-to-top, the way the live tab reads. */
+.edgetab{
+ position:fixed;top:50%;z-index:120;
+ writing-mode:vertical-rl;
+ transform:translateY(-50%) rotate(180deg);
+ background:var(--gold-lt);color:var(--ink);
+ font-family:'Inter Tight',system-ui,sans-serif;
+ font-size:14px;letter-spacing:.06em;font-weight:600;white-space:nowrap;
+ padding:20px 9px;
+ box-shadow:0 10px 26px -12px rgba(0,0,0,.45);
+ transition:background .25s ease,color .25s ease;
+}
+.edgetab:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+/* rotate(180deg) flips the box, so the radius that rounds the edge FACING THE PAGE is
+   the one on the opposite side of the element. Measured, not reasoned. */
+.edgetab-specials{right:0;border-radius:0 6px 6px 0}
+.edgetab-contact{left:0;border-radius:6px 0 0 6px}
+@media (hover:hover) and (pointer:fine){
+ .edgetab:hover{background:var(--ink);color:var(--gold-lt)}
+}
+/* A rotated tab on a phone covers content and fights the scroll gesture, and the live
+   site hides its own below 768 for the same reason. Both routes stay reachable: the
+   slide-down menu carries Contact form, and the footer carries Specials. */
+@media(max-width:1024px){ .edgetabs{display:none} }
+
+/* the specials panel */
+.sp-eyebrow{font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;font-weight:600;color:var(--gold-lt);margin-bottom:12px}
+.bksheet .sp-title{font-family:'Bodoni Moda',Georgia,serif;font-size:clamp(25px,3vw,32px);line-height:1.15;letter-spacing:0;text-transform:none;color:var(--paper);margin-bottom:22px;font-weight:500}
+.sp-list{list-style:none;margin:0 0 20px;padding:0;display:grid;gap:14px}
+.sp-list li{
+ display:grid;grid-template-columns:auto 1fr;column-gap:16px;row-gap:2px;
+ padding:16px 18px;border-radius:14px;
+ background:rgba(250,247,242,.05);border:1px solid rgba(250,247,242,.14);
+}
+.sp-price{grid-row:1 / span 2;align-self:center;font-family:'Bodoni Moda',Georgia,serif;font-size:30px;line-height:1;color:var(--gold-lt)}
+.sp-name{font-size:15.5px;font-weight:500;color:var(--paper)}
+.sp-sub{font-size:13.5px;line-height:1.6;color:rgba(250,247,242,.72)}
+.sp-em{font-size:14.5px;line-height:1.7;color:rgba(250,247,242,.8);margin:0 0 20px}
+.sp-em a{color:var(--gold-lt);text-decoration:underline;text-underline-offset:2px}
+.bksheet .sp-btn{width:100%;background:var(--gold);border-color:var(--gold);color:var(--ink);margin-bottom:18px}
+.bksheet .sp-btn:hover{background:transparent;color:var(--gold-lt);border-color:var(--gold-lt)}
+@media(max-width:480px){
+ .sp-list li{grid-template-columns:1fr}
+ .sp-price{grid-row:auto}
+}
+
+/* the sidebar contact panel : a light sheet, because the form's field styling is built
+   for a white ground and would be unreadable on the ink sheet the booking popup uses */
+.bksheet.bk-light{background:var(--white);color:var(--ink);border-color:var(--line)}
+.bksheet.bk-light .bkx{background:rgba(15,29,40,.06);border-color:var(--line);color:var(--ink)}
+@media (hover:hover) and (pointer:fine){
+ .bksheet.bk-light .bkx:hover{background:rgba(15,29,40,.14);border-color:var(--ink)}
+}
+.bksheet.bk-light .bkx:focus-visible{outline:2px solid var(--ink)}
+.bksheet.bk-cform{width:min(94vw,600px)}
+#cf-modal-form .eyebrow{margin-bottom:12px}
+#cf-modal-form .cform-h{margin-bottom:8px}
+#cf-modal-form .cform-lede{margin-bottom:20px;font-size:14.5px}
+
+/* the Contact page specials band, 2026-09-16 */
+.spband{background:var(--paper);border-top:1px solid var(--line-soft)}
+.spband h2{font-size:clamp(28px,3.4vw,40px);line-height:1.12;margin-bottom:10px}
+.spband-lede{font-size:16.5px;color:var(--ink-soft);max-width:56ch;margin-bottom:30px}
+.spband-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:30px}
+.spcard{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:26px 24px}
+.spcard-price{font-family:'Bodoni Moda',Georgia,serif;font-size:38px;line-height:1;color:var(--gold-text);margin-bottom:14px}
+.spcard h3{font-size:19px;line-height:1.25;margin-bottom:8px}
+.spcard p{font-size:14.5px;line-height:1.7;color:var(--ink-soft);margin:0}
+.spcard p a{color:var(--ink);text-decoration:underline;text-underline-offset:2px}
+.spcard-em .spcard-price{font-family:'Inter Tight',system-ui,sans-serif;font-size:30px;color:var(--ink)}
+.spband-cta{margin-bottom:24px}
+@media(max-width:900px){ .spband-grid{grid-template-columns:1fr} }
+
+/* The medical-details warning now sits directly above the first field, so it needs the
+   gap the old position got for free from the submit button above it. */
+#contact-form .formnote,
+#cf-modal-form .formnote{margin-bottom:24px}
