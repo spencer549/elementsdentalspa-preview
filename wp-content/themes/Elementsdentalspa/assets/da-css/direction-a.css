@@ -2688,23 +2688,41 @@ section.s.px-band{padding:clamp(52px,4.6vw,80px) 0}
  transform:translateY(-50%) rotate(180deg);
  background:var(--gold-lt);color:var(--ink);
  font-family:'Inter Tight',system-ui,sans-serif;
- font-size:14px;letter-spacing:.06em;font-weight:600;white-space:nowrap;
- padding:20px 9px;
+ /* 2026-09-16: up from 14px/20x9. The rail is the only one on the page now, so it can
+    carry the weight the pair could not, and at 14px it read as a bookmark rather than a
+    control. 26px of padding on the long side keeps the tap target past the 44px minimum
+    on its short axis too: 16 + 13 + 13 = 42 plus the cap height clears it. */
+ font-size:16px;letter-spacing:.08em;font-weight:600;white-space:nowrap;
+ padding:26px 13px;
  box-shadow:0 10px 26px -12px rgba(0,0,0,.45);
  transition:background .25s ease,color .25s ease;
 }
 .edgetab:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 /* rotate(180deg) flips the box, so the radius that rounds the edge FACING THE PAGE is
    the one on the opposite side of the element. Measured, not reasoned. */
-.edgetab-specials{right:0;border-radius:0 6px 6px 0}
-.edgetab-contact{left:0;border-radius:6px 0 0 6px}
+/* Both rails sit on the RIGHT now. .edgetab-specials is kept as a style only, since the
+   specials tab itself was removed; anything reinstated on the left would need the mirrored
+   radius, which is why the pairing is left documented rather than deleted.
+   rotate(180deg) flips the box, so the radius that rounds the edge facing the page is the
+   one on the opposite side of the element. Measured, not reasoned. */
+.edgetab-contact{right:0;border-radius:0 6px 6px 0}
 @media (hover:hover) and (pointer:fine){
  .edgetab:hover{background:var(--ink);color:var(--gold-lt)}
 }
 /* A rotated tab on a phone covers content and fights the scroll gesture, and the live
    site hides its own below 768 for the same reason. Both routes stay reachable: the
    slide-down menu carries Contact form, and the footer carries Specials. */
-@media(max-width:1024px){ .edgetabs{display:none} }
+/* The rail only shows where the page actually has a gutter for it. .wrap and .hbar cap at
+   1320px with up to 44px of padding, so content stops at (Wc + 1320)/2 - 44 while the rail
+   starts at Wc - 55. Those meet at a client width of 1342, which is a 1360px viewport once
+   the scrollbar is counted. Below that the rail sits ON the content: measured at 1200px it
+   covered 6 text runs and 10 controls, including the header Book button, the hero See
+   aesthetics link and four footer links. It was doing the same on the left edge before it
+   moved; the move is what got it measured.
+
+   Nothing is lost below 1360. The nav Contact item is a dropdown carrying Contact form down
+   to 1081, and below that the same dropdown renders inline inside the slide-down menu. */
+@media(max-width:1359px){ .edgetabs{display:none} }
 
 /* the specials panel */
 .sp-eyebrow{font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;font-weight:600;color:var(--gold-lt);margin-bottom:12px}
@@ -2894,3 +2912,21 @@ section.s.px-band{padding:clamp(52px,4.6vw,80px) 0}
    pill and the price row across the full card. Both size to their content again. */
 .offer .tag{align-self:flex-start}
 .offer .price{align-self:flex-start}
+
+/* the band's second action. Outline on the ink stub, so it reads as secondary to the
+   booking button without disappearing the way the fineprint link did. */
+.cband-btn2{
+ background:transparent;color:var(--paper);border-color:rgba(250,247,242,.55);
+ width:100%;padding:12px 18px;font-size:10.5px;margin-top:8px;
+}
+.cband-btn2:hover{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+@media(max-width:1000px){ .cband-btn2{width:auto} }
+@media(max-width:560px){ .cband-btn2{width:100%} }
+
+/* The hero is the one full-bleed section, so its right-hand door runs to the viewport edge
+   and the rail sits on it even at 1440, where every contained section already clears.
+   Measured before this: 3 text runs and the "See aesthetics" link covered. The door gets
+   the rail's width back as padding, only while the rail is actually on screen. */
+@media(min-width:1360px){
+ .half:nth-child(3) .half-in{padding-right:calc(clamp(30px,3.4vw,52px) + 58px)}
+}
