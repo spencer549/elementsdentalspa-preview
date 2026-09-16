@@ -2921,51 +2921,21 @@ section.s.px-band{padding:clamp(52px,4.6vw,80px) 0}
  .half:nth-child(3) .half-in{padding-right:calc(clamp(30px,3.4vw,52px) + 58px)}
 }
 
-/* ======= SPECIALS BAND, DARK, 2026-09-16 =======================================
-   The band inverts: the offer panel takes the ink ground and the stub takes the gold,
-   so the ticket still reads as two parts torn apart. Swapping only the main panel
-   would have put ink beside ink and lost the tear.
-
-   Contrast, measured on the two grounds this uses. --gold-lt #DABC57 on --ink #0F1D28
-   is 9.22:1, and the inverse is the same pair, so every gold-on-ink and ink-on-gold
-   pairing below clears AA for normal text with room to spare. The one thing that does
-   NOT survive the swap is --gold-text #786425, which was the star colour on paper:
-   against ink it falls under 3:1, so the stars move to --gold-lt. */
-.cband{background:var(--ink);border-color:rgba(250,247,242,.14)}
-.cband-flag{background:var(--gold-lt);color:var(--ink)}
-.cband-rating{color:rgba(250,247,242,.72)}
-.cband-stars{color:var(--gold-lt)}
-.cband-head{color:var(--paper)}
-.cband-price{color:var(--gold-lt)}
-.cband-sub{color:rgba(250,247,242,.78)}
-.cband-list li{color:rgba(250,247,242,.82)}
-.cband-list li::before{border-right-color:var(--gold-lt);border-bottom-color:var(--gold-lt)}
-
-/* the stub takes the gold the panel gave up */
-.cband-stub{background:var(--gold-lt);color:var(--ink)}
-/* the perforation punches the BAND's colour now, not the page's, or the tear line
-   would read as a row of cream dots sitting on top of the ink panel */
-.cband-stub::before{
- background:radial-gradient(circle at 7px 7px, var(--ink) 5.5px, transparent 6px) 0 0/14px 14px repeat-y;
+/* ======= SPECIALS BAND : the SECTION is dark, the coupon is not, 2026-09-16 =====
+   The coupon keeps the cream panel and the ink stub it had. What changed is the ground
+   it sits on, which is why it now needs an edge it did not need on white: an ink stub
+   against an ink section would run into the background at the band's right corner, so
+   the band carries a warm hairline and a lift instead of the --line border that only
+   read on paper. */
+.cband-wrap{background:var(--ink)}
+.cband{
+ border-color:rgba(250,247,242,.18);
+ box-shadow:0 30px 60px -30px rgba(0,0,0,.65);
 }
-.cband-stub-eyebrow{color:rgba(15,29,40,.72)}
-.cband-stub-title{color:var(--ink)}
-.cband-stub-sub{color:rgba(15,29,40,.64)}
-.cband-btn{background:var(--ink);border-color:var(--ink);color:var(--paper)}
-.cband-btn:hover{background:transparent;color:var(--ink);border-color:var(--ink)}
-.cband-btn2{background:transparent;color:var(--ink);border-color:rgba(15,29,40,.45)}
-.cband-btn2:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.cband-tel{color:var(--ink);border-bottom-color:rgba(15,29,40,.45)}
-@media(max-width:1000px){
- /* stacked, the tear line moves to the top edge and punches the same ink */
- .cband-stub::before{
-  background:radial-gradient(circle at 7px 7px, var(--ink) 5.5px, transparent 6px) 0 0/14px 14px repeat-x;
- }
+/* The disclaimer moved INSIDE the coupon, so it is on the cream panel and keeps its
+   paper-ground colour. Its old rule sized it for the full page width underneath. */
+.cband-fine{
+ margin:22px 0 0;padding:16px 0 0;
+ border-top:1px solid var(--line);
+ font-size:12px;line-height:1.6;color:var(--ink-soft);max-width:none;
 }
-
-/* Measured on the gold stub, since these two are 10px uppercase and therefore need 4.5:1,
-   not the 3:1 large text gets. Ink at 64% over --gold-lt blends to rgb(88,86,57), which is
-   4.03:1 and fails; at 78% it is rgb(60,64,50) and 5.74:1. The eyebrow at 72% already
-   measured 4.90:1, and moves with it so the two read as a pair. */
-.cband-stub-eyebrow,
-.cband-stub-sub{color:rgba(15,29,40,.78)}
