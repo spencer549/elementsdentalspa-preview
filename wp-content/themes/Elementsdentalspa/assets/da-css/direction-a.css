@@ -2927,7 +2927,28 @@ section.s.px-band{padding:clamp(52px,4.6vw,80px) 0}
    against an ink section would run into the background at the band's right corner, so
    the band carries a warm hairline and a lift instead of the --line border that only
    read on paper. */
-.cband-wrap{background:var(--ink)}
+/* A photograph of the practice behind the coupon, not a flat colour. The scrim is two
+   stops, not one: a near-opaque ink at the top and bottom so the section still separates
+   cleanly from the white above and below it, easing to 78% across the middle where the
+   coupon sits, which keeps some of the room readable without ever letting it compete.
+   --ink stays as the colour underneath, so the section is correct before the image loads
+   and correct if it never does.
+
+   The image is the practice's own lobby, Office-Photos-gallery-img-11 from the media
+   library. Every photograph already in the theme is used elsewhere on this page, and the
+   two that are not are framed wall art and a credential, neither of which is about an
+   offer. Nothing sits on the photograph except the coupon, which is opaque, so there is
+   no text-over-image contrast to hold here. */
+.cband-wrap{
+ background-color:var(--ink);
+ background-image:linear-gradient(to bottom,
+   rgba(10,20,28,.94) 0%, rgba(10,20,28,.78) 34%,
+   rgba(10,20,28,.78) 66%, rgba(10,20,28,.94) 100%),
+  url("../da-images/photos-web/office-lobby-wide.jpg");
+ background-size:cover;
+ background-position:center;
+ background-repeat:no-repeat;
+}
 .cband{
  border-color:rgba(250,247,242,.18);
  box-shadow:0 30px 60px -30px rgba(0,0,0,.65);
