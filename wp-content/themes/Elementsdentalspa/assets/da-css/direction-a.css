@@ -2575,3 +2575,11 @@ section.s.px-band{padding:clamp(52px,4.6vw,80px) 0}
  position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;
  clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0;
 }
+
+/* Gravity 2.10 prints #gform_wrapper_2 with an inline style="display:none" and reveals it
+   from a script that needs jQuery. wp-includes is not mirrored into the GitHub Pages
+   preview, so there the reveal never runs and the form renders as a blank column beneath
+   its own heading, with the heading, lede and note all present. The page looks finished.
+   An inline style outranks a stylesheet, so this is the one place !important is the right
+   tool. It also makes the live form independent of that script ever loading. */
+#contact-form .gform_wrapper{display:block !important}
