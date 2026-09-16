@@ -2784,9 +2784,15 @@ section.s.px-band{padding:clamp(52px,4.6vw,80px) 0}
    thing in ink, gold and paper, so the strip reads as part of the site and not as an
    ad dropped onto it. */
 .cband-wrap{padding:clamp(34px,4vw,56px) 0 clamp(40px,5vw,70px)}
+/* Edge to edge, 2026-09-16. The band is the one element on the page that wants the full
+   width: a coupon torn from a strip reads as a strip, and inside the 1320px measure it
+   looked like a card pretending to be one. Its own .wrap gives up the cap and the side
+   padding; .cband-fine takes that padding back for itself below, because legal copy at
+   full width would set a 200-character line. */
+.cband-wrap > .wrap{max-width:none;padding-left:0;padding-right:0}
 .cband{
  display:grid;grid-template-columns:54px 1fr 250px;
- border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
+ border:1px solid var(--line);border-left:0;border-right:0;border-radius:0;overflow:hidden;
  background:var(--paper);
 }
 /* the month rail */
@@ -2799,7 +2805,9 @@ section.s.px-band{padding:clamp(52px,4.6vw,80px) 0}
  font-size:12.5px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;
  white-space:nowrap;
 }
-.cband-main{padding:26px clamp(22px,2.4vw,34px)}
+/* At full width the copy would otherwise start hard against the month rail and end in a
+   long stretch of nothing, so the inner padding grows with the viewport. */
+.cband-main{padding:28px clamp(22px,3.4vw,60px)}
 .cband-top{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:14px}
 .cband-flag{
  background:var(--ink);color:var(--paper);
@@ -2812,7 +2820,7 @@ section.s.px-band{padding:clamp(52px,4.6vw,80px) 0}
 .cband-stars{color:var(--gold-text);letter-spacing:.12em}
 .cband-head{font-size:clamp(24px,2.9vw,34px);line-height:1.12;margin:0 0 8px}
 .cband-price{color:var(--gold-text)}
-.cband-sub{font-size:15px;line-height:1.65;color:var(--ink-soft);max-width:52ch;margin:0 0 14px}
+.cband-sub{font-size:15.5px;line-height:1.65;color:var(--ink-soft);max-width:62ch;margin:0 0 16px}
 .cband-list{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px 22px}
 .cband-list li{font-size:13.5px;color:var(--ink-soft);position:relative;padding-left:20px}
 /* the theme's proven tick: 5x9, right+bottom borders, +45deg. Equal borders at -45deg
@@ -2929,4 +2937,20 @@ section.s.px-band{padding:clamp(52px,4.6vw,80px) 0}
    the rail's width back as padding, only while the rail is actually on screen. */
 @media(min-width:1360px){
  .half:nth-child(3) .half-in{padding-right:calc(clamp(30px,3.4vw,52px) + 58px)}
+}
+
+/* Full-bleed follow-ups. */
+.cband-fine{padding-left:clamp(22px,4vw,44px);padding-right:clamp(22px,4vw,44px)}
+/* The ink stub reaches the viewport edge, so its content needs the fixed rail's width as
+   padding or the Book an Appointment button sits under the rail. Widening the track by the
+   same amount keeps the buttons the size they were. */
+@media(min-width:1360px){
+ .cband{grid-template-columns:54px 1fr 308px}
+ .cband-stub{padding-right:80px}
+ .cband-fine{padding-right:calc(clamp(22px,4vw,44px) + 58px)}
+}
+/* A strip that runs off both edges reads better a little taller than a card did. */
+@media(min-width:1001px){
+ .cband-main{padding-top:34px;padding-bottom:34px}
+ .cband-stub{padding-top:30px;padding-bottom:30px}
 }
