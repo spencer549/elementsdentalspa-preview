@@ -2784,30 +2784,12 @@ section.s.px-band{padding:clamp(52px,4.6vw,80px) 0}
    thing in ink, gold and paper, so the strip reads as part of the site and not as an
    ad dropped onto it. */
 .cband-wrap{padding:clamp(34px,4vw,56px) 0 clamp(40px,5vw,70px)}
-/* Edge to edge, 2026-09-16. The band is the one element on the page that wants the full
-   width: a coupon torn from a strip reads as a strip, and inside the 1320px measure it
-   looked like a card pretending to be one. Its own .wrap gives up the cap and the side
-   padding; .cband-fine takes that padding back for itself below, because legal copy at
-   full width would set a 200-character line. */
-.cband-wrap > .wrap{max-width:none;padding-left:0;padding-right:0}
 .cband{
- display:grid;grid-template-columns:54px 1fr 250px;
- border:1px solid var(--line);border-left:0;border-right:0;border-radius:0;overflow:hidden;
+ display:grid;grid-template-columns:1fr 250px;
+ border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
  background:var(--paper);
 }
-/* the month rail */
-.cband-month{
- background:var(--gold-lt);color:var(--ink);
- display:flex;align-items:center;justify-content:center;
-}
-.cband-month span{
- writing-mode:vertical-rl;transform:rotate(180deg);
- font-size:12.5px;letter-spacing:.24em;text-transform:uppercase;font-weight:600;
- white-space:nowrap;
-}
-/* At full width the copy would otherwise start hard against the month rail and end in a
-   long stretch of nothing, so the inner padding grows with the viewport. */
-.cband-main{padding:28px clamp(22px,3.4vw,60px)}
+.cband-main{padding:26px clamp(22px,2.4vw,34px)}
 .cband-top{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:14px}
 .cband-flag{
  background:var(--ink);color:var(--paper);
@@ -2820,7 +2802,7 @@ section.s.px-band{padding:clamp(52px,4.6vw,80px) 0}
 .cband-stars{color:var(--gold-text);letter-spacing:.12em}
 .cband-head{font-size:clamp(24px,2.9vw,34px);line-height:1.12;margin:0 0 8px}
 .cband-price{color:var(--gold-text)}
-.cband-sub{font-size:15.5px;line-height:1.65;color:var(--ink-soft);max-width:62ch;margin:0 0 16px}
+.cband-sub{font-size:15px;line-height:1.65;color:var(--ink-soft);max-width:52ch;margin:0 0 14px}
 .cband-list{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px 22px}
 .cband-list li{font-size:13.5px;color:var(--ink-soft);position:relative;padding-left:20px}
 /* the theme's proven tick: 5x9, right+bottom borders, +45deg. Equal borders at -45deg
@@ -2851,7 +2833,7 @@ section.s.px-band{padding:clamp(52px,4.6vw,80px) 0}
 .cband-fine{margin-top:14px;font-size:12.5px;line-height:1.65;color:var(--ink-soft);max-width:92ch}
 .cband-fine a{color:var(--ink);text-decoration:underline;text-underline-offset:2px}
 @media(max-width:1000px){
- .cband{grid-template-columns:46px 1fr}
+ .cband{grid-template-columns:1fr}
  /* the stub goes full width under the offer, and its perforation moves to the top edge */
  .cband-stub{grid-column:1 / -1;flex-direction:row;flex-wrap:wrap;gap:10px 16px;padding:20px}
  .cband-stub::before{left:0;right:0;top:-7px;bottom:auto;width:auto;height:14px;
@@ -2939,18 +2921,51 @@ section.s.px-band{padding:clamp(52px,4.6vw,80px) 0}
  .half:nth-child(3) .half-in{padding-right:calc(clamp(30px,3.4vw,52px) + 58px)}
 }
 
-/* Full-bleed follow-ups. */
-.cband-fine{padding-left:clamp(22px,4vw,44px);padding-right:clamp(22px,4vw,44px)}
-/* The ink stub reaches the viewport edge, so its content needs the fixed rail's width as
-   padding or the Book an Appointment button sits under the rail. Widening the track by the
-   same amount keeps the buttons the size they were. */
-@media(min-width:1360px){
- .cband{grid-template-columns:54px 1fr 308px}
- .cband-stub{padding-right:80px}
- .cband-fine{padding-right:calc(clamp(22px,4vw,44px) + 58px)}
+/* ======= SPECIALS BAND, DARK, 2026-09-16 =======================================
+   The band inverts: the offer panel takes the ink ground and the stub takes the gold,
+   so the ticket still reads as two parts torn apart. Swapping only the main panel
+   would have put ink beside ink and lost the tear.
+
+   Contrast, measured on the two grounds this uses. --gold-lt #DABC57 on --ink #0F1D28
+   is 9.22:1, and the inverse is the same pair, so every gold-on-ink and ink-on-gold
+   pairing below clears AA for normal text with room to spare. The one thing that does
+   NOT survive the swap is --gold-text #786425, which was the star colour on paper:
+   against ink it falls under 3:1, so the stars move to --gold-lt. */
+.cband{background:var(--ink);border-color:rgba(250,247,242,.14)}
+.cband-flag{background:var(--gold-lt);color:var(--ink)}
+.cband-rating{color:rgba(250,247,242,.72)}
+.cband-stars{color:var(--gold-lt)}
+.cband-head{color:var(--paper)}
+.cband-price{color:var(--gold-lt)}
+.cband-sub{color:rgba(250,247,242,.78)}
+.cband-list li{color:rgba(250,247,242,.82)}
+.cband-list li::before{border-right-color:var(--gold-lt);border-bottom-color:var(--gold-lt)}
+
+/* the stub takes the gold the panel gave up */
+.cband-stub{background:var(--gold-lt);color:var(--ink)}
+/* the perforation punches the BAND's colour now, not the page's, or the tear line
+   would read as a row of cream dots sitting on top of the ink panel */
+.cband-stub::before{
+ background:radial-gradient(circle at 7px 7px, var(--ink) 5.5px, transparent 6px) 0 0/14px 14px repeat-y;
 }
-/* A strip that runs off both edges reads better a little taller than a card did. */
-@media(min-width:1001px){
- .cband-main{padding-top:34px;padding-bottom:34px}
- .cband-stub{padding-top:30px;padding-bottom:30px}
+.cband-stub-eyebrow{color:rgba(15,29,40,.72)}
+.cband-stub-title{color:var(--ink)}
+.cband-stub-sub{color:rgba(15,29,40,.64)}
+.cband-btn{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.cband-btn:hover{background:transparent;color:var(--ink);border-color:var(--ink)}
+.cband-btn2{background:transparent;color:var(--ink);border-color:rgba(15,29,40,.45)}
+.cband-btn2:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.cband-tel{color:var(--ink);border-bottom-color:rgba(15,29,40,.45)}
+@media(max-width:1000px){
+ /* stacked, the tear line moves to the top edge and punches the same ink */
+ .cband-stub::before{
+  background:radial-gradient(circle at 7px 7px, var(--ink) 5.5px, transparent 6px) 0 0/14px 14px repeat-x;
+ }
 }
+
+/* Measured on the gold stub, since these two are 10px uppercase and therefore need 4.5:1,
+   not the 3:1 large text gets. Ink at 64% over --gold-lt blends to rgb(88,86,57), which is
+   4.03:1 and fails; at 78% it is rgb(60,64,50) and 5.74:1. The eyebrow at 72% already
+   measured 4.90:1, and moves with it so the two read as a pair. */
+.cband-stub-eyebrow,
+.cband-stub-sub{color:rgba(15,29,40,.78)}
