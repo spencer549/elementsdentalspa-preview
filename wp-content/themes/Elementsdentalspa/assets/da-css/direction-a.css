@@ -2960,3 +2960,10 @@ section.s.px-band{padding:clamp(52px,4.6vw,80px) 0}
  border-top:1px solid var(--line);
  font-size:12px;line-height:1.6;color:var(--ink-soft);max-width:none;
 }
+
+
+/* Conditions Treated: tiles jump to the in-page write-ups (2026-09-17). */
+.cond-jump::after{transform:translateY(-65%) rotate(45deg)}
+.cond-sections{padding-top:calc(var(--pad) * .5)}
+.cond-body h2[id]{scroll-margin-top:var(--cond-anchor-offset,112px)}
+.cond-body .cond-rel{font-size:15px;line-height:1.7;color:var(--ink-soft);margin-top:4px}
