@@ -2962,8 +2962,16 @@ section.s.px-band{padding:clamp(52px,4.6vw,80px) 0}
 }
 
 
-/* Conditions Treated: tiles jump to the in-page write-ups (2026-09-17). */
-.cond-jump::after{transform:translateY(-65%) rotate(45deg)}
-.cond-sections{padding-top:calc(var(--pad) * .5)}
-.cond-body h2[id]{scroll-margin-top:var(--cond-anchor-offset,112px)}
-.cond-body .cond-rel{font-size:15px;line-height:1.7;color:var(--ink-soft);margin-top:4px}
+/* Conditions Treated: each tile opens its write-up in a light sheet (2026-09-17). */
+.bksheet.cond-sheet{width:min(94vw,640px)}
+.cond-dlg .eyebrow{margin-bottom:10px}
+.cond-dlg-title{font-family:'Bodoni Moda',Georgia,serif;font-optical-sizing:none;font-variation-settings:'opsz' 6;font-weight:500;font-size:clamp(26px,3vw,34px);line-height:1.15;letter-spacing:0;color:var(--ink);margin:0 44px 16px 0}
+.cond-dlg-body p{font-size:16px;line-height:1.75;color:var(--ink-soft);margin:0 0 14px}
+.cond-dlg-body .cond-rel{font-size:14.5px;margin:4px 0 0}
+.cond-dlg-body .cond-rel a{color:var(--gold-text);text-decoration:underline;text-underline-offset:3px}
+.cond-dlg-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px;padding-top:22px;border-top:1px solid var(--line-soft)}
+.cond-dlg-cta .btn{flex:1 1 220px}
+@media(max-width:680px){.bksheet.cond-sheet{width:100%;max-height:92vh;max-height:92dvh;scroll-padding-bottom:150px}.cond-dlg-cta .btn{flex-basis:100%;padding:14px 20px}/* phones: long write-ups scroll inside the sheet, so the two buttons stay pinned to its foot */.cond-dlg-cta{position:sticky;bottom:calc(-22px - env(safe-area-inset-bottom));background:var(--white);margin:18px -20px calc(-22px - env(safe-area-inset-bottom));padding:16px 20px calc(16px + env(safe-area-inset-bottom));gap:10px;box-shadow:0 -12px 20px -16px rgba(15,29,40,.35)}}
+/* JS off: a tile's #cond-slug target shows its sheet; with JS the modal controller owns it. */
+html:not(.eds-js) .bkmodal.cond-modal:target{display:flex}
+html:not(.eds-js) .bkmodal.cond-modal:target .bkscrim,html:not(.eds-js) .bkmodal.cond-modal:target .bksheet{opacity:1;transform:none}

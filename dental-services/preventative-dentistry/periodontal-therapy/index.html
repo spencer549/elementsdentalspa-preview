@@ -216,7 +216,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 <link rel='stylesheet' id='wp-pagenavi-css' href='/elementsdentalspa-preview/wp-content/plugins/wp-pagenavi/css/wp-pagenavi.css?ver=3.0.1' media='all' />
 <link rel='stylesheet' id='twenty-twenty-one-style-css' href='/elementsdentalspa-preview/wp-content/themes/Elementsdentalspa/style.css?ver=1.6' media='all' />
 <link rel='stylesheet' id='twenty-twenty-one-print-style-css' href='/elementsdentalspa-preview/wp-content/themes/Elementsdentalspa/assets/css/print.css?ver=1.6' media='print' />
-<link rel='stylesheet' id='eds-direction-a-css' href='/elementsdentalspa-preview/wp-content/themes/Elementsdentalspa/assets/da-css/direction-a.css?ver=2026-09-17a' media='all' />
+<link rel='stylesheet' id='eds-direction-a-css' href='/elementsdentalspa-preview/wp-content/themes/Elementsdentalspa/assets/da-css/direction-a.css?ver=2026-09-17c' media='all' />
 <link rel="alternate" title="JSON" type="application/json" href="/elementsdentalspa-preview/wp-json/wp/v2/pages/890" /><meta name="generator" content="WordPress 7.1" />
 <link rel='shortlink' href='/elementsdentalspa-preview/?p=890' />
 
@@ -891,7 +891,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <input type='hidden' class='gform_hidden' name='is_submit_2' value='1' />
             <input type='hidden' class='gform_hidden' name='gform_submit' value='2' />
             
-            <input type='hidden' class='gform_hidden' name='gform_currency' data-currency='USD' value='ka4NO1Ulviw25mgZQkXXHoctNQhqaFCvcDDs7btXl3MmtFxC4A/ZDNIXbsAx7PqWIYx1rVZpJXhNzK43G02+BInq7cj99Fa8LnqCXev+feVKZSQ=' />
+            <input type='hidden' class='gform_hidden' name='gform_currency' data-currency='USD' value='p41Yon/7ztc8MnsjtwmrR+XakvJlb0m32v9pa7//f1wB4Sax9HfZnSoyW5jQd766VRz+UDYDOASGnxLEE1RIs0d2JkH3KywOwmdoyrsl/u1FIJs=' />
             <input type='hidden' class='gform_hidden' name='gform_unique_id' value='' />
             <input type='hidden' class='gform_hidden' name='state_2' value='WyJbXSIsImMxMDUwMTU3YWU0YmQ2NmM0ZmQ2YTBlNjE5NDU2MTYyIl0=' />
             <input type='hidden' autocomplete='off' class='gform_hidden' name='gform_target_page_number_2' id='gform_target_page_number_2' value='0' />
@@ -899,7 +899,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <input type='hidden' name='gform_field_values' value='' />
             
         </div>
-                        <p style="display: none !important;" class="akismet-fields-container" data-prefix="ak_"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="237"/><script>
+                        <p style="display: none !important;" class="akismet-fields-container" data-prefix="ak_"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="42"/><script>
 document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );
 </script>
 </p></form>
@@ -960,6 +960,7 @@ gform.initializeOnLoaded( function() {gformInitSpinner( 2, '/elementsdentalspa-p
   var api = {
    modal: modal,
    sheet: sheet,
+   returnTo: function(){ return lastFocus; },
    focusables: function(){
     return [].slice.call(sheet.querySelectorAll(FOCUSABLE))
              .filter(function(el){ return el.offsetParent !== null; });
@@ -967,8 +968,14 @@ gform.initializeOnLoaded( function() {gformInitSpinner( 2, '/elementsdentalspa-p
    open: function(trigger){
     /* Never two sheets at once: opening one closes whatever is already up, or the
        scrim stacks and Escape closes the wrong panel. */
-    if(openModal && openModal !== api) openModal.close();
-    lastFocus = trigger || document.activeElement;
+    var inherited = null;
+    if(openModal && openModal !== api){
+     /* Opened from inside another sheet (Book in a condition popup): hand focus back to
+        whatever opened that first sheet, not to a link that is about to be hidden. */
+     if(trigger && openModal.modal.contains(trigger)) inherited = openModal.returnTo();
+     openModal.close();
+    }
+    lastFocus = inherited || trigger || document.activeElement;
     if(closing){ clearTimeout(closing); closing = null; }
     modal.hidden = false;
     document.body.classList.add('bk-open');

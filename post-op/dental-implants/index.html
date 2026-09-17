@@ -65,7 +65,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 <link rel='stylesheet' id='wp-pagenavi-css' href='/elementsdentalspa-preview/wp-content/plugins/wp-pagenavi/css/wp-pagenavi.css?ver=3.0.1' media='all' />
 <link rel='stylesheet' id='twenty-twenty-one-style-css' href='/elementsdentalspa-preview/wp-content/themes/Elementsdentalspa/style.css?ver=1.6' media='all' />
 <link rel='stylesheet' id='twenty-twenty-one-print-style-css' href='/elementsdentalspa-preview/wp-content/themes/Elementsdentalspa/assets/css/print.css?ver=1.6' media='print' />
-<link rel='stylesheet' id='eds-direction-a-css' href='/elementsdentalspa-preview/wp-content/themes/Elementsdentalspa/assets/da-css/direction-a.css?ver=2026-09-17a' media='all' />
+<link rel='stylesheet' id='eds-direction-a-css' href='/elementsdentalspa-preview/wp-content/themes/Elementsdentalspa/assets/da-css/direction-a.css?ver=2026-09-17c' media='all' />
 <link rel="alternate" title="JSON" type="application/json" href="/elementsdentalspa-preview/wp-json/wp/v2/pages/6634" /><meta name="generator" content="WordPress 7.1" />
 <link rel='shortlink' href='/elementsdentalspa-preview/?p=6634' />
 
@@ -677,7 +677,7 @@ For a medical emergency, including difficulty breathing, call 911 or go to your 
             <input type='hidden' class='gform_hidden' name='is_submit_2' value='1' />
             <input type='hidden' class='gform_hidden' name='gform_submit' value='2' />
             
-            <input type='hidden' class='gform_hidden' name='gform_currency' data-currency='USD' value='vt4uvfB9bLcspmvevAqL5qrtwZRZmTNq4Qo37qeF7R6zzFOoQK+cGo1SgCSHbv3Q24XRXM+dX+Ztz++nbYw0jNfZq9mutzo+3/CVyKidXZr5EKc=' />
+            <input type='hidden' class='gform_hidden' name='gform_currency' data-currency='USD' value='Jl/bazE9jhHn6bnkJm7RzfYELtyueD6lxUSv4CzpfLrd47OqAD7D+/u3Pe+LHK3ILSmDI887cCKL1JDDw6enIX86LY4ayMOjgFgg7BMdvpIKS9w=' />
             <input type='hidden' class='gform_hidden' name='gform_unique_id' value='' />
             <input type='hidden' class='gform_hidden' name='state_2' value='WyJbXSIsImMxMDUwMTU3YWU0YmQ2NmM0ZmQ2YTBlNjE5NDU2MTYyIl0=' />
             <input type='hidden' autocomplete='off' class='gform_hidden' name='gform_target_page_number_2' id='gform_target_page_number_2' value='0' />
@@ -685,7 +685,7 @@ For a medical emergency, including difficulty breathing, call 911 or go to your 
             <input type='hidden' name='gform_field_values' value='' />
             
         </div>
-                        <p style="display: none !important;" class="akismet-fields-container" data-prefix="ak_"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="176"/><script>
+                        <p style="display: none !important;" class="akismet-fields-container" data-prefix="ak_"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="185"/><script>
 document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );
 </script>
 </p></form>
@@ -746,6 +746,7 @@ gform.initializeOnLoaded( function() {gformInitSpinner( 2, '/elementsdentalspa-p
   var api = {
    modal: modal,
    sheet: sheet,
+   returnTo: function(){ return lastFocus; },
    focusables: function(){
     return [].slice.call(sheet.querySelectorAll(FOCUSABLE))
              .filter(function(el){ return el.offsetParent !== null; });
@@ -753,8 +754,14 @@ gform.initializeOnLoaded( function() {gformInitSpinner( 2, '/elementsdentalspa-p
    open: function(trigger){
     /* Never two sheets at once: opening one closes whatever is already up, or the
        scrim stacks and Escape closes the wrong panel. */
-    if(openModal && openModal !== api) openModal.close();
-    lastFocus = trigger || document.activeElement;
+    var inherited = null;
+    if(openModal && openModal !== api){
+     /* Opened from inside another sheet (Book in a condition popup): hand focus back to
+        whatever opened that first sheet, not to a link that is about to be hidden. */
+     if(trigger && openModal.modal.contains(trigger)) inherited = openModal.returnTo();
+     openModal.close();
+    }
+    lastFocus = inherited || trigger || document.activeElement;
     if(closing){ clearTimeout(closing); closing = null; }
     modal.hidden = false;
     document.body.classList.add('bk-open');
