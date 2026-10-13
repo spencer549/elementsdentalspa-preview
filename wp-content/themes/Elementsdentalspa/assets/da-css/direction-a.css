@@ -788,6 +788,7 @@ section.tint .stp i,section.warm .stp i{box-shadow:0 0 0 5px var(--band)}
 /* the band lost a cell, so it is a pair now and must not stretch to three columns */
 .trio{grid-template-columns:repeat(2,1fr);max-width:820px;margin-left:auto;margin-right:auto}
 @media(max-width:680px){.trio{grid-template-columns:1fr}}
+.trio.trio-one{grid-template-columns:1fr;max-width:400px}
 /* short reviews sat top aligned against a cell sized to the longest one */
 .rvslide{align-self:center}
 
@@ -1408,7 +1409,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold-accent);outlin
 /* a tick,not a chevron: the two legs have to be different lengths and it rotates the other way. Equal 7x7 borders at -45deg draws a downward arrowhead. */ .offer li::before{content:"";position:absolute;left:3px;top:6px;width:5px;height:9px;border-right:1.5px solid var(--gold-text);border-bottom:1.5px solid var(--gold-text);transform:rotate(45deg)}
 .offer .btn{margin-top:auto;align-self:flex-start}
 .fineprint{margin-top:clamp(28px,3vw,44px);padding-top:22px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.75;color:var(--ink-soft);max-width:78ch}
+.off-grid.off-grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:1100px){.off-grid.off-grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){.off-grid{grid-template-columns:1fr}}
+@media(max-width:760px){.off-grid.off-grid-3{grid-template-columns:1fr}}
 .arc-list{border-top:1px solid var(--line)}
 .arc-row{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--line-soft);text-decoration:none;color:inherit;transition:padding-left .28s cubic-bezier(.22,.61,.36,1)}
 .arc-row i{font-style:normal;font-family:'Bodoni Moda',Georgia,serif;font-weight:500;font-optical-sizing:none;font-variation-settings:'opsz' 6;font-size:15px;color:var(--gold-text);min-width:26px}
