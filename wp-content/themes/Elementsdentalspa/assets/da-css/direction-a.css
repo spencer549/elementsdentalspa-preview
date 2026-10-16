@@ -3147,3 +3147,25 @@ html:not(.eds-js) .bkmodal.cond-modal:target .bkscrim,html:not(.eds-js) .bkmodal
 .a3-seqcta .btn-line{color:var(--paper);border-color:rgba(250,247,242,.45)}
 .a3-seqcta .btn-line:hover{background:var(--paper);color:var(--ink);border-color:var(--paper)}
 @media(max-width:900px){.a3-cells.cols-3,.a3-cells.cols-2,.a3-split.a3-row.a3-rev{grid-template-columns:1fr}}
+
+/* every ink-coloured text rule above has a dark-surface twin, so nothing can go ink on navy
+   (bold list labels in the closing did exactly that on 2026-10-16) */
+.v3 .a3-dark .prose strong,.v3 .v3close .prose strong,.v3 .a3-dark .prose b,.v3 .v3close .prose b{color:var(--paper)}
+.v3 .a3-dark .prose h3,.v3 .v3close .prose h3,.v3 .a3-dark .prose h4,.v3 .v3close .prose h4{color:var(--paper)}
+.v3 .v3close .prose ul:not(.blist)>li::before{border-color:var(--gold-lt)}
+.v3 .v3close .prose ul:not(.blist)>li::after{border-color:var(--gold-lt)}
+.v3 .v3close .prose ol>li::before{border-color:var(--gold-lt);color:var(--gold-lt)}
+.v3 .a3-dark .prose summary,.v3 .v3close .prose summary,.v3 .a3-dark .prose details .a,.v3 .v3close .prose details .a{color:var(--paper)}
+.v3 .a3-dark .prose .caution,.v3 .v3close .prose .caution{background:rgba(250,247,242,.06)}
+.v3 .a3-dark .prose .caution b,.v3 .v3close .prose .caution b{color:var(--gold-lt)}
+.v3 .a3-dark .prose .caution p,.v3 .v3close .prose .caution p{color:rgba(250,247,242,.85)}
+.v3 .a3-dark .prose .blist li,.v3 .v3close .prose .blist li{color:rgba(250,247,242,.85);border-color:rgba(250,247,242,.18)}
+.v3 .a3-dark .prose table,.v3 .v3close .prose table{color:rgba(250,247,242,.85)}
+.v3 .a3-dark .prose .figcap,.v3 .v3close .prose .figcap,.v3 .a3-dark .figcap,.v3 .v3close .figcap{color:rgba(250,247,242,.6)}
+/* a before/after composite keeps its whole frame; the frame itself is the one 4:3 size every photo uses, drawn as a white card so it never reads as a smaller image */
+.ph43.ph43-ba{background:var(--white);border:1px solid var(--line)}
+.a3-dark .ph43.ph43-ba{background:rgba(250,247,242,.08);border-color:rgba(250,247,242,.2)}
+/* the two-column bullet grid (.blist) is a white card; on a dark surface it goes translucent so its paper text shows */
+.v3 .a3-dark .prose .blist,.v3 .v3close .prose .blist{background:rgba(250,247,242,.06);border-color:rgba(250,247,242,.18)}
+.v3 .a3-dark .prose .blist li,.v3 .v3close .prose .blist li{background:transparent;color:rgba(250,247,242,.88);border-color:rgba(250,247,242,.18)}
+.v3 .a3-dark .prose .blist li::before,.v3 .v3close .prose .blist li::before{border-color:var(--gold-lt)}
