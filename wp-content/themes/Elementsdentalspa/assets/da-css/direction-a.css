@@ -3112,3 +3112,38 @@ html:not(.eds-js) .bkmodal.cond-modal:target .bkscrim,html:not(.eds-js) .bkmodal
 /* a two-column bullet grid or a figure inside a two-column chapter spans both columns; left inside one column it ran 250-500px past the other */
 .a3-twocol .blist,.a3-twocol figure,.a3-twocol .svcembed{column-span:all}
 .a3-twocol .blist{margin-top:6px}
+
+/* 2026-10-16 (Spencer): links in the copy are bold and gold so the skimmer sees them; "call us now"
+   phrases link to the contact page; text blocks sit on white panels; short h3 runs become numbered
+   cells; bullets get a gold tick; a chapter's own photograph gets a split row of its own. */
+.v3 .prose a:not(.btn):not(.v3link),.v3 .prose a.v3link{color:var(--gold-text);font-weight:700;text-decoration:underline;text-decoration-color:var(--gold);text-decoration-thickness:2px;text-underline-offset:3px}
+@media(hover:hover) and (pointer:fine){.v3 .prose a:not(.btn):hover{color:var(--ink);text-decoration-color:var(--ink)}}
+.v3 .a3-dark .prose a:not(.btn),.v3 .v3close .prose a:not(.btn){color:var(--gold-lt);text-decoration-color:var(--gold-lt)}
+.v3 .prose strong{color:var(--ink)}
+.a3-blocks>div{background:var(--white);border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:var(--r-sm);padding:28px 30px 26px;box-shadow:var(--shadow)}
+.a3-blocks.cols-1>div{padding:32px 36px 30px}
+.a3-blocks .prose>p:first-of-type{font-size:18px;color:var(--ink)}
+.a3-cells{display:grid;gap:18px;margin-top:22px}
+.a3-cells.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.a3-cells.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.a3-cell{background:var(--band);border-radius:var(--r-sm);padding:22px 22px 20px;position:relative}
+.a3-cell .a3-cellnum{font-family:'Bodoni Moda',Georgia,serif;font-weight:500;font-optical-sizing:none;font-variation-settings:'opsz' 6;font-size:26px;color:var(--gold-text);display:block;margin-bottom:8px}
+.a3-cell h3{font-size:19px;margin:0 0 8px}
+.a3-cell p{font-size:15.5px !important;margin-bottom:10px}
+.a3-cell p:last-child{margin-bottom:0}
+.a3-dark .a3-cell{background:rgba(250,247,242,.07)}
+.a3-dark .a3-cell .a3-cellnum{color:var(--gold-lt)}
+.a3-twocol .a3-cells{column-span:all}
+.v3 .prose ul:not(.blist)>li{padding-left:28px}
+.v3 .prose ul:not(.blist)>li::before{width:16px;height:16px;top:6px;border-radius:50%;background:none;border:1px solid var(--gold);}
+.v3 .prose ul:not(.blist)>li::after{content:"";position:absolute;left:5px;top:10px;width:4px;height:7px;border-right:1.5px solid var(--gold-text);border-bottom:1.5px solid var(--gold-text);transform:rotate(45deg)}
+.a3-dark .prose ul:not(.blist)>li::before{border-color:var(--gold-lt)}
+.a3-dark .prose ul:not(.blist)>li::after{border-color:var(--gold-lt)}
+.a3-split.a3-row{margin-top:clamp(40px,4.4vw,64px)}
+.a3-split.a3-row.a3-rev{grid-template-columns:var(--phw) minmax(0,1fr)}
+.a3-seq .ph43,.a3-card .ph43{max-width:100%;margin-bottom:16px}
+.a3-seqcta{border-top:1px solid rgba(250,247,242,.18);padding-top:26px}
+.a3-seqcta .v3cta-act{margin-top:0}
+.a3-seqcta .btn-line{color:var(--paper);border-color:rgba(250,247,242,.45)}
+.a3-seqcta .btn-line:hover{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+@media(max-width:900px){.a3-cells.cols-3,.a3-cells.cols-2,.a3-split.a3-row.a3-rev{grid-template-columns:1fr}}
