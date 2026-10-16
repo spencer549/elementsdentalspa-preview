@@ -1191,7 +1191,7 @@ footer.site img{height:44px;width:auto;margin-bottom:14px}
 @media(max-width:1000px){
   .hub-hero{min-height:0}
   .hub-hero-img{position:relative;width:100%;height:280px;-webkit-mask-image:none;mask-image:none}
-  .hub-hero-in{min-height:0;padding:32px 0}
+  .hub-hero-in{min-height:0;padding:32px 18px} /* 0 horizontal padding put the H1 at x=0 on every hub page (review 2026-10-16) */
 }
 .figcap{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-top:10px}
 /* service detail : content left,imagery right,so the measure stays readable and the right side is no longer dead. Images only,not a link rail. */ .doc{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:70px;align-items:start}
@@ -3002,7 +3002,7 @@ html:not(.eds-js) .bkmodal.cond-modal:target .bkscrim,html:not(.eds-js) .bkmodal
 .ph43{aspect-ratio:4/3;width:100%;max-width:var(--phw);margin:0;overflow:hidden;border-radius:var(--r-sm);background:var(--band)}
 .ph43 img{width:100%;height:100%;object-fit:cover;display:block}
 .ph43 .figcap{margin-top:10px}
-.ph43.ph43-ba img{object-fit:contain;background:var(--band)}
+.ph43.ph43-ba{aspect-ratio:auto}.ph43.ph43-ba img{height:auto;object-fit:fill}
 .v3stick{position:sticky;top:96px}
 .v3gold{background:var(--gold);border-color:var(--gold);color:var(--ink)}
 .v3gold:hover{background:var(--gold-lt);border-color:var(--gold-lt);color:var(--ink)}
@@ -3066,6 +3066,8 @@ html:not(.eds-js) .bkmodal.cond-modal:target .bkscrim,html:not(.eds-js) .bkmodal
 .a3-twocol li,.a3-twocol h3{break-inside:avoid}
 .a3-twocol h3{break-after:avoid} /* Chrome honours this in multicol (tested 2026-10-16); gluing h3+paragraph with break-inside pushed whole blocks into column two and left a hole */
 .a3-twocol .svcfig{margin:26px 0 0}
+.a3-wide{margin-top:clamp(28px,3vw,40px)}.a3-wide .svcfig{margin:0 auto}
+.v3 .prose a.a3-inlinebtn{text-decoration:none;font-weight:600;margin:4px 0}
 .v3 .prose .svcfig img{max-height:none;object-fit:fill}
 @media(max-width:900px){.a3-twocol{columns:1}}
 .a3-blocks h2{font-size:23px}
@@ -3166,8 +3168,8 @@ html:not(.eds-js) .bkmodal.cond-modal:target .bkscrim,html:not(.eds-js) .bkmodal
 .v3 .a3-dark .prose table,.v3 .v3close .prose table{color:rgba(250,247,242,.85)}
 .v3 .a3-dark .prose .figcap,.v3 .v3close .prose .figcap,.v3 .a3-dark .figcap,.v3 .v3close .figcap{color:rgba(250,247,242,.6)}
 /* a before/after composite keeps its whole frame; the frame itself is the one 4:3 size every photo uses, drawn as a white card so it never reads as a smaller image */
-.ph43.ph43-ba{background:var(--white);border:1px solid var(--line)}
-.a3-dark .ph43.ph43-ba{background:rgba(250,247,242,.08);border-color:rgba(250,247,242,.2)}
+.ph43.ph43-ba{background:none;border:0}
+.a3-dark .ph43.ph43-ba{background:none}
 /* the two-column bullet grid (.blist) is a white card; on a dark surface it goes translucent so its paper text shows */
 .v3 .a3-dark .prose .blist,.v3 .v3close .prose .blist{background:rgba(250,247,242,.06);border-color:rgba(250,247,242,.18)}
 .v3 .a3-dark .prose .blist li,.v3 .v3close .prose .blist li{background:transparent;color:rgba(250,247,242,.88);border-color:rgba(250,247,242,.18)}
