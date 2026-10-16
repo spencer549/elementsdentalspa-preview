@@ -3064,6 +3064,9 @@ html:not(.eds-js) .bkmodal.cond-modal:target .bkscrim,html:not(.eds-js) .bkmodal
 .a3-blocks>div{border-top:1px solid var(--gold);padding-top:22px}
 .a3-twocol{columns:2;column-gap:56px}
 .a3-twocol li,.a3-twocol h3{break-inside:avoid}
+.a3-twocol h3{break-after:avoid} /* Chrome honours this in multicol (tested 2026-10-16); gluing h3+paragraph with break-inside pushed whole blocks into column two and left a hole */
+.a3-twocol .svcfig{margin:26px 0 0}
+.v3 .prose .svcfig img{max-height:none;object-fit:fill}
 @media(max-width:900px){.a3-twocol{columns:1}}
 .a3-blocks h2{font-size:23px}
 .a3-dark{background:var(--ink);color:var(--paper)}
