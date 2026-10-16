@@ -2979,3 +2979,136 @@ section.s.px-band{padding:clamp(52px,4.6vw,80px) 0}
 /* JS off: a tile's #cond-slug target shows its sheet; with JS the modal controller owns it. */
 html:not(.eds-js) .bkmodal.cond-modal:target{display:flex}
 html:not(.eds-js) .bkmodal.cond-modal:target .bkscrim,html:not(.eds-js) .bkmodal.cond-modal:target .bksheet{opacity:1;transform:none}
+
+
+/* ===========================================================================
+   Direction A inner pages, "Before, during, after" (Spencer 2026-10-16).
+   Shared frame (.v3*), the stage system (.a3-*), the hanging-frame banner (.v3h3*).
+   Source of truth for the mockup round: Elements Dental Spa/build/mock_inner_v3.py.
+   =========================================================================== */
+/* ---------- shared: one body weight, one photo frame, one ask ---------- */
+.v3 .prose{max-width:none}
+.v3 .prose p,.v3 .prose li{font-weight:400;font-size:17px;line-height:1.78;color:var(--ink-soft)}
+.v3 .prose p{margin-bottom:18px}
+.v3 .prose p:last-child{margin-bottom:0}
+.v3 .prose h3{font-size:21px;margin:26px 0 10px}
+.v3 .prose img{max-width:100%;height:auto;border-radius:var(--r-sm)}
+.v3 .prose ol{padding-left:46px;margin:6px 0 22px}
+.v3 .prose ol > li{margin-bottom:14px;padding-left:0}
+.v3 .prose ol > li::before{content:counter(eds-ol);left:-46px;top:-2px;width:30px;height:30px;border-radius:50%;border:1px solid var(--gold);background:none;font-size:14px;line-height:28px;text-align:center;color:var(--gold-text)}
+.a3-dark .prose ol > li::before{border-color:var(--gold-lt);color:var(--gold-lt)}
+.v3 h2{font-size:clamp(26px,2.6vw,34px);line-height:1.15;margin:0 0 16px}
+.v3{--phw:520px}
+.ph43{aspect-ratio:4/3;width:100%;max-width:var(--phw);margin:0;overflow:hidden;border-radius:var(--r-sm);background:var(--band)}
+.ph43 img{width:100%;height:100%;object-fit:cover;display:block}
+.ph43 .figcap{margin-top:10px}
+.ph43.ph43-ba img{object-fit:contain;background:var(--band)}
+.v3stick{position:sticky;top:96px}
+.v3gold{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.v3gold:hover{background:var(--gold-lt);border-color:var(--gold-lt);color:var(--ink)}
+.v3cta-act{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.v3proof{display:flex;align-items:center;gap:10px;margin-top:18px;font-size:13.5px;color:var(--ink-soft)}
+.v3proof span:first-child{color:var(--gold);letter-spacing:.08em}
+.v3cta{background:var(--band);padding:clamp(48px,5.4vw,80px) 0 !important}
+.v3cta-card{background:var(--white);border-radius:var(--r);border-top:5px solid var(--gold);box-shadow:var(--shadow-lg);padding:clamp(30px,3.6vw,52px) clamp(28px,3.4vw,56px);display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:clamp(28px,3.6vw,56px);align-items:center}
+.v3cta h3{font-size:clamp(28px,3vw,42px);margin:0 0 10px}
+.v3cta p{margin:0;color:var(--ink-soft);font-size:17px}
+.v3cta .v3cta-act{margin-top:0;flex-direction:column;align-items:stretch}
+.v3cta .v3cta-act .btn{text-align:center;padding:16px 26px}
+.v3cta .v3proof{justify-content:center;margin-top:8px}
+@media(max-width:900px){.v3cta-card{grid-template-columns:1fr;gap:24px}}
+.v3close{background:var(--ink);color:var(--paper);padding:clamp(64px,7vw,110px) 0 !important}
+.v3close .eyebrow{color:var(--gold-lt)}
+.v3close h2{color:var(--paper);font-size:clamp(30px,3.4vw,46px)}
+.v3close .prose p,.v3close .prose li{color:rgba(250,247,242,.8)}
+.v3 .v3close .prose a{color:var(--gold-lt);border-bottom:1px solid rgba(218,188,87,.5)}
+.v3 .v3close .prose a:is(.telink,[href^="tel:"]):not(.btn):not(.btn-line):not(.cta-tel):not(.hphone){color:var(--gold-lt);text-decoration-color:var(--gold-lt);border-bottom:0}
+/* every phone number on a dark surface reads gold, whatever the theme's tel rule says (the urgent
+   box's .po-call was ink on ink on the live preview too). PORT NOTE: fix .po-call in direction-a.css. */
+.v3 :is(.a3-dark,.v3close,.po-urgent) a:is(.telink,.po-call,[href^="tel:"]):not(.btn):not(.btn-line):not(.cta-tel):not(.hphone){color:var(--gold-lt);text-decoration-color:var(--gold-lt);font-weight:700}
+.v3 .po-urgent a.po-call{display:inline-block;margin-top:14px;font-family:'Bodoni Moda',Georgia,serif;font-weight:500;font-optical-sizing:none;font-variation-settings:'opsz' 6;font-size:26px;letter-spacing:.01em;text-decoration:none;border-bottom:2px solid var(--gold-lt);padding-bottom:2px}
+.v3close-in{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:56px;align-items:center}
+.v3close-act{display:flex;flex-direction:column;gap:12px;align-items:stretch}
+.v3close-act .btn{text-align:center}
+.v3close-act .btn-line{color:var(--paper);border-color:rgba(250,247,242,.45)}
+.v3close-act .btn-line:hover{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.v3close .v3proof{color:rgba(250,247,242,.72);justify-content:center}
+.v3caution{border-left:3px solid var(--gold);padding:4px 0 4px 22px;margin-top:26px}
+.v3caution b{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:8px}
+.v3caution p{font-size:15.5px;margin:0}
+.v3disc{font-size:13.5px;font-style:italic;color:rgba(250,247,242,.55);max-width:75ch;margin:44px 0 0;line-height:1.6}
+.v3 .po-urgent{margin-bottom:clamp(28px,3vw,40px)}
+.v3tool{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px;background:var(--white);border:1px solid var(--line);border-radius:var(--r-sm);padding:14px 18px;margin-bottom:clamp(36px,4vw,56px)}
+.v3tool-l,.v3tool-r{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+.v3keepnote{font-size:13px;color:var(--ink-soft);max-width:34ch;line-height:1.4}
+.v3tool .btn{padding:11px 18px;font-size:11px}
+.v3keep{font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--gold-text);margin-right:6px}
+.v3seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.v3seg a{padding:9px 16px;font-size:12.5px;color:var(--ink-soft)}
+.v3seg a.on{background:var(--ink);color:var(--paper)}
+@media(max-width:900px){.v3{--phw:100%}.v3stick{position:static}.v3close-in{grid-template-columns:1fr;gap:28px}}
+
+/* ---------- A: before, during, after ---------- */
+.a3-stagehead{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:end;margin-bottom:clamp(40px,4.4vw,64px)}
+.a3-stagehead.a3-solo{grid-template-columns:1fr}
+.a3-num{display:block;font-family:'Inter Tight',system-ui,sans-serif;font-size:11px;letter-spacing:.32em;text-transform:uppercase;font-weight:600;color:var(--gold-text);margin-bottom:12px}
+.a3-title{font-size:clamp(34px,4.2vw,58px);line-height:1.05;margin:0}
+.a3-lede p{font-size:19px;line-height:1.7;color:var(--ink)}
+.a3-split{display:grid;grid-template-columns:minmax(0,1fr) var(--phw);gap:clamp(36px,4.4vw,64px);align-items:start}
+.a3-split.a3-rev{grid-template-columns:var(--phw) minmax(0,1fr)}
+.a3-blocks{display:grid;gap:40px clamp(28px,3.4vw,56px);margin-top:clamp(40px,4.4vw,64px)}
+.a3-blocks+.a3-split{margin-top:clamp(40px,4.4vw,64px)}
+.a3-blocks.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.a3-blocks.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.a3-blocks.cols-1{grid-template-columns:1fr}
+.a3-blocks>div{border-top:1px solid var(--gold);padding-top:22px}
+.a3-twocol{columns:2;column-gap:56px}
+.a3-twocol li,.a3-twocol h3{break-inside:avoid}
+@media(max-width:900px){.a3-twocol{columns:1}}
+.a3-blocks h2{font-size:23px}
+.a3-dark{background:var(--ink);color:var(--paper)}
+.a3-dark h2,.a3-dark .a3-title{color:var(--paper)}
+.a3-dark .a3-num{color:var(--gold-lt)}
+.a3-dark .prose p,.a3-dark .prose li{color:rgba(250,247,242,.8)}
+.a3-dark .prose a{color:var(--gold-lt)}
+.a3-seq{list-style:none;margin:0;padding:0}
+.a3-seq>li{display:grid;grid-template-columns:64px minmax(0,1fr);gap:20px;padding:26px 0;border-top:1px solid rgba(250,247,242,.18)}
+.a3-seq>li:first-child{padding-top:0;border-top:0}
+.a3-dark .prose ul:not(.blist) > li::before{background:var(--gold-lt)}
+.a3-dark .prose ol > li::before{color:var(--gold-lt)}
+.a3-step{font-family:'Bodoni Moda',Georgia,serif;font-weight:500;font-optical-sizing:none;font-variation-settings:'opsz' 6;font-size:40px;line-height:1;color:var(--gold-lt)}
+.a3-seq h2{font-size:24px;margin-bottom:10px}
+.a3-cream{background:var(--band)}
+.a3-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;margin-top:clamp(40px,4.4vw,64px)}
+.a3-card{background:var(--white);border-radius:var(--r-sm);padding:28px 28px 26px;box-shadow:var(--shadow)}
+.a3-card h2{font-size:21px;margin-bottom:10px}
+.a3-card .prose p{font-size:16px}
+.a3-inter{display:grid;grid-template-columns:var(--phw) minmax(0,1fr);gap:clamp(36px,4.4vw,64px);align-items:center;margin-bottom:clamp(40px,4.4vw,64px)}
+.a3-inter h3{font-size:clamp(24px,2.4vw,32px);margin:0 0 10px}
+.a3-inter p{color:var(--ink-soft);margin:0}
+@media(max-width:900px){.a3-stagehead,.a3-split,.a3-split.a3-rev,.a3-blocks.cols-3,.a3-blocks.cols-2,.a3-inter{grid-template-columns:1fr}.a3-split.a3-rev .a3-photo{order:-1}}
+.v3hb{display:flex;flex-wrap:wrap;gap:10px}
+/* 3 cream band with the photograph hanging over its edge */
+.v3h3{background:var(--band);margin-top:18px}
+.v3h3-in{display:grid;grid-template-columns:minmax(0,1fr) 520px;gap:clamp(36px,4.8vw,72px);align-items:center;padding-top:56px;padding-bottom:56px}
+.v3h3-copy h1{font-size:clamp(38px,4.4vw,62px);margin:0 0 18px}
+.v3h3-copy .lede{font-size:18px;color:var(--ink-soft);margin-bottom:28px;max-width:46ch}
+.v3h3-img{margin:0 0 -140px;aspect-ratio:4/3;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow-lg);border:6px solid var(--paper)}
+.v3h3-img img{width:100%;height:100%;object-fit:cover;display:block}
+.v3h3+.v3 .a3-stage:first-child{padding-top:calc(var(--pad) + 100px)}
+@media(max-width:900px){.v3h3-in{grid-template-columns:1fr;gap:28px;padding-top:36px;padding-bottom:36px}.v3h3-img{margin:0}.v3h3+.v3 .a3-stage:first-child{padding-top:var(--pad)}}
+
+/* post-op: the lede inside a dark stage, and the urgent box phone (ink on ink on the live preview:
+   the generic main a[href^="tel:"] rule outranked .po-call) */
+.a3-lede-dark p{color:rgba(250,247,242,.82);font-size:19px;line-height:1.7;margin-bottom:28px}
+.po-urgent a.po-call,main .po-urgent a[href^="tel:"]:not(.btn):not(.btn-line):not(.cta-tel):not(.hphone){display:inline-block;margin-top:14px;font-family:'Bodoni Moda',Georgia,serif;font-weight:500;font-optical-sizing:none;font-variation-settings:'opsz' 6;font-size:26px;letter-spacing:.01em;color:var(--gold-lt);text-decoration:none;border-bottom:2px solid var(--gold-lt);padding-bottom:2px}
+.v3h3-solo .v3h3-in{grid-template-columns:1fr}
+.v3h3-solo .v3h3-copy .lede{max-width:62ch}
+
+.a3-split.a3-center{align-items:center}
+.a3-introwide{margin-bottom:clamp(40px,4.4vw,64px)}
+.a3-introwide p{font-size:18px;line-height:1.7;color:var(--ink)}
+.a3-stagehead.a3-solo+.a3-introwide{margin-top:calc(-1 * clamp(20px,2.2vw,32px))}
+/* a two-column bullet grid or a figure inside a two-column chapter spans both columns; left inside one column it ran 250-500px past the other */
+.a3-twocol .blist,.a3-twocol figure,.a3-twocol .svcembed{column-span:all}
+.a3-twocol .blist{margin-top:6px}
