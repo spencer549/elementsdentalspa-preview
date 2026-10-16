@@ -3174,3 +3174,13 @@ html:not(.eds-js) .bkmodal.cond-modal:target .bkscrim,html:not(.eds-js) .bkmodal
 .v3 .a3-dark .prose .blist,.v3 .v3close .prose .blist{background:rgba(250,247,242,.06);border-color:rgba(250,247,242,.18)}
 .v3 .a3-dark .prose .blist li,.v3 .v3close .prose .blist li{background:transparent;color:rgba(250,247,242,.88);border-color:rgba(250,247,242,.18)}
 .v3 .a3-dark .prose .blist li::before,.v3 .v3close .prose .blist li::before{border-color:var(--gold-lt)}
+
+/* Cookie consent banner (2026-10-16). Fixed card, bottom left, never covers the contact tab. */
+.eds-cc{position:fixed;left:16px;right:16px;bottom:16px;z-index:9000;max-width:520px;background:var(--white);color:var(--ink);border:1px solid var(--line);border-top:4px solid var(--gold);border-radius:var(--r-sm);box-shadow:var(--shadow-lg);padding:20px 22px 18px}
+.eds-cc[hidden]{display:none}
+.eds-cc-t{font-family:'Bodoni Moda',Georgia,serif;font-weight:500;font-size:21px;margin:0 0 6px}
+.eds-cc p{font-size:14.5px;line-height:1.55;margin:0 0 14px;color:var(--ink-soft)}
+.eds-cc p a{color:var(--gold-text);font-weight:600;text-decoration:underline}
+.eds-cc-act{display:flex;gap:10px;flex-wrap:wrap}
+.eds-cc-act .btn{padding:11px 20px;font-size:14px}
+@media(max-width:600px){.eds-cc{left:12px;right:12px;bottom:12px;padding:16px 16px 14px}}

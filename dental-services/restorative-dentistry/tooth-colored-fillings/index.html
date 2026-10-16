@@ -2,6 +2,13 @@
 <html lang="en-US">
 <head>
 <meta name="robots" content="noindex,nofollow">
+<!-- Consent Mode default: analytics and advertising storage stay denied until the visitor accepts
+     the banner in the footer (privacy policy, Cookies and tracking). eds-consent -->
+<script>/*eds-consent*/window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+var edsCc=null;try{edsCc=localStorage.getItem('eds_cc');}catch(e){}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',functionality_storage:'granted',security_storage:'granted',wait_for_update:500});
+if(edsCc==='granted'){gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});}
+</script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -79,7 +86,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 <link rel='stylesheet' id='wp-pagenavi-css' href='/elementsdentalspa-preview/wp-content/plugins/wp-pagenavi/css/wp-pagenavi.css?ver=3.0.1' media='all' />
 <link rel='stylesheet' id='twenty-twenty-one-style-css' href='/elementsdentalspa-preview/wp-content/themes/Elementsdentalspa/style.css?ver=1.6' media='all' />
 <link rel='stylesheet' id='twenty-twenty-one-print-style-css' href='/elementsdentalspa-preview/wp-content/themes/Elementsdentalspa/assets/css/print.css?ver=1.6' media='print' />
-<link rel='stylesheet' id='eds-direction-a-css' href='/elementsdentalspa-preview/wp-content/themes/Elementsdentalspa/assets/da-css/direction-a.css?ver=2026-10-16g' media='all' />
+<link rel='stylesheet' id='eds-direction-a-css' href='/elementsdentalspa-preview/wp-content/themes/Elementsdentalspa/assets/da-css/direction-a.css?ver=2026-10-16h' media='all' />
 <link rel="alternate" title="JSON" type="application/json" href="/elementsdentalspa-preview/wp-json/wp/v2/pages/898" /><link rel='shortlink' href='/elementsdentalspa-preview/?p=898' />
 
 
@@ -618,12 +625,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="/elementsdentalspa-preview/privacy-policy/">Privacy</a> &middot;
       <a href="/elementsdentalspa-preview/terms-conditions/">Terms</a> &middot;
       <a href="/elementsdentalspa-preview/gdpr-request/">Your data</a> &middot;
-      <a href="/elementsdentalspa-preview/sitemap/">Sitemap</a>
+      <a href="/elementsdentalspa-preview/sitemap/">Sitemap</a> &middot;
+      <a href="#" id="eds-cc-open">Cookie settings</a>
     </span>
   </div>
   <p class="legal">The content on this site is provided for general informational purposes and does not substitute for an in-person evaluation by a licensed dentist. Individual results vary based on the patient&#8217;s oral health, anatomy and treatment plan. Candidacy for any treatment depends on an in-person evaluation. Patient reviews shown here reflect individual experiences and do not guarantee similar outcomes.</p>
 </div>
 </footer>
+<!-- Cookie consent banner (client chose one 2026-10-12). Analytics and advertising cookies stay off
+     until Accept; Decline keeps them off; the footer "Cookie settings" link reopens this. eds-consent -->
+<div id="eds-cc" class="eds-cc" role="dialog" aria-labelledby="eds-cc-h" hidden>
+  <div class="eds-cc-in">
+    <p id="eds-cc-h" class="eds-cc-t">Cookies on this site</p>
+    <p>We use analytics and advertising cookies to see how the site is used. They stay off until you accept. Cookies the site needs to work are always on. <a href="/elementsdentalspa-preview/privacy-policy/">Privacy policy</a></p>
+    <div class="eds-cc-act">
+      <button type="button" class="btn v3gold" data-cc="granted">Accept</button>
+      <button type="button" class="btn btn-line" data-cc="denied">Decline</button>
+    </div>
+  </div>
+</div>
+<script>/*eds-consent*/(function(){var k='eds_cc',b=document.getElementById('eds-cc');if(!b)return;
+function g(){try{return localStorage.getItem(k);}catch(e){return null;}}
+function show(){b.hidden=false;}function hide(){b.hidden=true;}
+function set(v){try{localStorage.setItem(k,v);}catch(e){}
+ var s=v==='granted'?'granted':'denied';
+ if(typeof gtag==='function'){gtag('consent','update',{ad_storage:s,ad_user_data:s,ad_personalization:s,analytics_storage:s});}
+ window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'eds_consent',eds_consent:s});hide();}
+b.addEventListener('click',function(e){var t=e.target.closest('[data-cc]');if(t){set(t.getAttribute('data-cc'));}});
+var o=document.getElementById('eds-cc-open');if(o){o.addEventListener('click',function(e){e.preventDefault();show();b.querySelector('[data-cc]').focus();});}
+if(!g()){show();}})();</script>
 
 <div class="edgetabs">
  <a class="edgetab edgetab-contact"
@@ -668,7 +698,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="formnote"><b>Do not send medical details through this form.</b> For a dental emergency during office hours, call <a href="tel:+12253988812">(225) 398-8812</a>.</p>
    
                 <div class='gf_browser_unknown gform_wrapper gravity-theme gform-theme--no-framework' data-form-theme='gravity-theme' data-form-index='0' id='gform_wrapper_2' style='display:none'><div id='gf_2' class='gform_anchor' tabindex='-1'></div><form method='post' enctype='multipart/form-data' target='gform_ajax_frame_2' id='gform_2'  action='/elementsdentalspa-preview/dental-services/restorative-dentistry/tooth-colored-fillings/#gf_2' data-formid='2' novalidate>
-                        <div class='gform-body gform_body'><div id='gform_fields_2' class='gform_fields top_label form_sublabel_below description_below validation_below'><div id="field_2_16" class="gfield gfield--type-honeypot gform_validation_container field_sublabel_below gfield--has-description field_description_below field_validation_below gfield_visibility_visible"  ><label class='gfield_label gform-field-label' for='input_2_16'>Email</label><div class='ginput_container'><input name='input_16' id='input_2_16' type='text' value='' autocomplete='new-password'/></div><div class='gfield_description' id='gfield_description_2_16'>This field is for validation purposes and should be left unchanged.</div></div><div id="field_2_1" class="gfield gfield--type-text gfield--input-type-text gfield--width-half req_char_sym capitalize-text gfield_contains_required field_sublabel_below gfield--no-description field_description_below hidden_label field_validation_below gfield_visibility_visible"  ><label class='gfield_label gform-field-label' for='input_2_1'>Name<span class="gfield_required"><span class="gfield_required gfield_required_text">(Required)</span></span></label><div class='ginput_container ginput_container_text'><input name='input_1' id='input_2_1' type='text' value='' class='medium'    placeholder='Name' aria-required="true" aria-invalid="false"   /></div></div><div id="field_2_4" class="gfield gfield--type-email gfield--input-type-email gfield--width-half email-minus gfield_contains_required field_sublabel_below gfield--no-description field_description_below hidden_label field_validation_below gfield_visibility_visible"  ><label class='gfield_label gform-field-label' for='input_2_4'>Email Address:<span class="gfield_required"><span class="gfield_required gfield_required_text">(Required)</span></span></label><div class='ginput_container ginput_container_email'>
+                        <div class='gform-body gform_body'><div id='gform_fields_2' class='gform_fields top_label form_sublabel_below description_below validation_below'><div id="field_2_16" class="gfield gfield--type-honeypot gform_validation_container field_sublabel_below gfield--has-description field_description_below field_validation_below gfield_visibility_visible"  ><label class='gfield_label gform-field-label' for='input_2_16'>URL</label><div class='ginput_container'><input name='input_16' id='input_2_16' type='text' value='' autocomplete='new-password'/></div><div class='gfield_description' id='gfield_description_2_16'>This field is for validation purposes and should be left unchanged.</div></div><div id="field_2_1" class="gfield gfield--type-text gfield--input-type-text gfield--width-half req_char_sym capitalize-text gfield_contains_required field_sublabel_below gfield--no-description field_description_below hidden_label field_validation_below gfield_visibility_visible"  ><label class='gfield_label gform-field-label' for='input_2_1'>Name<span class="gfield_required"><span class="gfield_required gfield_required_text">(Required)</span></span></label><div class='ginput_container ginput_container_text'><input name='input_1' id='input_2_1' type='text' value='' class='medium'    placeholder='Name' aria-required="true" aria-invalid="false"   /></div></div><div id="field_2_4" class="gfield gfield--type-email gfield--input-type-email gfield--width-half email-minus gfield_contains_required field_sublabel_below gfield--no-description field_description_below hidden_label field_validation_below gfield_visibility_visible"  ><label class='gfield_label gform-field-label' for='input_2_4'>Email Address:<span class="gfield_required"><span class="gfield_required gfield_required_text">(Required)</span></span></label><div class='ginput_container ginput_container_email'>
                             <input name='input_4' id='input_2_4' type='email' value='' class='medium'   placeholder='Email Address:' aria-required="true" aria-invalid="false"  />
                         </div></div><div id="field_2_10" class="gfield gfield--type-phone gfield--input-type-phone gfield--width-half gfield_contains_required field_sublabel_below gfield--no-description field_description_below hidden_label field_validation_below gfield_visibility_visible"  ><label class='gfield_label gform-field-label' for='input_2_10'>Phone No.<span class="gfield_required"><span class="gfield_required gfield_required_text">(Required)</span></span></label><div class='ginput_container ginput_container_phone'><input name='input_10' id='input_2_10' type='tel' value='' class='medium'  placeholder='Phone No.' aria-required="true" aria-invalid="false"   /></div></div><div id="field_2_13" class="gfield gfield--type-select gfield--input-type-select gfield--width-half select-option-jquery gfield_contains_required field_sublabel_below gfield--no-description field_description_below hidden_label field_validation_below gfield_visibility_visible"  ><label class='gfield_label gform-field-label' for='input_2_13'>Select Service<span class="gfield_required"><span class="gfield_required gfield_required_text">(Required)</span></span></label><div class='ginput_container ginput_container_select'><select name='input_13' id='input_2_13' class='medium gfield_select'    aria-required="true" aria-invalid="false" ><option value='' selected='selected' class='gf_placeholder'>Select Service</option><option value='Dental Services' >Dental Services</option><option value='Aligners (Invisalign)' >Aligners (Invisalign)</option><option value='Cosmetic Dentistry' >Cosmetic Dentistry</option><option value='Elements Dental Membership' >Elements Dental Membership</option><option value='Emergency Dentistry' >Emergency Dentistry</option><option value='Implant Dentistry' >Implant Dentistry</option><option value='Laser Dentistry' >Laser Dentistry</option><option value='Preventative Dentistry' >Preventative Dentistry</option><option value='Restorative Dentistry' >Restorative Dentistry</option><option value='Sedation Dentistry' >Sedation Dentistry</option><option value='Snoring, Sleep &amp; Airway' >Snoring, Sleep &amp; Airway</option><option value='TMJ Disorder Treatment' >TMJ Disorder Treatment</option><option value='Veneers' >Veneers</option><option value='Whitening' >Whitening</option><option value='Aesthetic Spa Services' >Aesthetic Spa Services</option><option value='EmFace' >EmFace</option><option value='Exion' >Exion</option><option value='Injectable' >Injectable</option><option value='Laser' >Laser</option><option value='PRF' >PRF</option><option value='Other' >Other</option></select></div></div><div id="field_2_9" class="gfield gfield--type-textarea gfield--input-type-textarea gfield--width-full field_sublabel_below gfield--no-description field_description_below hidden_label field_validation_below gfield_visibility_visible"  ><label class='gfield_label gform-field-label' for='input_2_9'>Message</label><div class='ginput_container ginput_container_textarea'><textarea name='input_9' id='input_2_9' class='textarea medium'    placeholder='Message'  aria-invalid="false"   rows='10' cols='50'></textarea></div></div><div id="field_2_15" class="gfield gfield--type-text gfield--input-type-text gfield--width-full hidden-f field_sublabel_below gfield--no-description field_description_below field_validation_below gfield_visibility_visible"  ><label class='gfield_label gform-field-label' for='input_2_15'>Blank Field</label><div class='ginput_container ginput_container_text'><input name='input_15' id='input_2_15' type='text' value='' class='large'      aria-invalid="false"   /></div></div><div id="field_2_14" class="gfield gfield--type-captcha gfield--input-type-captcha gfield--width-full field_sublabel_below gfield--no-description field_description_below hidden_label field_validation_below gfield_visibility_visible"  ><label class='gfield_label gform-field-label' for='input_2_14'>CAPTCHA</label><div id='input_2_14' class='ginput_container ginput_recaptcha' data-sitekey='6LctXikhAAAAAMt2hvC0uj2riIVklwg8Oe7ze4x_'  data-theme='light' data-tabindex='0'  data-badge=''></div></div></div></div>
         <div class='gform-footer gform_footer top_label'> <input type='submit' id='gform_submit_button_2' class='gform_button button' onclick='gform.submission.handleButtonClick(this);' data-submission-type='submit' value='Submit'  /> <input type='hidden' name='gform_ajax' value='form_id=2&amp;title=&amp;description=&amp;tabindex=0&amp;theme=gravity-theme&amp;hash=1ed1f42d0f962d65b7207d445125eaaf' />
@@ -678,7 +708,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <input type='hidden' class='gform_hidden' name='is_submit_2' value='1' />
             <input type='hidden' class='gform_hidden' name='gform_submit' value='2' />
             
-            <input type='hidden' class='gform_hidden' name='gform_currency' data-currency='USD' value='BKWG5kDCJZf2Ia4AUPsXWaJZkjL8n3EGYfdZ8yU/ijNAT3tHDgJujnV5nlmqm0lN7LcrqgOmr2ycW3UGPIoQ6IcIrJefRTWgjhhEG4HHMjgAIJ8=' />
+            <input type='hidden' class='gform_hidden' name='gform_currency' data-currency='USD' value='bpyklGEF/pHSt+x2XSR1jcRTq2jVVBfPk1DmznKCg8HPjBJycXcHzjprM8tEzQhrpYzSt8b6uQfognx7rhZKK0C0SGddwIcWPTplEwPGVUzGYH8=' />
             <input type='hidden' class='gform_hidden' name='gform_unique_id' value='' />
             <input type='hidden' class='gform_hidden' name='state_2' value='WyJbXSIsImMxMDUwMTU3YWU0YmQ2NmM0ZmQ2YTBlNjE5NDU2MTYyIl0=' />
             <input type='hidden' autocomplete='off' class='gform_hidden' name='gform_target_page_number_2' id='gform_target_page_number_2' value='0' />
@@ -686,7 +716,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <input type='hidden' name='gform_field_values' value='' />
             
         </div>
-                        <p style="display: none !important;" class="akismet-fields-container" data-prefix="ak_"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="247"/><script>
+                        <p style="display: none !important;" class="akismet-fields-container" data-prefix="ak_"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="158"/><script>
 document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );
 </script>
 </p></form>
