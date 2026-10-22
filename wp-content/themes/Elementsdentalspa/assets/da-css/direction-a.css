@@ -3269,3 +3269,12 @@ html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
 .lenis.lenis-stopped{overflow:hidden}
 .lenis.lenis-smooth iframe{pointer-events:none}
+
+/* 2026-10-22b: the aesthetics card. "Consultation first" is a sentence, not a price, so the inline
+   price layout squeezed its note into a 4-word column; stack it. And the two buttons sit on one row. */
+@media (min-width:1001px){
+ #pane-aes .pcard .pentry{flex-direction:column;align-items:flex-start;gap:4px}
+ #pane-aes .pcard .pentry b{font-size:21px;white-space:normal}
+ .pcard .cbtns{display:flex;flex-wrap:nowrap;gap:8px}
+ .pcard .cbtns .btn{padding:12px 14px;font-size:10.5px;letter-spacing:.1em;white-space:nowrap}
+}
