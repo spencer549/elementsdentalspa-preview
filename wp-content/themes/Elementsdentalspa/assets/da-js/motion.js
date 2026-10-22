@@ -24,6 +24,25 @@
  if(rm.addEventListener) rm.addEventListener('change', function(e){ e.matches ? stop() : start(); });
  window.addEventListener('resize', function(){ want() ? start() : stop(); });
 
+ /* back to top */
+ var top = document.querySelector('.totop');
+ if(top){
+  top.hidden = false;
+  var cc = document.getElementById('eds-cc');
+  function sync(){
+   top.classList.toggle('show', window.scrollY > 600);
+   /* the cookie banner is full width at the bottom on phones; sit above it while it is open */
+   var lift = cc && !cc.hidden && cc.getBoundingClientRect().height > 0 && cc.getBoundingClientRect().right > top.getBoundingClientRect().left;
+   top.style.bottom = lift ? (innerHeight - cc.getBoundingClientRect().top + 12) + 'px' : '';
+  }
+  window.addEventListener('scroll', sync, { passive: true }); window.addEventListener('resize', sync); sync();
+  if(cc){ new MutationObserver(sync).observe(cc, { attributes: true, attributeFilter: ['hidden'] }); cc.addEventListener('click', function(){ setTimeout(sync, 50); }); }
+  top.addEventListener('click', function(){
+   if(lenis){ lenis.scrollTo(0); } else { window.scrollTo({ top: 0, behavior: rm.matches ? 'auto' : 'smooth' }); }
+   var h = document.querySelector('#hdr a, #hdr .logo, header a'); if(h) h.focus({ preventScroll: true });
+  });
+ }
+
  /* count-ups: once, on first sight; reduced motion shows the final value */
  var els = [].slice.call(document.querySelectorAll('[data-count]'));
  if(!els.length) return;

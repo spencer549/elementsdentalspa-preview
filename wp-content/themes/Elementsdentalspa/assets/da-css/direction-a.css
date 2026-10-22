@@ -3278,3 +3278,16 @@ html.lenis,html.lenis body{height:auto}
  .pcard .cbtns{display:flex;flex-wrap:nowrap;gap:8px}
  .pcard .cbtns .btn{padding:12px 14px;font-size:10.5px;letter-spacing:.1em;white-space:nowrap}
 }
+
+/* back to top, 2026-10-22c */
+.totop{position:fixed;right:20px;bottom:20px;z-index:58;width:46px;height:46px;border-radius:50%;border:1px solid rgba(250,247,242,.18);
+ background:var(--ink);color:var(--gold-lt);display:grid;place-items:center;cursor:pointer;padding:0;box-shadow:0 14px 30px -12px rgba(15,29,40,.5);
+ opacity:0;transform:translateY(12px);transition:opacity .3s cubic-bezier(.23,1,.32,1),transform .3s cubic-bezier(.23,1,.32,1),background-color .2s}
+.totop svg{width:20px;height:20px}
+.totop[hidden]{display:grid}
+.totop.show{opacity:1;transform:none}
+.totop:not(.show){pointer-events:none}
+.totop:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+@media (hover:hover) and (pointer:fine){.totop:hover{background:var(--gold);color:var(--ink)}}
+@media (max-width:600px){.totop{right:14px;bottom:14px;width:42px;height:42px}}
+@media(prefers-reduced-motion:reduce){.totop{transition:opacity .3s ease;transform:none}}
