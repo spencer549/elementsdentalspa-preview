@@ -3184,3 +3184,88 @@ html:not(.eds-js) .bkmodal.cond-modal:target .bkscrim,html:not(.eds-js) .bkmodal
 .eds-cc-act{display:flex;gap:10px;flex-wrap:wrap}
 .eds-cc-act .btn{padding:11px 20px;font-size:14px}
 @media(max-width:600px){.eds-cc{left:12px;right:12px;bottom:12px;padding:16px 16px 14px}}
+
+
+/* ===== MOCKUP D, "Current, refined", picked 2026-10-22 =====================
+   The approved homepage with A's section treatment and a quiet motion set.
+   Everything here is additive and scoped to the homepage blocks it names. */
+
+/* hero: doors part 10% on load, slow drift, three proof chips */
+@media (min-width:1081px){
+ .split .half{transition:transform 1.4s cubic-bezier(.16,1,.3,1)}
+ .split .half:nth-child(2){transform:translateX(10%)}
+ .split .half:nth-child(3){transform:translateX(-10%)}
+ html.hero-ready .split .half{transform:none}
+ .half>img{animation:eds-kb 34s cubic-bezier(.77,0,.175,1) infinite alternate}
+ .half:nth-child(3)>img{animation-duration:42s;animation-delay:-14s}
+}
+@keyframes eds-kb{from{transform:scale(1.1) translate(0,0)}to{transform:scale(1.02) translate(-1.2%,1.2%)}}
+@media (hover:hover) and (pointer:fine) and (min-width:1081px){
+ .half:hover>img{animation-play-state:paused;transform:scale(1.045)}
+}
+.hchip{
+ position:absolute;z-index:6;display:inline-flex;align-items:center;gap:9px;
+ background:rgba(255,255,255,.93);backdrop-filter:blur(10px);color:var(--ink);border-radius:999px;
+ padding:9px 15px;font-size:13px;font-weight:500;box-shadow:0 10px 30px -10px rgba(15,29,40,.4);
+ opacity:0;transform:translateY(14px);transition:opacity .6s cubic-bezier(.23,1,.32,1),transform .6s cubic-bezier(.23,1,.32,1);
+}
+.hchip b{font-family:'Bodoni Moda',Georgia,serif;font-weight:500;font-optical-sizing:none;font-variation-settings:'opsz' 6;font-size:18px;line-height:1}
+.hchip i{width:8px;height:8px;border-radius:50%;background:var(--gold)}
+.hchip-1{left:clamp(20px,4vw,56px);top:54px;transition-delay:1.1s}
+.hchip-2{right:clamp(20px,4vw,56px);top:42px;transition-delay:1.3s}
+.hchip-3{right:clamp(60px,7vw,100px);top:108px;transition-delay:1.5s}
+html.hero-ready .hchip{opacity:1;transform:none}
+@media (max-width:1080px){.hchip{display:none}}
+
+/* care: both panels as cards on desktop, the switcher for phones */
+@media (min-width:1001px){
+ .care-wrap{display:grid;grid-template-columns:1.05fr 1fr 1fr;gap:clamp(20px,2.4vw,28px);align-items:center}
+ .care-wrap .care-head{grid-column:1;text-align:left;margin:0;max-width:none}
+ .care-wrap .sw{display:none}
+ .care-wrap .pane{display:block}
+ .care-wrap .pane.on{animation:none}
+ .pcard{display:block;background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:0 26px 26px;overflow:hidden}
+ .pcard .pic{border-radius:0;box-shadow:none;margin:0 -26px 20px}
+ .pcard .pic img{aspect-ratio:4/3}
+ .pcard h3{font-size:28px;margin-bottom:8px}
+ .pcard>div>p{font-size:15px;margin-bottom:12px}
+ .pcard .plist{margin-bottom:12px}
+ .pcard .plist li{padding:10px 0}
+ .pcard .plist b{font-size:17px}
+ .pcard .plist span{max-width:60%}
+ .pcard .pentry{padding:12px 14px;margin-bottom:14px}
+ .pcard .pentry b{font-size:24px}
+ .pcard .cbtns .btn{padding:12px 18px;font-size:11px}
+ .pcard .eyebrow{display:none}
+}
+@media (max-width:1000px){
+ .pcard .pic{order:-1}
+}
+.rv-l{transform:translateX(-40px)} .rv-r{transform:translateX(40px)}
+.rv-l.in,.rv-r.in{transform:none}
+
+/* first visit: the media on top of each step card, number badge on the photo */
+.stp.has-media{padding:0;overflow:hidden;display:grid;grid-template-rows:auto 1fr}
+.stp-media{position:relative;aspect-ratio:4/3;background:#20272d}
+.stp-media img,.stp-media video{display:block;width:100%;height:100%;object-fit:cover}
+.stp-media i{position:absolute;left:16px;top:16px;margin:0;box-shadow:0 6px 16px rgba(0,0,0,.18)}
+.stp-tx{padding:20px 22px 24px}
+.stp.has-media h4{font-size:22px}
+@media(min-width:1081px){.stepgrid::before{display:none}}
+
+/* motion off means gentler, never zero */
+@media(prefers-reduced-motion:reduce){
+ .split .half{transition:none;transform:none!important}
+ .half>img{animation:none!important}
+ .hchip{transition:opacity .5s ease;transform:none}
+ .rv-l,.rv-r{transform:none}
+}
+
+/* Lenis' own required rules: the theme's html{scroll-behavior:smooth} would otherwise animate
+   every position Lenis writes, a second smoothing on top of the first (and it blinds a
+   scroll-then-measure gate, see reference_smooth_scroll_breaks_scroll_gates). */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+.lenis.lenis-stopped{overflow:hidden}
+.lenis.lenis-smooth iframe{pointer-events:none}
