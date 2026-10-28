@@ -2726,7 +2726,10 @@ section.s.px-band{padding:clamp(52px,4.6vw,80px) 0}
 
    Nothing is lost below 1360. The nav Contact item is a dropdown carrying Contact form down
    to 1081, and below that the same dropdown renders inline inside the slide-down menu. */
-@media(max-width:1359px){ .edgetabs{display:none} }
+/* 2026-10-28 (Spencer): the tab must be visible on mobile too. Below 1360 it no longer
+   hides; it slims down so it covers as little of the content edge as possible. */
+@media(max-width:1359px){ .edgetab{font-size:13px;padding:18px 9px;letter-spacing:.06em} }
+@media(max-width:680px){ .edgetab{font-size:11px;padding:14px 6px;letter-spacing:.05em;top:58%} }
 
 /* the specials panel */
 .sp-eyebrow{font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;font-weight:600;color:var(--gold-lt);margin-bottom:12px}
