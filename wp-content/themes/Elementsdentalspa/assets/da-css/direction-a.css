@@ -3342,3 +3342,6 @@ html.lenis,html.lenis body{height:auto}
 /* 2026-10-28: menu button sits at the far right on mobile and tablet, Book to its left
    (Spencer). Visual order only; both stay in the same header group. */
 @media(max-width:1080px){ .hcta .navtoggle{order:9} }
+/* 2026-10-28: on phones the two door headings wrap to different line counts, so the buttons
+   sat at different heights. Reserve two lines for each heading so both buttons line up. */
+@media(max-width:680px){ .half-in h2{min-height:2.36em} }
