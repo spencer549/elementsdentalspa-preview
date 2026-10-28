@@ -3291,3 +3291,13 @@ html.lenis,html.lenis body{height:auto}
 @media (hover:hover) and (pointer:fine){.totop:hover{background:var(--gold);color:var(--ink)}}
 @media (max-width:600px){.totop{right:14px;bottom:14px;width:42px;height:42px}}
 @media(prefers-reduced-motion:reduce){.totop{transition:opacity .3s ease;transform:none}}
+
+/* 2026-10-28: the inner-page header squashed the logo to ~17-36px between 1081 and ~1171px
+   (brand 1fr track lost to nav 615 + CTA 313). Tighten spacing in that band only; logo
+   keeps its full width. Measured fix: see STATE.md 2026-10-28. */
+@media(min-width:1081px) and (max-width:1199px){
+  .hbar{padding-left:28px;padding-right:28px;column-gap:18px}
+  .hbar .navaim{gap:15px}
+  .hbar .hcta{gap:12px}
+  .hbar .brand img{min-width:108px}
+}
