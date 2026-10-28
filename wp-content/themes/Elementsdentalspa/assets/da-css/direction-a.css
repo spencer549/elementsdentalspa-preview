@@ -3301,3 +3301,37 @@ html.lenis,html.lenis body{height:auto}
   .hbar .hcta{gap:12px}
   .hbar .brand img{min-width:108px}
 }
+
+/* 2026-10-28: a 4-column card grid holding exactly 5 cards left the 5th alone with three empty
+   columns beside it (spa hub, Spencer). Five cards lay out 3 + 2 on desktop, the bottom two
+   wider; at the 2-column tablet size the 5th spans the row. */
+@media(min-width:1001px){
+  .imgrid.cols-4:has(> :nth-child(5):last-child){grid-template-columns:repeat(6,1fr)}
+  .imgrid.cols-4:has(> :nth-child(5):last-child) > :nth-child(-n+3){grid-column:span 2}
+  .imgrid.cols-4:has(> :nth-child(5):last-child) > :nth-child(n+4){grid-column:span 3}
+}
+@media(min-width:621px) and (max-width:1000px){
+  .imgrid:has(> :nth-child(odd):last-child) > :last-child{grid-column:1 / -1}
+}
+/* keep the photo band one height across the row: wider cards get a wider crop */
+@media(min-width:1001px){
+  .imgrid.cols-4:has(> :nth-child(5):last-child) > :nth-child(n+4) .imshot{aspect-ratio:197/100}
+}
+@media(min-width:621px) and (max-width:1000px){
+  .imgrid:has(> :nth-child(odd):last-child) > :last-child .imshot{aspect-ratio:8/3}
+}
+
+/* 2026-10-28: the two homepage door links read as thin underlined text over photos (Spencer:
+   "make this a button so it will be easier to see"). Gold pill, ink text (about 8:1). */
+.half-in a{
+ padding:13px 24px;border:1px solid var(--gold);border-radius:999px;background:var(--gold);
+ color:var(--ink);font-weight:600;box-shadow:0 6px 18px rgba(10,20,28,.28);
+ transition:background-color .25s ease,color .25s ease,border-color .25s ease
+}
+@media (hover:hover) and (pointer:fine){
+ .half-in a:hover{background:var(--white);border-color:var(--white);color:var(--ink)}
+}
+.half-in a:focus-visible{outline:2px solid var(--white);outline-offset:3px}
+@media(max-width:680px){
+ .half-in a{padding:9px 14px;font-size:10px;letter-spacing:.08em;border-bottom-color:var(--gold)}
+}
