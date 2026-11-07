@@ -3222,8 +3222,14 @@ html.hero-ready .hchip{opacity:1;transform:none}
 
 /* care: both panels as cards on desktop, the switcher for phones */
 @media (min-width:1001px){
- .care-wrap{display:grid;grid-template-columns:1.05fr 1fr 1fr;gap:clamp(20px,2.4vw,28px);align-items:center}
- .care-wrap .care-head{grid-column:1;text-align:left;margin:0;max-width:none}
+ /* 2026-11-07 (Spencer): heading on two lines, so it spans the row above the two cards instead of a narrow first column */
+ .care-wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,2.4vw,28px);align-items:start}
+ .care-wrap .care-head{grid-column:1/-1;text-align:left;margin:0 0 clamp(8px,1.2vw,16px);max-width:none}
+ .care-wrap .care-head h2{max-width:30ch;text-wrap:balance}
+ .care-wrap .care-head{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);column-gap:clamp(24px,3vw,48px);align-items:end}
+ .care-wrap .care-head .eyebrow{grid-column:1/-1}
+ .care-wrap .care-head h2{margin-bottom:0}
+ .care-wrap .care-head p{max-width:46ch;margin:0;padding-bottom:6px}
  .care-wrap .sw{display:none}
  .care-wrap .pane{display:block}
  .care-wrap .pane.on{animation:none}
