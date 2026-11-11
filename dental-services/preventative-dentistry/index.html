@@ -2,12 +2,15 @@
 <html lang="en-US">
 <head>
 <meta name="robots" content="noindex,nofollow">
-<!-- Consent Mode default: analytics and advertising storage stay denied until the visitor accepts
-     the banner in the footer (privacy policy, Cookies and tracking). eds-consent -->
+<!-- Consent Mode default (option 2, 2026-11-11): in the US, analytics and advertising are on unless
+     the visitor declines; everywhere else both stay denied until the visitor accepts. Banner is in
+     the footer (privacy policy, Cookies and tracking). eds-consent -->
 <script>/*eds-consent*/window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 var edsCc=null;try{edsCc=localStorage.getItem('eds_cc');}catch(e){}
 gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',functionality_storage:'granted',security_storage:'granted',wait_for_update:500});
+gtag('consent','default',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted',region:['US'],wait_for_update:500});
 if(edsCc==='granted'){gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});}
+else if(edsCc==='denied'){gtag('consent','update',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});}
 </script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -591,12 +594,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <p class="legal">The content on this site is provided for general informational purposes and does not substitute for an in-person evaluation by a licensed dentist. Individual results vary based on the patient&#8217;s oral health, anatomy and treatment plan. Candidacy for any treatment depends on an in-person evaluation. Patient reviews shown here reflect individual experiences and do not guarantee similar outcomes.</p>
 </div>
 </footer>
-<!-- Cookie consent banner (client chose one 2026-10-12). Analytics and advertising cookies stay off
-     until Accept; Decline keeps them off; the footer "Cookie settings" link reopens this. eds-consent -->
+<!-- Cookie consent banner (client chose one 2026-10-12; option 2 2026-11-11). In the US analytics and
+     advertising cookies are on unless the visitor declines; elsewhere both stay off until Accept.
+     Decline turns both off and clears first-party tracking cookies; the footer "Cookie settings"
+     link reopens this. eds-consent -->
 <div id="eds-cc" class="eds-cc" role="dialog" aria-labelledby="eds-cc-h" hidden>
   <div class="eds-cc-in">
     <p id="eds-cc-h" class="eds-cc-t">Cookies on this site</p>
-    <p>We use analytics and advertising cookies to see how the site is used. They stay off until you accept. Cookies the site needs to work are always on. <a href="/elementsdentalspa-preview/privacy-policy/">Privacy policy</a></p>
+    <p>We use analytics and advertising cookies to see how the site is used and to show our ads. In the US they are on unless you decline. Everywhere else they stay off until you accept. Cookies the site needs to work are always on. <a href="/elementsdentalspa-preview/privacy-policy/">Privacy policy</a></p>
     <div class="eds-cc-act">
       <button type="button" class="btn v3gold" data-cc="granted">Accept</button>
       <button type="button" class="btn btn-line" data-cc="denied">Decline</button>
@@ -609,7 +614,11 @@ function show(){b.hidden=false;}function hide(){b.hidden=true;}
 function set(v){try{localStorage.setItem(k,v);}catch(e){}
  var s=v==='granted'?'granted':'denied';
  if(typeof gtag==='function'){gtag('consent','update',{ad_storage:s,ad_user_data:s,ad_personalization:s,analytics_storage:s});}
+ if(s==='denied'){if(typeof window.clarity==='function'){try{window.clarity('consent',false);}catch(e){}}wipe();}
  window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:'eds_consent',eds_consent:s});hide();}
+function wipe(){var h=location.hostname.split('.'),x='=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+ document.cookie.split(';').forEach(function(c){var m=c.split('=')[0].trim();if(!/^(_ga(_.+)?|_gid|_gat(_.+)?|_gcl_.+|_gac_.+|__adroll.*|__ar_v4|_clck|_clsk|_uetsid|_uetvid)$/.test(m))return;
+  document.cookie=m+x;for(var i=0;i<h.length-1;i++){document.cookie=m+x+';domain=.'+h.slice(i).join('.');}});}
 b.addEventListener('click',function(e){var t=e.target.closest('[data-cc]');if(t){set(t.getAttribute('data-cc'));}});
 var o=document.getElementById('eds-cc-open');if(o){o.addEventListener('click',function(e){e.preventDefault();show();b.querySelector('[data-cc]').focus();});}
 if(!g()){show();}})();</script>
@@ -667,7 +676,7 @@ if(!g()){show();}})();</script>
             <input type='hidden' class='gform_hidden' name='is_submit_2' value='1' />
             <input type='hidden' class='gform_hidden' name='gform_submit' value='2' />
             
-            <input type='hidden' class='gform_hidden' name='gform_currency' data-currency='USD' value='jCY9n924s7FApF6RZTjC+PcQKINLCQpWj1z+o8hVRdeQYmgailiaO+87DtEQkQ23XLl4P/dAlWzBjauNZXQYhjiS6yrbnDCvQJPOgpkIJq3vIyk=' />
+            <input type='hidden' class='gform_hidden' name='gform_currency' data-currency='USD' value='wQ/Qt53O8p2d9Vfz39C05NnC8SfbBOldSA/2BInRxzjbEX8NCCQOgZE1mcvXQ+xRn9WtzQYtULroHa9MNFyols1Jn/1UW+7WF5BaXDpCNDLu/x8=' />
             <input type='hidden' class='gform_hidden' name='gform_unique_id' value='' />
             <input type='hidden' class='gform_hidden' name='state_2' value='WyJbXSIsIjMwYTg3ZjI3NTU5NTI4N2FjM2YxNDRiZjA3NjEzMmRjIl0=' />
             <input type='hidden' autocomplete='off' class='gform_hidden' name='gform_target_page_number_2' id='gform_target_page_number_2' value='0' />
@@ -675,7 +684,7 @@ if(!g()){show();}})();</script>
             <input type='hidden' name='gform_field_values' value='' />
             
         </div>
-                        <p style="display: none !important;" class="akismet-fields-container" data-prefix="ak_"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="125"/><script>
+                        <p style="display: none !important;" class="akismet-fields-container" data-prefix="ak_"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="123"/><script>
 document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );
 </script>
 </p></form>
@@ -1032,7 +1041,7 @@ var gf_legacy = {"is_legacy":""};
 <script id="gform_gravityforms_utils-js" defer='defer' src="/elementsdentalspa-preview/wp-content/plugins/gravityforms/assets/js/dist/utils.min.js?ver=3f278756f0a3032bed328ff6a9f6c01d"></script>
 <script id="gform_gravityforms_theme_vendors-js" defer='defer' src="/elementsdentalspa-preview/wp-content/plugins/gravityforms/assets/js/dist/vendor-theme.min.js?ver=7c651d0ba638ce98b9c65141edddd567"></script>
 <script id="gform_gravityforms_theme-js-extra">
-var gform_theme_config = {"common":{"form":{"honeypot":{"version_hash":"a32b3e2293be19e83f24799ff66e23cb"},"ajax":{"ajaxurl":"/wp-admin/admin-ajax.php","ajax_submission_nonce":"4f58deae7c","i18n":{"step_announcement":"Step %1$s of %2$s, %3$s","unknown_error":"There was an unknown error processing your request. Please try again.","error_403":"The request was blocked (403 error) for unknown security reasons. Remove any code-like text (scripts or DB queries) and try again."}}}},"hmr_dev":"","public_path":"/elementsdentalspa-preview/wp-content/plugins/gravityforms/assets/js/dist/","config_nonce":"ede533d965"};
+var gform_theme_config = {"common":{"form":{"honeypot":{"version_hash":"a32b3e2293be19e83f24799ff66e23cb"},"ajax":{"ajaxurl":"/wp-admin/admin-ajax.php","ajax_submission_nonce":"5f5eec8aed","i18n":{"step_announcement":"Step %1$s of %2$s, %3$s","unknown_error":"There was an unknown error processing your request. Please try again.","error_403":"The request was blocked (403 error) for unknown security reasons. Remove any code-like text (scripts or DB queries) and try again."}}}},"hmr_dev":"","public_path":"/elementsdentalspa-preview/wp-content/plugins/gravityforms/assets/js/dist/","config_nonce":"7ec1ab4631"};
 //# sourceURL=gform_gravityforms_theme-js-extra
 </script>
 <script id="gform_gravityforms_theme-js" defer='defer' src="/elementsdentalspa-preview/wp-content/plugins/gravityforms/assets/js/dist/scripts-theme.min.js?ver=301fdc9aa6144168f3b854c4c2c8f6d3"></script>
