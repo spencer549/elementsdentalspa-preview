@@ -3356,3 +3356,37 @@ html.lenis,html.lenis body{height:auto}
 /* 2026-10-28: on phones the two door headings wrap to different line counts, so the buttons
    sat at different heights. Reserve two lines for each heading so both buttons line up. */
 @media(max-width:680px){ .half-in h2{min-height:2.36em} }
+
+/* ===========================================================================
+   2026-11-16 inner-page type standard (Spencer: "the font of the inner pages is
+   not the same"). Measured on all 168 preview pages: the 38 service pages
+   (.v3) read Inter Tight 400 / 17px with a 62px banner H1, while every other
+   inner template fell through to the body's 300 weight, a 56px H1 and 14.5px
+   card copy. One standard for every inner page, the service-page one. The
+   homepage keeps its approved settings.
+   =========================================================================== */
+body:not(.home) main{font-weight:400}
+body:not(.home) .svcclassic p,body:not(.home) .svcclassic li,
+body:not(.home) .svcprose p,body:not(.home) .svcprose li,
+body:not(.home) .sblock p,body:not(.home) .sblock li{font-weight:400}
+body:not(.home){--h1:clamp(38px,4.4vw,62px)}
+body:not(.home) .cell p{font-size:16px;line-height:1.7}
+/* Banner subheading stays the one shared definition (300, 18px) on every page,
+   the service banner included. */
+body:not(.home) .v3h3-copy .lede{font-weight:300}
+
+/* Options grids: a three-column grid holding two cards left the third column as
+   dead space (double chin). Two cards share the full width instead. */
+@media(min-width:621px){.grid3:has(> .cell:nth-child(2):last-child){grid-template-columns:repeat(2,1fr)}}
+
+/* Banner phone button over a photograph: the outline style let the photo show
+   through the label. Solid white fill, ink text, so it reads on any image. */
+.hub-hero .btn-line,.svc-hero .btn-line{
+ background:var(--white);color:var(--ink);border-color:var(--ink);
+ box-shadow:0 2px 14px rgba(15,29,40,.14);
+}
+.hub-hero .btn-line:hover,.svc-hero .btn-line:hover{background:var(--ink);color:var(--white)}
+/* The 62px standard H1 ran long hub titles deep into the banner photo (Concerns:
+   "we" sat on the window). Keep the H1 inside the copy column, where the photo is
+   still faded, at every desktop width. !important beats per-page inline widths. */
+@media(min-width:1001px){.hub-hero-in h1{max-width:min(44%,18ch)!important}}
