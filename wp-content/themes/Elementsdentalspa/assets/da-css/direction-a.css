@@ -3390,3 +3390,13 @@ body:not(.home) .v3h3-copy .lede{font-weight:300}
    "we" sat on the window). Keep the H1 inside the copy column, where the photo is
    still faded, at every desktop width. !important beats per-page inline widths. */
 @media(min-width:1001px){.hub-hero-in h1{max-width:min(44%,18ch)!important}}
+/* 2026-11-16 (Spencer): the hub banner subheading, thin grey type, ran onto the
+   photo and washed out (Cosmetic Dentistry). Over a photo it reads in the dark ink
+   at the body weight, stays in the faded part of the photo, and carries a soft
+   white halo for the stretch that still overlaps it. */
+.hub-hero .lede{color:var(--ink);font-weight:400;text-shadow:0 0 14px rgba(255,255,255,.9),0 0 3px rgba(255,255,255,.8)}
+@media(min-width:1001px){.hub-hero-in .lede{max-width:min(40%,46ch)!important}}
+.hub-hero .eyebrow{text-shadow:0 0 10px rgba(255,255,255,.9)}
+/* On wide screens the banner photo was 58% of the WINDOW, not of the 1320px
+   content column, so at 1920 it slid 120px under the copy. Same 58%, of the column. */
+@media(min-width:1001px){.hub-hero-img{width:min(58%,766px)}}
