@@ -3400,3 +3400,21 @@ body:not(.home) .v3h3-copy .lede{font-weight:300}
 /* On wide screens the banner photo was 58% of the WINDOW, not of the 1320px
    content column, so at 1920 it slid 120px under the copy. Same 58%, of the column. */
 @media(min-width:1001px){.hub-hero-img{width:min(58%,766px)}}
+
+/* 2026-11-24: Spa Facials comparison table (client asked for more depth, Basecamp 10539765295) */
+.prose table.eds-compare{width:100%;border-collapse:collapse;margin:8px 0 28px;font-size:16px;line-height:1.5;color:var(--ink)}
+.prose table.eds-compare th{text-align:left;font-weight:600;font-size:15px;padding:12px 14px;border-bottom:2px solid var(--gold);color:var(--ink)}
+.prose table.eds-compare td{padding:14px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-soft)}
+.prose table.eds-compare td:first-child{font-weight:600;color:var(--ink);width:22%}
+.prose table.eds-compare tbody tr:nth-child(odd){background:var(--paper)}
+@media (max-width:760px){
+.prose table.eds-compare thead{display:none}
+.prose table.eds-compare,.prose table.eds-compare tbody,.prose table.eds-compare tr,.prose table.eds-compare td{display:block;width:100%}
+.prose table.eds-compare tr{border:1px solid var(--line);border-radius:12px;padding:6px 0;margin:0 0 14px;background:var(--white)}
+.prose table.eds-compare tbody tr:nth-child(odd){background:var(--white)}
+.prose table.eds-compare td{border:0;padding:6px 16px}
+.prose table.eds-compare td:first-child{width:100%;font-size:17px;padding-top:10px}
+.prose table.eds-compare td:nth-child(2)::before{content:"What it does: ";font-weight:600;color:var(--ink)}
+.prose table.eds-compare td:nth-child(3)::before{content:"Often chosen for: ";font-weight:600;color:var(--ink)}
+.prose table.eds-compare td:nth-child(4)::before{content:"Membership: ";font-weight:600;color:var(--ink)}
+}
